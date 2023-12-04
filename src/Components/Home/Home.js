@@ -7,9 +7,9 @@ const Home = () => {
     return (
         <div className="mainContainer">
             <div className="gridMain">
-                <Sidebar/>
+                <Sidebar />
                 <div className="main-content">main Content</div>
-                <Footer/>
+                <Footer />
             </div>
         </div>
     );
