@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
+import Sidebar from "../Sidebar/Sidebar";
+import Footer from "../Footer/Footer";
 
 const Home = () => {
     useEffect(() => {}, []);
     return (
         <div className="mainContainer">
             <div className="gridMain">
-                <div className="sidebarContainer">Left sidebar</div>
+                <Sidebar/>
                 <div className="main-content">main Content</div>
-                <div className="footer">Music Player</div>
+                <Footer/>
             </div>
         </div>
     );
