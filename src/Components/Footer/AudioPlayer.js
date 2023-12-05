@@ -4,8 +4,8 @@ import "./audioPlayer.css"; // Import the CSS file for styling
 
 const AudioPlayer = ({ src }) => {
     const [isPlaying, setIsPlaying] = useState(false);
+    // eslint-disable-next-line
     const [volume, setVolume] = useState(1);
-    const [progress, setProgress] = useState(0);
     const [currentTime, setCurrentTime] = useState(0);
     const audioRef = useRef(new Audio(src));
     const isSeeking = useRef(false); // Use a ref to track whether the user is currently seeking
@@ -18,7 +18,7 @@ const AudioPlayer = ({ src }) => {
         }
         setIsPlaying(!isPlaying);
     };
-
+    // eslint-disable-next-line
     const handleVolumeChange = (e) => {
         const newVolume = parseFloat(e.target.value);
         setVolume(newVolume);
@@ -35,7 +35,6 @@ const AudioPlayer = ({ src }) => {
             const currentTime = audioRef.current.currentTime;
             const duration = audioRef.current.duration;
             const newProgress = (currentTime / duration) * 100;
-            setProgress(newProgress);
             handleOverlay(newProgress);
             setCurrentTime(currentTime);
         }
@@ -52,6 +51,7 @@ const AudioPlayer = ({ src }) => {
         return () => {
             adRef.removeEventListener("timeupdate", handleTimeUpdate);
         };
+        // eslint-disable-next-line
     }, []);
 
     const handleInputSeekChange = (e) => {
@@ -64,24 +64,12 @@ const AudioPlayer = ({ src }) => {
 
     return (
         <div>
-            <audio ref={audioRef} src={src} />
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                }}
-            >
+            <audio id="audio-player" ref={audioRef} src={src} />
+            <div className="audio-container">
                 <button onClick={togglePlay}>{isPlaying ? "Pause" : "Play"}</button>
                 <div className="range-container">
                     <div className="time-stamp">{formatTime(currentTime)}</div>
-                    <div
-                        style={{
-                            width: "100%",
-                            position: "relative",
-                        }}
-                        className="range-cont"
-                    >
+                    <div className="range-cont">
                         <input
                             type="range"
                             min="0"
