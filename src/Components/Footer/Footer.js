@@ -39,23 +39,7 @@ const Footer = () => {
                         maxWidth: "722px",
                     }}
                 >
-                    {musicdata && (
-                        <AudioPlayer src={musicdata}/>
-                        // <audio
-                        //     controls="controls"
-                        //     style={{
-                        //         opacity: 0.5,
-                        //         pointerEvents: "none",
-                        //     }}
-                        // >
-                        //     <source src={musicdata} type="audio/mp3" />
-                        // </audio>
-                    )}
-
-                    {/* <input type="range" />
-                    <div>
-                        <progress />
-                    </div> */}
+                    {musicdata && <AudioPlayer src={musicdata} />}
                 </div>
                 <div
                     style={{
