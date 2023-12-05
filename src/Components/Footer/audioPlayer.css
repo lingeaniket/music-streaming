@@ -32,16 +32,27 @@
     background: white;
     border-bottom-left-radius: 15px;
     border-top-left-radius: 15px;
-  }
-  
-  .range-input:hover::-webkit-slider-thumb,
-  .range-cont:hover .range-input::-webkit-slider-thumb {
+}
+
+.range-cont {
+    width: 100%;
+    position: relative;
+}
+
+.range-input:hover::-webkit-slider-thumb,
+.range-cont:hover .range-input::-webkit-slider-thumb {
     display: flex;
     position: relative;
-    z-index: 12
-  }
-  
-  .range-cont:hover .overlayDiv {
-  background: green;
-  z-index: 0
+    z-index: 12;
+}
+
+.range-cont:hover .overlayDiv {
+    background: green;
+    z-index: 0;
+}
+
+.audio-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
