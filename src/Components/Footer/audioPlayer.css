@@ -1,0 +1,47 @@
+.range-container {
+    width: 100%;
+    display: flex;
+}
+
+.time-stamp {
+    margin: 0 10px;
+}
+.range-input {
+    height: 4px;
+    width: 100%;
+    appearance: none;
+    outline: none;
+    border: none;
+    border-radius: 15px;
+}
+
+.range-input::-webkit-slider-thumb {
+    appearance: none;
+    display: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fff;
+}
+
+.overlayDiv {
+    position: absolute;
+    left: 0;
+    height: 4px;
+    top: 10.5px;
+    background: white;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+  }
+  
+  .range-input:hover::-webkit-slider-thumb,
+  .range-cont:hover .range-input::-webkit-slider-thumb {
+    display: flex;
+    position: relative;
+    z-index: 12
+  }
+  
+  .range-cont:hover .overlayDiv {
+  background: green;
+  z-index: 0
+}
