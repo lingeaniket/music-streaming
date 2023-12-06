@@ -1,0 +1,106 @@
+.list01 {
+    display: flex;
+}
+
+.list02 {
+    padding-left: 22px;
+    /* border: "0.5px solid white",
+                        borderRadius: '8px',
+                        overflow: "hidden", */
+    width: 14.2857%;
+    position: relative;
+}
+
+.listButtons:hover .listTabs {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* .listButtons:hover .list05 {
+    background: #00000080;
+} */
+
+.list03 {
+    width: 100%;
+    aspect-ratio: 1/1;
+    /* // border: "1px solid white", */
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    margin-bottom: 11px;
+}
+
+.list04 {
+    width: 100%;
+    display: flex;
+    aspect-ratio: 1/1;
+}
+
+.listImg {
+    vertical-align: middle;
+}
+
+.listTabs {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.list05 {
+    position: absolute;
+    inset: 0;
+    /* background: transparent; */
+    background: #00000080;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8px;
+    width: 100%;
+    aspect-ratio: 1/1;
+}
+
+.list06 {
+    display: flex;
+    height: 100%;
+    align-items: flex-end;
+    justify-content: space-between;
+    position: relative;
+}
+
+.list07 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* border: 1px solid rgba(255, 255, 255, 0.4); */
+}
+
+.listTitle {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    text-overflow: ellipsis;
+    line-height: 1.4;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 13px;
+    width: 100%;
+}
+
+.playBtn {
+    height: 44px;
+    width: 44px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+    /* transition: width 0.2s ease-in-out; */
+}
+
+.playBtn:hover{
+  width: 50px;
+  height: 50px;
+}
