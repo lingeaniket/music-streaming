@@ -5,6 +5,7 @@ body {
 
 * {
     box-sizing: border-box;
+    font-family: Lato,sans-serif;
 }
 
 .mainContainer {
@@ -31,11 +32,27 @@ body {
 .main-content {
     color: white;
     height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
     grid-area: main-content;
+}
+
+.main-content::-webkit-scrollbar{
+    display: none;
 }
 .footer {
     width: 100%;
     height: 75px;
     color: white;
     grid-area: music-player;
+}
+
+
+.scrollHider {
+    overflow: scroll;
+}
+
+.scrollHider::-webkit-scrollbar{
+    display: none;
 }
