@@ -8,7 +8,6 @@ const Footer = () => {
         const loadMusic = async () => {
             await axios.get("https://saavn.me/search/songs?query=kun+faya+kun&page=1&limit=2").then((res) => {
                 setMusicData(res.data.data.results[0].downloadUrl[0].link);
-                console.log(res.data.data.results[0].downloadUrl[0].link);
             });
         };
 

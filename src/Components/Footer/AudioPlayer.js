@@ -75,7 +75,7 @@ const AudioPlayer = ({ src }) => {
                             min="0"
                             id="seek-range"
                             className="range-input"
-                            max={audioRef.current.duration}
+                            max={audioRef.current.duration ? audioRef.current.duration : 0}
                             step="0.01"
                             value={currentTime}
                             onInput={handleInputSeekChange}
@@ -93,7 +93,10 @@ const AudioPlayer = ({ src }) => {
 export default AudioPlayer;
 
 const formatTime = (time) => {
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    if (time) {
+        const minutes = Math.floor(time / 60);
+        const seconds = Math.floor(time % 60);
+        return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    }
+    return "00:00";
 };
