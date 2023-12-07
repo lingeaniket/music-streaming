@@ -47,7 +47,9 @@ const LandingPage = () => {
                                 lineHeight: 1.375,
                             }}
                         >
-                            Trending Now
+                            {
+                                i === 0 ? "Trending Now": i===1 ? "Albums": i === 2 ? "Playlists" : i === 3 ? "Charts" : ""
+                            }
                         </h2>
                     </div>
                     <div className="listDiv">
