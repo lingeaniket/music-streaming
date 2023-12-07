@@ -8,8 +8,9 @@ const ListItem = ({ val }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleAlbum = async (e) => {
+    const handleAlbum = async (event) => {
         console.log(val.type);
+        event.stopPropagation();
         if (val.type === "album") {
             const albumSongsData = await axios.get(`https://saavn.me/albums?id=${val.id}`);
             const albumData = albumSongsData.data.data;
@@ -31,11 +32,10 @@ const ListItem = ({ val }) => {
 
             dispatch(playAlbum(playerData));
         }
-
-        e.stopPropagation();
     };
 
     const handleAlbumRoute = () => {
+        console.log("handleAlbumRoute");
         navigate(`/${val.type}/${val.name}/${val.id}`);
     };
 
