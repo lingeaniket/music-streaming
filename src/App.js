@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import Home from "./Components/Home/Home";
 import LandingPage from "./Components/LandingPage/LandingPage";
 import store from "./Store/store";
+import Album from "./Components/Album/Album";
 
 const router = createBrowserRouter([
     {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <LandingPage />,
+            },
+            {
+                path: "/album/:albumName/:albumId",
+                element: <Album />,
             },
         ],
     },
