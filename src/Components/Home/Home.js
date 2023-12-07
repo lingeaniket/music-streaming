@@ -10,17 +10,16 @@ const Home = () => {
             <div className="gridMain">
                 <Sidebar />
                 <div className="main-content">
-                <div
-            className="scrollHider"
-            style={{
-                border: "1px solid white",
-                padding: "8px",
-                margin: "0px 8px",
-            }}
-        >
-
-                    <Outlet />
-        </div>
+                    <div
+                        className="scrollHider"
+                        style={{
+                            // border: "1px solid white",
+                            padding: "8px",
+                            margin: "0px 8px",
+                        }}
+                    >
+                        <Outlet />
+                    </div>
                 </div>
                 <Footer />
             </div>
