@@ -1,0 +1,90 @@
+.detail-01 {
+    margin-top: 66px;
+}
+
+.detail-02 {
+    margin-bottom: 44px;
+}
+
+.detail-03 {
+    display: flex;
+}
+
+.detail-04 {
+    width: 180px;
+    height: 180px;
+    margin-right: 44px;
+    border-radius: 4px;
+    box-shadow: 0 30px 40px -20px rgba(255, 255, 255, 0.16);
+    overflow: hidden;
+}
+
+.detail-04 > img {
+    width: 100%;
+    vertical-align: middle;
+}
+
+.detail-05 {
+    margin: 0;
+    margin-bottom: 5.5px;
+    font-size: 34px;
+    line-height: 1.27;
+}
+
+.detail-06 {
+    margin: 0;
+    margin-bottom: 5.5px;
+    font-size: 15px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+}
+
+.detail-07 {
+    padding: 0 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.detail-08 {
+    margin: 0;
+    margin-bottom: 22px;
+}
+
+.detail-09 {
+    margin: 0 0 0 -22px;
+    display: flex;
+}
+
+.detail-10,
+.detail-11 {
+    padding-left: 22px;
+}
+
+.detail-10 > button {
+    margin: 0;
+    padding: 0 44px;
+    line-height: 2.4;
+    font-size: 20px;
+    outline: none;
+    border: none;
+    background: white;
+    border-radius: 999px;
+    font-weight: 700;
+    width: auto;
+    height: 50px;
+}
+
+.detail-11 > button {
+    border: 1px solid white;
+    outline: none;
+    background: none;
+    border-radius: 50%;
+    padding: 15px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+}
