@@ -6,7 +6,7 @@ import { handleSeek, handleVolumeSeek } from "./audioFunction";
 import AudioTab from "./AudioTab/AudioTab";
 import AudioSettingTab from "./AudioSettingsTab/AudioSettingTab";
 
-import "./audioPlayer.css"; // Import the CSS file for styling
+import "./audioPlayer.css";
 
 const AudioPlayer = () => {
     const selectedSong = useSelector((state) => state.player.currentSong);
@@ -18,7 +18,7 @@ const AudioPlayer = () => {
     const [currentSongDetails, setCurrentSongDetails] = useState("");
 
     const audioRef = useRef(new Audio(currentSong));
-    const isSeeking = useRef(false); // Use a ref to track whether the user is currently seeking
+    const isSeeking = useRef(false);
 
     const togglePlay = () => {
         if (isPlaying) {

@@ -1,6 +1,9 @@
-import { faBackwardStep, faForwardStep, faPause, faPlay, faRepeat, faShuffle } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBackwardStep, faForwardStep, faPause, faPlay, faRepeat, faShuffle } from "@fortawesome/free-solid-svg-icons";
+
+import {formatTime} from "../../commonFunctions.js"
 
 const AudioTab = ({ audioRef, currentSong, currentTime, togglePlay, isPlaying, handleInputSeekChange, handleInputSeek }) => {
     return (
@@ -67,12 +70,3 @@ const AudioTab = ({ audioRef, currentSong, currentTime, togglePlay, isPlaying, h
 };
 
 export default AudioTab;
-
-const formatTime = (time) => {
-    if (time) {
-        const minutes = Math.floor(time / 60);
-        const seconds = Math.floor(time % 60);
-        return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
-    }
-    return "00:00";
-};
