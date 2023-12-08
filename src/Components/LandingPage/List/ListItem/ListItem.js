@@ -1,50 +1,35 @@
-import axios from "axios";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { playAlbum } from "../../../../Features/musicPlayerSlice";
 import { useNavigate } from "react-router-dom";
 
-const ListItem = ({ val }) => {
+import { playAlbum } from "../../../../Features/musicPlayerSlice";
+import { getPlayListData } from "../listFunctions";
+
+const ListItem = ({ data }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleAlbum = async (event) => {
-        console.log(val.type);
         event.stopPropagation();
-        if (val.type === "album") {
-            const albumSongsData = await axios.get(`https://saavn.me/albums?id=${val.id}`);
-            const albumData = albumSongsData.data.data;
-            const playerData = {
-                song: albumData.songs[0],
-                playlist: albumData.songs > 2 ? albumData.songs.alice(1, albumData.songCount) : albumData.songs[1],
-            };
+        const playerData = await getPlayListData(data);
+        dispatch(playAlbum(playerData));
+    };
+    console.log(data);
 
-            dispatch(playAlbum(playerData));
-        } else if (val.type === "song") {
-            console.log(val.id);
-            // const id = "https://saavn.me/songs?id=5WXAlMNt";
-            const albumSongsData = await axios.get(`https://saavn.me/songs?id=${val.id}`);
-            const albumData = albumSongsData.data.data;
-            const playerData = {
-                song: albumData[0],
-                playlist: [],
-            };
-
-            dispatch(playAlbum(playerData));
+    const handleAlbumRoute = () => {
+        if (data.type === "album" || data.type === "song") {
+            navigate(`/${data.type}/${data.name ? data.name.replace(" ", "-").replace("#", "") : data.title}/${data.id}`);
+        } else {
+            navigate(`/featured/${data.name ? data.name.replace(" ", "-").replace("#", "") : data.title}/${data.id}`);
         }
     };
 
-    const handleAlbumRoute = () => {
-        console.log("handleAlbumRoute");
-        navigate(`/${val.type}/${val.name}/${val.id}`);
-    };
-
     return (
-        <div className="list02" key={val.id}>
+        <div className="list02">
             <div className="listButtons" onClick={handleAlbumRoute}>
                 <div className="list03">
                     <div className="list04">
-                        <img className="listImg" src={val?.image[2].link} alt="" />
+                        <img className="listImg" src={Array.isArray(data?.image) ? data?.image[2].link : data.image} alt="" />
                     </div>
                     <div className="listTabs">
                         <div className="list05">
@@ -89,8 +74,19 @@ const ListItem = ({ val }) => {
                     </div>
                 </div>
                 <div>
-                    <h4 className="listTitle">{val.name ? val.name : val.title}</h4>
-                    <p className="listTitle">Artist and singers</p>
+                    <h4 className="listTitle">{data.name ? data.name : data.title}</h4>
+                    <p className="listTitle">
+                        {data.primaryArtists
+                            ? data?.primaryArtists.map((artist, id, arr) => {
+                                  if (id === arr.length - 1) {
+                                      return artist.name;
+                                  } else {
+                                      return `${artist.name}, `;
+                                  }
+                              })
+                            : data.subtitle}
+                    </p>
+                    {/* <p className="listTitle">{JSON.stringify(data.primaryArtists)}</p> */}
                 </div>
             </div>
         </div>
