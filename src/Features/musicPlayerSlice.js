@@ -4,7 +4,7 @@ export const playerSlice = createSlice({
     name: "player",
     initialState: {
         currentSong: {
-          downloadUrl : ""
+            downloadUrl: "",
         },
         nextPlaylist: [],
     },
