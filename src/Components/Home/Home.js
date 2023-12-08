@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
-import Sidebar from "../Sidebar/Sidebar";
-import Footer from "../Footer/Footer";
 import { Outlet } from "react-router-dom";
+
+import Footer from "../Footer/Footer";
+import Sidebar from "../Sidebar/Sidebar";
 
 const Home = () => {
     useEffect(() => {}, []);
+    
     return (
         <div className="mainContainer">
             <div className="gridMain">
