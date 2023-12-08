@@ -16,7 +16,6 @@ import Loader from "../Icons/Loader/Loader.js";
 
 const Details = ({ type }) => {
     const { id } = useParams();
-    console.log(type)
     const [songs, setSongs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [details, setDetails] = useState({});
@@ -45,12 +44,11 @@ const Details = ({ type }) => {
                 totalDuration: findDuration(albumData.data.data.songs),
             });
             setSongs(albumData.data.data.songs);
-            setTimeout(()=>{
-
+            setTimeout(() => {
                 setLoading(false);
-            }, 1000)
+            }, 1000);
         };
-        
+
         const loadSong = async () => {
             const songData = await axios.get(`https://saavn.me/songs?id=${id}`);
             setDetails({
@@ -59,15 +57,14 @@ const Details = ({ type }) => {
                 totalPlays: songData.data.data[0].playCount,
                 totalDuration: songData.data.data[0].duration,
             });
-            
+
             const albumData = await axios.get(`https://saavn.me/albums?id=${songData.data.data[0].album.id}`);
             setSongs(albumData.data.data.songs);
-            setTimeout(()=>{
-    
+            setTimeout(() => {
                 setLoading(false);
-            }, 1000)
+            }, 1000);
         };
-        
+
         if (id) {
             setLoading(true);
             if (type === "album" || type === "playlist") {
@@ -81,18 +78,21 @@ const Details = ({ type }) => {
     return (
         <div className="detail-01">
             {loading ? (
-                <div style={{
-                    display: 'flex',
-                    // height: 'px',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                }}>
-                    <div style={{
-                        height: '50px',
-                        width: '50px'
-                    }}>
-
-                    <Loader/>
+                <div
+                    style={{
+                        display: "flex",
+                        // height: 'px',
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                >
+                    <div
+                        style={{
+                            height: "50px",
+                            width: "50px",
+                        }}
+                    >
+                        <Loader />
                     </div>
                 </div>
             ) : (
@@ -153,16 +153,14 @@ const Details = ({ type }) => {
                                 ))}
                         </div>
                     )}
-                  
-                    {(type === "song") && <MightLike type={type} mode="YML" details={details} />}
+
+                    {type === "song" && <MightLike type={type} mode="YML" details={details} />}
                     {type === "song" && <MightLike type={type} mode="TSOSAr" details={details} />}
 
-                    {(type === "album") && <MightLike type={type} mode="YML" details={songs[0]} />}
+                    {type === "album" && <MightLike type={type} mode="YML" details={songs[0]} />}
                     {type === "album" && <MightLike type={type} mode="TAOSY" details={songs[0]} />}
 
                     {type === "playlist" && <MightLike type={type} mode="RP" details={songs[0]} />}
-
-                    
                 </>
             )}
         </div>

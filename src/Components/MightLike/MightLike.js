@@ -11,8 +11,6 @@ const MightLike = ({ type, mode, details }) => {
     const [data, setData] = useState([]);
     const { id } = useParams();
 
-    console.log(type, mode);
-
     useEffect(() => {
         // album - yml, taosy
         // song - tsosar, tsosact
@@ -28,7 +26,6 @@ const MightLike = ({ type, mode, details }) => {
         };
 
         const loadSongData = async () => {
-            console.log("song function called");
             const apiData = await loadSData(mode, details?.primaryArtistsId, details?.language, id);
             setData(apiData);
         };

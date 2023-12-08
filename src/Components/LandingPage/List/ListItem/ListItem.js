@@ -14,7 +14,6 @@ const ListItem = ({ data }) => {
         const playerData = await getPlayListData(data);
         dispatch(playAlbum(playerData));
     };
-    console.log(data);
 
     const handleAlbumRoute = () => {
         if (data.type === "album" || data.type === "song") {
