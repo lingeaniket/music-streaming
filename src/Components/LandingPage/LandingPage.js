@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+
 import List from "./List/List";
 
 const LandingPage = () => {
-    const [trending, setTrending] = useState({});
     const [charts, setCharts] = useState([]);
-    const [playlists, setPlaylists] = useState([]);
     const [albums, setAlbums] = useState([]);
+    const [trending, setTrending] = useState({});
+    const [playlists, setPlaylists] = useState([]);
 
     useEffect(() => {
         const loadData = async () => {
@@ -21,6 +22,7 @@ const LandingPage = () => {
 
         loadData();
     }, []);
+
     return (
         <div
             style={{
@@ -47,9 +49,7 @@ const LandingPage = () => {
                                 lineHeight: 1.375,
                             }}
                         >
-                            {
-                                i === 0 ? "Trending Now": i===1 ? "Albums": i === 2 ? "Playlists" : i === 3 ? "Charts" : ""
-                            }
+                            {i === 0 ? "Trending Now" : i === 1 ? "Albums" : i === 2 ? "Playlists" : i === 3 ? "Charts" : ""}
                         </h2>
                     </div>
                     <div className="listDiv">
