@@ -1,10 +1,12 @@
 import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 import Home from "./Components/Home/Home";
+import Details from "./Components/Details/Details";
 import LandingPage from "./Components/LandingPage/LandingPage";
+
 import store from "./Store/store";
-import Album from "./Components/Album/Album";
 
 const router = createBrowserRouter([
     {
@@ -16,8 +18,16 @@ const router = createBrowserRouter([
                 element: <LandingPage />,
             },
             {
-                path: "/album/:albumName/:albumId",
-                element: <Album />,
+                path: "/album/:name/:id",
+                element: <Details type="album" />,
+            },
+            {
+                path: "/song/:name/:id",
+                element: <Details type="song" />,
+            },
+            {
+                path: "featured/:name/:id",
+                element: <Details type="playlist" />,
             },
         ],
     },

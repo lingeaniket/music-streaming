@@ -50,9 +50,24 @@ body {
 
 
 .scrollHider {
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .scrollHider::-webkit-scrollbar{
     display: none;
+}
+
+@media screen and (max-width: 1240px) {
+
+    .sidebarContainer {
+        width: 100px;
+    }
+    
+}
+
+@media screen and (max-width: 1000px) {
+    .sidebarContainer {
+display: none;    }
+    
 }
