@@ -1,14 +1,26 @@
 import React from "react";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./songList.css";
-import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
+
+import { formatTime } from "../commonFunctions.js";
 import { playAlbum } from "../../Features/musicPlayerSlice";
+
+import "./songList.css";
+import { useNavigate } from "react-router-dom";
 
 const SongList = ({ song, index, type }) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate()
+
+    const handleSong = ()=>{
+        navigate(`/song/${song.name}/${song.id}`)
+
+    }
+
     const handleSongPlay = async () => {
         if (type === "album") {
             const albumSongsData = await axios.get(`https://saavn.me/albums?id=${song.album.id}`);
@@ -28,6 +40,7 @@ const SongList = ({ song, index, type }) => {
             dispatch(playAlbum(playerData));
         }
     };
+
     return (
         <div className="song-list-01">
             <div className="song-list-02">
@@ -39,7 +52,7 @@ const SongList = ({ song, index, type }) => {
             <div className="song-list-04">
                 <div className="song-list-05">
                     <h4>
-                        <span>{song.name}</span>
+                        <span onClick={handleSong}>{song.name}</span>
                     </h4>
                     <div>{song.primaryArtists}</div>
                 </div>
@@ -53,12 +66,3 @@ const SongList = ({ song, index, type }) => {
 };
 
 export default SongList;
-
-const formatTime = (time) => {
-    if (time) {
-        const minutes = Math.floor(time / 60);
-        const seconds = Math.floor(time % 60);
-        return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
-    }
-    return "00:00";
-};
