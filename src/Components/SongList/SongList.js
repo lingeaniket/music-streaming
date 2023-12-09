@@ -1,3 +1,4 @@
+import he from "he";
 import React from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
@@ -14,12 +15,16 @@ import { useNavigate } from "react-router-dom";
 
 const SongList = ({ song, index, type }) => {
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
-    const handleSong = ()=>{
-        navigate(`/song/${song.name}/${song.id}`)
-
-    }
+    const handleSong = () => {
+        const nString = he.decode(song.name).toLowerCase();
+        const conTitle = nString
+            .replace(/[^a-zA-Z0-9]/g, "-")
+            .replace(/-+/g, "-")
+            .replace(/^-+|-+$/g, "");
+        navigate(`/song/${conTitle}/${song.id}`);
+    };
 
     const handleSongPlay = async () => {
         if (type === "album") {

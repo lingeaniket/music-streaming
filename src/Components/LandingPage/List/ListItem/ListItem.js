@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { playAlbum } from "../../../../Features/musicPlayerSlice";
 import { getPlayListData } from "../listFunctions";
+import he from "he"
 
 const ListItem = ({ data }) => {
     const dispatch = useDispatch();
@@ -16,10 +17,13 @@ const ListItem = ({ data }) => {
     };
 
     const handleAlbumRoute = () => {
+        const songTitle = data.name ? data.name : data.title;
+        const nString = he.decode(songTitle).toLowerCase();
+        const conTitle = nString.replace(/[^a-zA-Z0-9]/g, '-').replace(/-+/g, '-').replace(/^-+|-+$/g, '')
         if (data.type === "album" || data.type === "song") {
-            navigate(`/${data.type}/${data.name ? data.name.replace(" ", "-").replace("#", "") : data.title}/${data.id}`);
+            navigate(`/${data.type}/${conTitle}/${data.id}`);
         } else {
-            navigate(`/featured/${data.name ? data.name.replace(" ", "-").replace("#", "") : data.title}/${data.id}`);
+            navigate(`/featured/${conTitle}/${data.id}`);
         }
     };
 
@@ -73,7 +77,7 @@ const ListItem = ({ data }) => {
                     </div>
                 </div>
                 <div>
-                    <h4 className="listTitle">{data.name ? data.name : data.title}</h4>
+                    <h4 className="listTitle">{data.name ? data.name.replace(/&quot;/g, '"') : data.title.replace(/&quot;/g, '"')}</h4>
                     <p className="listTitle">
                         {data.primaryArtists
                             ? data?.primaryArtists.map((artist, id, arr) => {

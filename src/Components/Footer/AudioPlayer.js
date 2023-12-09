@@ -98,7 +98,7 @@ const AudioPlayer = () => {
                         <img src={currentSongDetails?.image ? currentSongDetails?.image[2].link : ""} alt="" />
                     </div>
                     <div className="audio-player04">
-                        <h4 className="audio-player05">{currentSongDetails?.name}</h4>
+                        <h4 className="audio-player05">{currentSongDetails?.name?.replace(/&quot;/g, '"')}</h4>
                         <div className="audio-player05">{currentSongDetails?.primaryArtists}</div>
                     </div>
                 </div>

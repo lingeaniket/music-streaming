@@ -103,7 +103,7 @@ const Details = ({ type }) => {
                                 <img src={details.image ? details?.image[2]?.link : ""} alt="" />
                             </div>
                             <div>
-                                <h1 className="detail-05">{details.name}</h1>
+                                <h1 className="detail-05">{details.name.replace(/&quot;/g, '"')}</h1>
                                 <p className="detail-06">
                                     <span>by {details.primaryArtists}</span>
                                     <span className="detail-07">

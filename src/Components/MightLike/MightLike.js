@@ -26,7 +26,7 @@ const MightLike = ({ type, mode, details }) => {
         };
 
         const loadSongData = async () => {
-            const apiData = await loadSData(mode, details?.primaryArtistsId, details?.language, id);
+            const apiData = await loadSData(mode, details?.primaryArtistsId, details?.language, id, details?.album?.id, details?.year);
             setData(apiData);
         };
 
