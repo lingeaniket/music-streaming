@@ -2,12 +2,12 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import List from "../LandingPage/List/List";
 import ListItem from "../LandingPage/List/ListItem/ListItem";
 
 const Search = () => {
     const [searchKey, setsearchkey] = useState("");
     const [topSearch, setTopSearch] = useState([]);
+    // eslint-disable-next-line
     const [searchData, setSearchData] = useState({})
     const [timer, setTimer] = useState(null);
     const [isSearching, setisSearching] = useState(false);
