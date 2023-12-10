@@ -40,6 +40,9 @@ const Sidebar = () => {
                                     gap: "20px",
                                     cursor: "pointer",
                                 }}
+                                onClick={() => {
+                                    navigate("/");
+                                }}
                             >
                                 <div>
                                     <FontAwesomeIcon icon={faHouse} size="lg" />
@@ -66,8 +69,8 @@ const Sidebar = () => {
                                     gap: "20px",
                                     cursor: "pointer",
                                 }}
-                                onClick={()=>{
-                                    navigate("/search")
+                                onClick={() => {
+                                    navigate("/search");
                                 }}
                             >
                                 <div>
@@ -177,11 +180,10 @@ const Sidebar = () => {
                         </div>
                         <div
                             style={{
-                                paddingTop: '10px',
+                                paddingTop: "10px",
                                 borderBottom: "1px solid white",
                             }}
                         ></div>
-                        
                     </div>
                     <div
                         style={{
@@ -231,14 +233,20 @@ const Sidebar = () => {
                                         height: "40px",
                                     }}
                                 >
-                                    <span style={{
-                                        padding: '0 12px 0 0'
-                                    }}>
+                                    <span
+                                        style={{
+                                            padding: "0 12px 0 0",
+                                        }}
+                                    >
                                         <FontAwesomeIcon icon={faPlus} size="sm" style={{ color: "black" }} />
                                     </span>
-                                    <span style={{
-                                        fontSize: '12px'
-                                    }}>New Playlist</span>
+                                    <span
+                                        style={{
+                                            fontSize: "12px",
+                                        }}
+                                    >
+                                        New Playlist
+                                    </span>
                                 </button>
                             </div>
                         </div>
