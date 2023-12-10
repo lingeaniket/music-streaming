@@ -7,6 +7,7 @@ import Details from "./Components/Details/Details";
 import LandingPage from "./Components/LandingPage/LandingPage";
 
 import store from "./Store/store";
+import Search from "./Components/Search/Search";
 
 const router = createBrowserRouter([
     {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
                 path: "featured/:name/:id",
                 element: <Details type="playlist" />,
             },
+            {
+                path: 'search',
+                element: <Search/>
+            }
         ],
     },
 ]);
