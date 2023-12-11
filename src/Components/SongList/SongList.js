@@ -2,16 +2,16 @@ import he from "he";
 import React from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
 
 import { formatTime } from "../commonFunctions.js";
 import { playAlbum } from "../../Features/musicPlayerSlice";
 
 import "./songList.css";
-import { useNavigate } from "react-router-dom";
 
 const SongList = ({ song, index, type, mode }) => {
     const dispatch = useDispatch();
