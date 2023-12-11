@@ -9,6 +9,7 @@
                         overflow: "hidden", */
     width: 14.2857%;
     position: relative;
+    margin-bottom: 20px;
 }
 
 .listButtons:hover .listTabs {
