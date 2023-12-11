@@ -13,7 +13,7 @@ import { playAlbum } from "../../Features/musicPlayerSlice";
 import "./songList.css";
 import { useNavigate } from "react-router-dom";
 
-const SongList = ({ song, index, type }) => {
+const SongList = ({ song, index, type, mode }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -37,27 +37,58 @@ const SongList = ({ song, index, type }) => {
 
             dispatch(playAlbum(playerData));
         } else if (type === "song") {
-            const playerData = {
-                song,
-                playlist: [],
-            };
+            if (mode === "search") {
+                const songData = await axios.get(`https://saavn.me/songs?id=${song.id}`);
+                const selectedSong = songData.data.data;
+                console.log(selectedSong)
 
-            dispatch(playAlbum(playerData));
+                const playerData = {
+                    song: selectedSong[0],
+                    playlist: [],
+                };
+
+                dispatch(playAlbum(playerData));
+            } else {
+                const playerData = {
+                    song,
+                    playlist: [],
+                };
+
+                dispatch(playAlbum(playerData));
+            }
         }
     };
 
     return (
         <div className="song-list-01">
             <div className="song-list-02">
-                <span className="song-list-03">{index + 1}</span>
-                <div className="song-list-08" onClick={handleSongPlay}>
-                    <FontAwesomeIcon icon={faPlay} size="sm" style={{ color: "#000000" }} />
-                </div>
+                {mode === "search" ? (
+                    <>
+                        <img
+                            src={song.image ? song.image[2].link : ""}
+                            alt=""
+                            style={{
+                                width: "100%",
+                                borderRadius: "4px",
+                            }}
+                        />
+                        <div className="song-list-09" onClick={handleSongPlay}>
+                            <FontAwesomeIcon icon={faPlay} size="sm" style={{ color: "#ffffff" }} />
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <span className="song-list-03">{index + 1}</span>
+                        <div className="song-list-08" onClick={handleSongPlay}>
+                            <FontAwesomeIcon icon={faPlay} size="sm" style={{ color: "#000000" }} />
+                        </div>
+                    </>
+                )}
             </div>
             <div className="song-list-04">
                 <div className="song-list-05">
                     <h4>
-                        <span onClick={handleSong}>{song.name}</span>
+                        <span onClick={handleSong}>{song.name ? song.name : song.title}</span>
                     </h4>
                     <div>{song.primaryArtists}</div>
                 </div>
@@ -65,7 +96,7 @@ const SongList = ({ song, index, type }) => {
             <div className="song-list-06">
                 <FontAwesomeIcon icon={faHeart} size="lg" />
             </div>
-            <div className="song-list-07">{formatTime(Number(song.duration))}</div>
+            {mode !== "search" && <div className="song-list-07">{formatTime(Number(song.duration))}</div>}
         </div>
     );
 };
