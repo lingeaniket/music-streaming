@@ -1,27 +1,32 @@
 import axios from "axios";
-import React, { Fragment, useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import ListItem from "../../LandingPage/List/ListItem/ListItem";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
 
-import "./viewAll.css";
 import PageButton from "./PageButton";
 import Loader from "../../Icons/Loader/Loader";
+import ListItem from "../../LandingPage/List/ListItem/ListItem";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 
+import "./viewAll.css";
+
 const ViewAll = () => {
-    const { type, key } = useParams();
-    const [page, setPage] = useState(1);
-    const [searchData, setSearchData] = useState({});
-    const [loading, setLoading] = useState(true);
-    const [totalPages, setTotalPages] = useState(0);
     const navigate = useNavigate();
+
+    const { type, key } = useParams();
+
+    const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(true);
+    const [searchData, setSearchData] = useState({});
+    const [totalPages, setTotalPages] = useState(0);
 
     const handleNext = () => {
         if (page < totalPages) {
             setPage((prev) => prev + 1);
         }
     };
+
     const handlePrev = () => {
         if (page !== 1) {
             setPage((prev) => prev - 1);
@@ -52,6 +57,7 @@ const ViewAll = () => {
         };
         loadData();
     }, [page, type, key]);
+    
     return (
         <div className="vAll001">
             <div className="vAll002">
