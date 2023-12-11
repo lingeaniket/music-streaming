@@ -1,29 +1,30 @@
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import ListItem from "../LandingPage/List/ListItem/ListItem";
-import SongList from "../SongList/SongList";
-import { getPlayListData } from "../LandingPage/List/listFunctions";
 import { useDispatch } from "react-redux";
-import { playAlbum } from "../../Features/musicPlayerSlice";
+import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
+import { playAlbum } from "../../Features/musicPlayerSlice";
+import { getPlayListData } from "../LandingPage/List/listFunctions";
+
+import SongList from "../SongList/SongList";
+import ListItem from "../LandingPage/List/ListItem/ListItem";
+
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const Search = () => {
+    const [timer, setTimer] = useState(null);
     const [searchKey, setsearchkey] = useState("");
     const [topSearch, setTopSearch] = useState([]);
-    // eslint-disable-next-line
     const [searchData, setSearchData] = useState({});
-    const [timer, setTimer] = useState(null);
     const [isSearching, setisSearching] = useState(false);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     function handleViewAll() {
-        // console.log(this)
         navigate(`/search/${this.type}/${searchKey}`);
-    };
+    }
 
     const loadSearchingData = async (key) => {
         const newKey = key.replaceAll(" ", "+");
@@ -70,6 +71,7 @@ const Search = () => {
         };
         loadTrend();
     }, []);
+
     return (
         <div
             style={{
@@ -81,7 +83,6 @@ const Search = () => {
                 style={{
                     position: "absolute",
                     inset: 0,
-                    // zIndex: 1,
                 }}
             >
                 <Outlet />
@@ -407,7 +408,6 @@ const Search = () => {
                             margin: "0 0 0 -22px",
                         }}
                     >
-                        {/* <List data={topSearch}/> */}
                         {topSearch.map((top) => (
                             <ListItem data={top} />
                         ))}
