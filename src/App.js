@@ -8,6 +8,7 @@ import LandingPage from "./Components/LandingPage/LandingPage";
 
 import store from "./Store/store";
 import Search from "./Components/Search/Search";
+import ViewAll from "./Components/Search/ViewAll/ViewAll";
 
 const router = createBrowserRouter([
     {
@@ -32,7 +33,13 @@ const router = createBrowserRouter([
             },
             {
                 path: 'search',
-                element: <Search/>
+                element: <Search/>,
+                children : [
+                    {
+                        path: "/search/:type/:key",
+                        element: <ViewAll/>
+                    }
+                ]
             }
         ],
     },
