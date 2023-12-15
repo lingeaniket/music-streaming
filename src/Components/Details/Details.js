@@ -81,7 +81,6 @@ const Details = ({ type }) => {
                 <div
                     style={{
                         display: "flex",
-                        // height: 'px',
                         justifyContent: "center",
                         alignItems: "center",
                     }}
@@ -141,15 +140,19 @@ const Details = ({ type }) => {
                     {type !== "song" ? (
                         <div className="detail-02">
                             {songs.map((song, index) => (
-                                <SongList key={song.id} song={song} index={index} type="album" />
+                                <SongList key={song.id} song={song} index={index} type="album" queue={songs} />
                             ))}
                         </div>
                     ) : (
                         <div className="detail-02">
+                            <h3 style={{
+                                display: 'flex',
+                                marginBottom: '22px'
+                            }}>More from {songs[0].album.name}</h3>
                             {songs
                                 .filter((song) => song.id !== id)
                                 .map((song, index) => (
-                                    <SongList key={song.id} song={song} index={index} type="album" />
+                                    <SongList key={song.id} song={song} mode="moreAlbumSongs" index={index} type="album" queue={songs} />
                                 ))}
                         </div>
                     )}
