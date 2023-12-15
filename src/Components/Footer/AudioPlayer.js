@@ -7,6 +7,7 @@ import AudioTab from "./AudioTab/AudioTab";
 import AudioSettingTab from "./AudioSettingsTab/AudioSettingTab";
 
 import "./audioPlayer.css";
+import axios from "axios";
 
 const AudioPlayer = () => {
     const selectedSong = useSelector((state) => state.player.currentSong);
@@ -77,16 +78,31 @@ const AudioPlayer = () => {
     }, []);
 
     useEffect(() => {
-        setCurrentSong(selectedSong?.downloadUrl[2]?.link);
-        setCurrentSongDetails(selectedSong);
-        setTimeout(() => {
-            if (selectedSong?.downloadUrl) {
+        const loadData = async (id) => {
+            const data = await axios.get(`https://saavn.me/songs?id=${id}`);
+            const curSong = data.data.data[0];
+            setCurrentSong(curSong.downloadUrl[4].link);
+            setCurrentSongDetails(curSong);
+            setTimeout(() => {
                 audioRef.current.play();
                 setIsPlaying(true);
-            }
-        }, 200);
-        handleVolumeOverlay(volume * 100);
-        handleOverlay(0);
+            }, 200);
+            handleVolumeOverlay(volume * 100);
+            handleOverlay(0);
+        };
+        if (selectedSong) {
+            loadData(selectedSong);
+        }
+        // setCurrentSong(selectedSong?.downloadUrl[2]?.link);
+        // setCurrentSongDetails(selectedSong);
+        // setTimeout(() => {
+        //     if (selectedSong?.downloadUrl) {
+        //         audioRef.current.play();
+        //         setIsPlaying(true);
+        //     }
+        // }, 200);
+        // handleVolumeOverlay(volume * 100);
+        // handleOverlay(0);
         // eslint-disable-next-line
     }, [selectedSong]);
 
