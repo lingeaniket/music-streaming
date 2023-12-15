@@ -8,16 +8,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { playNextSong, playPrevSong } from "../../../Features/musicPlayerSlice.js";
 
 const AudioTab = ({ audioRef, currentSong, currentTime, togglePlay, isPlaying, handleInputSeekChange, handleInputSeek }) => {
-     // eslint-disable-next-line
+    // eslint-disable-next-line
     const currentSongIndex = useSelector((state) => state.player.songIndex);
     const dispatch = useDispatch();
     const handleSongEnd = () => {
         dispatch(playNextSong());
     };
 
-    const handlePrevSong = ()=>{
-        dispatch(playPrevSong())
-    }
+    const handlePrevSong = () => {
+        dispatch(playPrevSong());
+    };
     return (
         <div className="audio-player06">
             <div>
