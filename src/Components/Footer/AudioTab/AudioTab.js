@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { playNextSong, playPrevSong } from "../../../Features/musicPlayerSlice.js";
 
 const AudioTab = ({ audioRef, currentSong, currentTime, togglePlay, isPlaying, handleInputSeekChange, handleInputSeek }) => {
-    // eslint-disable-next-line
     const currentSongIndex = useSelector((state) => state.player.songIndex);
     const dispatch = useDispatch();
     const handleSongEnd = () => {
@@ -31,7 +30,7 @@ const AudioTab = ({ audioRef, currentSong, currentTime, togglePlay, isPlaying, h
                                 </button>
                             </div>
                             <div className="audio-player09 audio-player12">
-                                <button onClick={handlePrevSong}>
+                                <button disabled={currentSongIndex === 0} onClick={handlePrevSong}>
                                     <FontAwesomeIcon icon={faBackwardStep} size="xl" style={{ color: "#ffffff" }} />
                                 </button>
                             </div>
