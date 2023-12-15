@@ -9,7 +9,9 @@ import { playNextSong, playPrevSong } from "../../../Features/musicPlayerSlice.j
 
 const AudioTab = ({ audioRef, currentSong, currentTime, togglePlay, isPlaying, handleInputSeekChange, handleInputSeek }) => {
     const currentSongIndex = useSelector((state) => state.player.songIndex);
+
     const dispatch = useDispatch();
+
     const handleSongEnd = () => {
         dispatch(playNextSong());
     };
@@ -17,6 +19,7 @@ const AudioTab = ({ audioRef, currentSong, currentTime, togglePlay, isPlaying, h
     const handlePrevSong = () => {
         dispatch(playPrevSong());
     };
+    
     return (
         <div className="audio-player06">
             <div>
