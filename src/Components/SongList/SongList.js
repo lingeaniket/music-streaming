@@ -9,16 +9,17 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 
 import { formatTime } from "../commonFunctions.js";
-import { playAlbum } from "../../Features/musicPlayerSlice";
+ // eslint-disable-next-line
+import { addAutoPlay, playAlbum } from "../../Features/musicPlayerSlice";
 
 import "./songList.css";
 
-const SongList = ({ song, index, type, mode }) => {
+const SongList = ({ song, index, type, mode, queue }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleSong = () => {
-        const nString = he.decode(song.name).toLowerCase();
+        const nString = he.decode(song.name ? song.name : song.title).toLowerCase();
         const conTitle = nString
             .replace(/[^a-zA-Z0-9]/g, "-")
             .replace(/-+/g, "-")
@@ -28,34 +29,31 @@ const SongList = ({ song, index, type, mode }) => {
 
     const handleSongPlay = async () => {
         if (type === "album") {
-            const albumSongsData = await axios.get(`https://saavn.me/albums?id=${song.album.id}`);
-            const albumData = albumSongsData.data.data;
-            const playerData = {
-                song,
-                playlist: albumData.songs,
-            };
-
-            dispatch(playAlbum(playerData));
-        } else if (type === "song") {
-            if (mode === "search") {
-                const songData = await axios.get(`https://saavn.me/songs?id=${song.id}`);
-                const selectedSong = songData.data.data;
-                console.log(selectedSong)
-
+            if (mode === "moreAlbumSongs") {
+                const albumSongsData = await axios.get(`https://saavn.me/albums?id=${song.album.id}`);
+                const albumData = albumSongsData.data.data;
                 const playerData = {
-                    song: selectedSong[0],
-                    playlist: [],
+                    song: song.id,
+                    playlist: [song.id, ...albumData.songs.filter((val) => val.id !== song.id).map((val) => val.id)],
                 };
 
+                // const entities = albumData.songs.map((song) => {
+                //     return `%22${song.id}%22`;
+                // });
+
+                // const stationQueue = await axios.get(`https://music-streaming-api.onrender.com/api/v1/music/autoPlay?entityId=${JSON.stringify(entities)}`);
+
                 dispatch(playAlbum(playerData));
+                // dispatch(addAutoPlay(stationQueue))
             } else {
                 const playerData = {
-                    song,
-                    playlist: [],
+                    song: song.id,
+                    playlist: queue.map((song) => song.id),
                 };
-
                 dispatch(playAlbum(playerData));
             }
+        } else if (type === "song") {
+            dispatch(playAlbum({ song: song.id, playlist: [song.id] }));
         }
     };
 
