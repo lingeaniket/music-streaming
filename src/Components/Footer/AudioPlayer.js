@@ -93,16 +93,6 @@ const AudioPlayer = () => {
         if (selectedSong) {
             loadData(selectedSong);
         }
-        // setCurrentSong(selectedSong?.downloadUrl[2]?.link);
-        // setCurrentSongDetails(selectedSong);
-        // setTimeout(() => {
-        //     if (selectedSong?.downloadUrl) {
-        //         audioRef.current.play();
-        //         setIsPlaying(true);
-        //     }
-        // }, 200);
-        // handleVolumeOverlay(volume * 100);
-        // handleOverlay(0);
         // eslint-disable-next-line
     }, [selectedSong]);
 
