@@ -27,7 +27,7 @@ const Home = () => {
                         <Outlet />
                     </div>
                 </div>
-                {selectedSong.downloadUrl && <Footer />}
+                {selectedSong && <Footer />}
             </div>
         </div>
     );
