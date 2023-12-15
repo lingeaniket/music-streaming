@@ -3,13 +3,25 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBackwardStep, faForwardStep, faPause, faPlay, faRepeat, faShuffle } from "@fortawesome/free-solid-svg-icons";
 
-import {formatTime} from "../../commonFunctions.js"
+import { formatTime } from "../../commonFunctions.js";
+import { useDispatch, useSelector } from "react-redux";
+import { playNextSong, playPrevSong } from "../../../Features/musicPlayerSlice.js";
 
 const AudioTab = ({ audioRef, currentSong, currentTime, togglePlay, isPlaying, handleInputSeekChange, handleInputSeek }) => {
+     // eslint-disable-next-line
+    const currentSongIndex = useSelector((state) => state.player.songIndex);
+    const dispatch = useDispatch();
+    const handleSongEnd = () => {
+        dispatch(playNextSong());
+    };
+
+    const handlePrevSong = ()=>{
+        dispatch(playPrevSong())
+    }
     return (
         <div className="audio-player06">
             <div>
-                <audio id="audio-player" ref={audioRef} src={currentSong} />
+                <audio id="audio-player" ref={audioRef} src={currentSong} onEnded={handleSongEnd} />
                 <div className="audio-container">
                     <div className="audio-player07">
                         <div className="audio-player08">
@@ -19,7 +31,7 @@ const AudioTab = ({ audioRef, currentSong, currentTime, togglePlay, isPlaying, h
                                 </button>
                             </div>
                             <div className="audio-player09 audio-player12">
-                                <button>
+                                <button onClick={handlePrevSong}>
                                     <FontAwesomeIcon icon={faBackwardStep} size="xl" style={{ color: "#ffffff" }} />
                                 </button>
                             </div>
@@ -33,7 +45,7 @@ const AudioTab = ({ audioRef, currentSong, currentTime, togglePlay, isPlaying, h
                                 </button>
                             </div>
                             <div className="audio-player09 audio-player12">
-                                <button>
+                                <button onClick={handleSongEnd}>
                                     <FontAwesomeIcon icon={faForwardStep} size="xl" style={{ color: "#ffffff" }} />
                                 </button>
                             </div>
