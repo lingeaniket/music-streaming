@@ -1,10 +1,12 @@
-import { faItunesNote } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faItunesNote } from "@fortawesome/free-brands-svg-icons";
+
 const QueueList = ({ item }) => {
     const [songData, setSongData] = useState({});
+    
     useEffect(() => {
         const loadData = async (id) => {
             const data = await axios.get(`https://saavn.me/songs?id=${id}`);
