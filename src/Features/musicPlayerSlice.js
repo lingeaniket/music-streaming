@@ -9,6 +9,7 @@ export const playerSlice = createSlice({
         isAutoPlay: true,
         autoPlaylistIndex: -1,
         autoPlaylist: [],
+        queueOpened: false,
     },
     reducers: {
         playNewSong: (state, action) => {
@@ -60,9 +61,14 @@ export const playerSlice = createSlice({
                 }
             }
         },
+
+        toggleQueue: (state, action) => {
+            state.queueOpened = !state.queueOpened;
+        },
     },
 });
 
-export const { playNewSong, addSongToQueue, playAlbum, playNextSong, playPrevSong, removeSongFromQueue, addAutoPlay } = playerSlice.actions;
+export const { playNewSong, addSongToQueue, playAlbum, playNextSong, playPrevSong, removeSongFromQueue, addAutoPlay, toggleQueue } =
+    playerSlice.actions;
 
 export default playerSlice.reducer;
