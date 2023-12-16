@@ -5,7 +5,7 @@ body {
 
 * {
     box-sizing: border-box;
-    font-family: Lato,sans-serif;
+    font-family: Lato, sans-serif;
 }
 
 .mainContainer {
@@ -18,6 +18,19 @@ body {
     grid-area: sidebar;
     color: white;
 }
+
+.right-sidebar {
+    grid-area: right-sidebar;
+    background-color: rgb(18, 18, 18);
+    border-radius: 8px;
+    width: 400px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.right-sidebar::-webkit-scrollbar {
+    display: none;
+}
 .gridMain {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -25,7 +38,7 @@ body {
     height: 100%;
     width: 100%;
     padding: 8px;
-    grid-template-areas: "sidebar main-content" "music-player music-player";
+    grid-template-areas: "sidebar main-content right-sidebar" "music-player music-player music-player";
     gap: 8px;
 }
 
@@ -33,12 +46,14 @@ body {
     color: white;
     height: 100%;
     width: 100%;
+    background-color: rgb(18, 18, 18);
+    border-radius: 8px;
     overflow-x: hidden;
     overflow-y: scroll;
     grid-area: main-content;
 }
 
-.main-content::-webkit-scrollbar{
+.main-content::-webkit-scrollbar {
     display: none;
 }
 .footer {
@@ -48,26 +63,23 @@ body {
     grid-area: music-player;
 }
 
-
 .scrollHider {
     overflow-y: scroll;
     overflow-x: hidden;
 }
 
-.scrollHider::-webkit-scrollbar{
+.scrollHider::-webkit-scrollbar {
     display: none;
 }
 
 @media screen and (max-width: 1240px) {
-
     .sidebarContainer {
         width: 100px;
     }
-    
 }
 
 @media screen and (max-width: 1000px) {
     .sidebarContainer {
-display: none;    }
-    
+        display: none;
+    }
 }
