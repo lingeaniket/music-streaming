@@ -1,12 +1,16 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import QueueList from "./QueueList/QueueList";
-import "./queue.css";
+
 import { toggleQueue } from "../../Features/musicPlayerSlice";
+
+import QueueList from "./QueueList/QueueList";
+
+import "./queue.css";
 
 const QueueSide = () => {
     const dispatch = useDispatch();
+
     const currentSong = useSelector((state) => state.player.currentSong);
     const songIndex = useSelector((state) => state.player.songIndex);
     const songQueue = useSelector((state) => state.player.songQueue);
