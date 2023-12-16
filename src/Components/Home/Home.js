@@ -4,9 +4,11 @@ import { Outlet } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import Sidebar from "../Sidebar/Sidebar";
 import { useSelector } from "react-redux";
+import QueueSide from "../QueueSide/QueueSide";
 
 const Home = () => {
     const selectedSong = useSelector((state) => state.player.currentSong);
+    const queueOpened = useSelector((state) => state.player.queueOpened);
 
     useEffect(() => {}, []);
 
@@ -14,7 +16,7 @@ const Home = () => {
         <div className="mainContainer">
             <div className="gridMain">
                 <Sidebar />
-                <div className="main-content">
+                <div className={`main-content ${queueOpened ? "queue-shift" : ""}`}>
                     <div
                         className="scrollHider"
                         style={{
@@ -27,7 +29,13 @@ const Home = () => {
                         <Outlet />
                     </div>
                 </div>
+                {queueOpened && (
+                    <div className="right-sidebar">
+                        <QueueSide />
+                    </div>
+                )}
                 {selectedSong && <Footer />}
+                {/* <Footer /> */}
             </div>
         </div>
     );
