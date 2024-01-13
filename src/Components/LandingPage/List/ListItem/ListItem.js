@@ -7,11 +7,8 @@ import { getPlayListData } from "../listFunctions";
 import he from "he";
 import { convertName } from "../../../commonFunctions";
 import Play from "../../../Icons/Play/Play";
-import Heart from "../../../Icons/Heart/Heart";
-import Ellipsis from "../../../Icons/Ellipsis/Ellipsis";
 import { addLiked, removeLiked } from "../../../../Features/userSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 
 const ListItem = ({ data }) => {
@@ -53,6 +50,7 @@ const ListItem = ({ data }) => {
 
     useEffect(() => {
         setLiked(likedData[`${data.type}s`].findIndex((idx) => idx === data.id) > -1);
+        // eslint-disable-next-line 
     }, [data]);
 
     return (
