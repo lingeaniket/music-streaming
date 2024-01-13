@@ -22,3 +22,18 @@ export const getAutoPlaylist = async (stationid) => {
         return playlist;
     }
 };
+
+export function convertName(name) {
+    const sequenceMap = {
+        "%20": " ",
+        "%22": '"',
+        "%27": "'",
+        "%2C": ",",
+        "%3F": "?",
+        "&quot;": '"',
+        "&#039;": "'",
+        "&amp;": "&",
+    };
+
+    return name.replace(/%20|%22|%27|%2C|%3F|&quot;|&#039;|&amp;/g, (match) => sequenceMap[match]);
+}
