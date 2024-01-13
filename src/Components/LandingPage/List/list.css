@@ -5,9 +5,16 @@
     margin-bottom: 20px;
 }
 
-.listButtons:hover .listTabs {
-    visibility: visible;
+.listButtons:hover .list05 {
+    background: #000000d3;
+}
+
+.listButtons:hover .list06 > div:first-of-type,.listButtons:hover .list06 > div:nth-of-type(2), .listButtons:hover .options .app05 {
     opacity: 1;
+}
+
+.options .app05{
+    opacity: 0;
 }
 
 .list03 {
@@ -15,7 +22,6 @@
     aspect-ratio: 1/1;
     position: relative;
     border-radius: 5px;
-    overflow: hidden;
     cursor: pointer;
     margin-bottom: 11px;
 }
@@ -24,24 +30,19 @@
     aspect-ratio: 1/1;
 }
 
-.list04 img{
+.list04 img {
     width: auto;
-}
-
-.listTabs {
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.4s ease-in-out;
 }
 
 .list05 {
     position: absolute;
     inset: 0;
-    background: #000000d3;
     flex-direction: column;
+    background-color: transparent;
     justify-content: space-between;
     padding: 8px;
     width: 100%;
+    transition: all 0.3s ease-in-out;
     aspect-ratio: 1/1;
 }
 
@@ -57,6 +58,10 @@
     transform: translate(-50%, -50%);
 }
 
+
+.list08{
+    opacity: 0;
+}
 .listTitle {
     margin: 0;
     padding: 0;
@@ -81,6 +86,7 @@
 .mainBtnHov {
     position: absolute;
     top: 50%;
+    opacity: 0;
     left: 50%;
 }
 

@@ -67,12 +67,12 @@ img {
     flex-direction: column;
 }
 
-.app09{
+.app09 {
     display: flex;
     align-items: flex-end;
 }
 
-.app10{
+.app10 {
     display: flex;
     justify-content: flex-end;
 }
@@ -139,6 +139,11 @@ img {
 
 .scrollHider::-webkit-scrollbar {
     display: none;
+}
+
+.options01 {
+    position: absolute;
+    z-index: 3;
 }
 
 @media screen and (max-width: 1240px) {
