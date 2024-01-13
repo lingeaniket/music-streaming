@@ -11,7 +11,7 @@ const PageButton = ({ page, index, handleButtonPage }) => {
             key={index}
             
         >
-            <div className="vAll011"
+            <div className="vAll011 app05"
                 key={index}
                 style={{
                     background: `${page === index + 1 ? "green" : "white"}`,
