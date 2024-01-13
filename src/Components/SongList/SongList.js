@@ -8,8 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 
-import { formatTime } from "../commonFunctions.js";
- // eslint-disable-next-line
+import { convertName, formatTime } from "../commonFunctions.js";
+// eslint-disable-next-line
 import { addAutoPlay, playAlbum } from "../../Features/musicPlayerSlice";
 
 import "./songList.css";
@@ -58,37 +58,27 @@ const SongList = ({ song, index, type, mode, queue }) => {
     };
 
     return (
-        <div className="song-list-01">
-            <div className="song-list-02">
-                {mode === "search" ? (
-                    <>
-                        <img
-                            src={song.image ? song.image[2].link : ""}
-                            alt=""
-                            style={{
-                                width: "100%",
-                                borderRadius: "4px",
-                            }}
-                        />
-                        <div className="song-list-09" onClick={handleSongPlay}>
-                            <FontAwesomeIcon icon={faPlay} size="sm" style={{ color: "#ffffff" }} />
-                        </div>
-                    </>
-                ) : (
-                    <>
-                        <span className="song-list-03">{index + 1}</span>
-                        <div className="song-list-08" onClick={handleSongPlay}>
-                            <FontAwesomeIcon icon={faPlay} size="sm" style={{ color: "#000000" }} />
-                        </div>
-                    </>
-                )}
+        <div className="song-list-01 app06">
+            <div className="song-list-02 app05">{mode !== "search" && <span className="song-list-03">{index + 1}</span>}</div>
+            <div className="song-list-02 app05">
+                <img
+                    src={song.image ? song.image[2].link : ""}
+                    alt=""
+                    style={{
+                        width: "100%",
+                        borderRadius: "4px",
+                    }}
+                />
+                <div className="song-list-09 app05" onClick={handleSongPlay}>
+                    <FontAwesomeIcon icon={faPlay} size="sm" style={{ color: "#ffffff" }} />
+                </div>
             </div>
             <div className="song-list-04">
-                <div className="song-list-05">
+                <div className="song-list-05 app01 w-100">
                     <h4>
-                        <span onClick={handleSong}>{song.name ? song.name : song.title}</span>
+                        <span onClick={handleSong}>{song.name ? convertName(song.name) : convertName(song.title)}</span>
                     </h4>
-                    <div>{song.primaryArtists}</div>
+                    <div>{convertName(song.primaryArtists)}</div>
                 </div>
             </div>
             <div className="song-list-06">
