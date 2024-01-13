@@ -42,17 +42,17 @@ const QueueSide = () => {
     return (
         <div className="queue01">
             <div className="queue02">
-                <div className="queue17">
+                <div className="queue17 app01 app03 w-100">
                     <div className="queue18"></div>
-                    <div className="queue18 queue19">
-                        <div className="queue20" onClick={handleQueueClose}>
+                    <div className="queue18 app10">
+                        <div className="queue20 app05" onClick={handleQueueClose}>
                             X
                         </div>
                     </div>
                 </div>
-                <div className="queue03">
+                <div className="queue03 app08">
                     <div>
-                        <div className="queue04">
+                        <div className="queue04 app05">
                             <img src={currentSongDetails.image ? currentSongDetails.image[2]?.link : ""} alt="" className="" />
                         </div>
                         <div>
