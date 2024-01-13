@@ -13,7 +13,7 @@ const List = ({ data }) => {
             }}
         >
             {data?.map((val, i) => (
-                <ListItem data={val} />
+                <ListItem key={i} data={val} />
             ))}
         </div>
     );

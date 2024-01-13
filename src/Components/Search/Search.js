@@ -392,8 +392,8 @@ const Search = () => {
                                 margin: "0 0 0 -22px",
                             }}
                         >
-                            {searchData?.playlists?.results.map((album) => (
-                                <ListItem data={album} />
+                            {searchData?.playlists?.results.map((album, i) => (
+                                <ListItem data={album} key={i} />
                             ))}
                         </div>
                     </div>
@@ -408,8 +408,8 @@ const Search = () => {
                             margin: "0 0 0 -22px",
                         }}
                     >
-                        {topSearch.map((top) => (
-                            <ListItem data={top} />
+                        {topSearch.map((top, i) => (
+                            <ListItem key={i} data={top} />
                         ))}
                     </div>
                 </>
