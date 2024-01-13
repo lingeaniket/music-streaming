@@ -1,5 +1,4 @@
 .loadMoreSpin {
-    display: flex;
     margin: 0 0 0 -22px;
     flex-wrap: wrap;
 }
@@ -27,9 +26,7 @@
 }
 
 .vAll005 {
-    display: flex;
     height: 70px;
-    align-items: center;
     border-bottom: 1px solid gray;
 }
 
@@ -40,8 +37,6 @@
 
 .vAll007 {
     height: 100%;
-    display: flex;
-    align-items: center;
     cursor: pointer;
 }
 
@@ -50,10 +45,7 @@
 }
 
 .vAll009 {
-    display: flex;
-    justify-content: center;
     height: 100%;
-    align-items: center;
     margin: 0 0 0 -3px;
 }
 
@@ -69,18 +61,15 @@
     font-size: 13px;
     border-radius: 6px;
     padding: 5px 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     cursor: pointer;
     color: black;
-      background: white;
-  }
-  
-  button.vAll011:disabled {
+    background: white;
+}
+
+button.vAll011:disabled {
     background: gray;
     color: white;
-  }
+}
 
 .vAll012 {
     font-weight: 1000;
@@ -88,12 +77,8 @@
     height: 25px;
     width: 30px;
     text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-
-.vAll013{
-  padding-bottom: 70px;
+.vAll013 {
+    padding-bottom: 70px;
 }

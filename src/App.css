@@ -8,6 +8,75 @@ body {
     font-family: Lato, sans-serif;
 }
 
+img {
+    width: 100%;
+    vertical-align: middle;
+}
+.w-100 {
+    width: 100%;
+}
+
+.w-30 {
+    width: 30%;
+}
+
+.w-40 {
+    width: 40%;
+}
+
+.w-50 {
+    width: 50%;
+}
+
+.app01 {
+    display: flex;
+}
+
+.app02 {
+    justify-content: center;
+}
+
+.app03 {
+    justify-content: space-between;
+}
+
+.app04 {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.app05 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app06 {
+    display: flex;
+    align-items: center;
+}
+
+.app07 {
+    flex-direction: column;
+    align-items: center;
+}
+
+.app08 {
+    display: flex;
+    flex-direction: column;
+}
+
+.app09{
+    display: flex;
+    align-items: flex-end;
+}
+
+.app10{
+    display: flex;
+    justify-content: flex-end;
+}
+
 .mainContainer {
     height: 100vh;
     background-color: #000;

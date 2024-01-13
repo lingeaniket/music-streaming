@@ -1,0 +1,25 @@
+.opt01 {
+    position: absolute;
+    z-index: 3;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.opt03 {
+    padding: 12px 18px;
+    overflow: visible;
+    display: flex;
+    cursor: pointer;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+    white-space: nowrap;
+}
+
+.opt03:hover {
+    background-color: rgba(43, 197, 180, 0.1);
+}
+
+.opt04 {
+    opacity: 1;
+}

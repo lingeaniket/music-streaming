@@ -6,10 +6,6 @@
     margin-bottom: 44px;
 }
 
-.detail-03 {
-    display: flex;
-}
-
 .detail-04 {
     width: 180px;
     height: 180px;
@@ -17,11 +13,6 @@
     border-radius: 4px;
     box-shadow: 0 30px 40px -20px rgba(255, 255, 255, 0.16);
     overflow: hidden;
-}
-
-.detail-04 > img {
-    width: 100%;
-    vertical-align: middle;
 }
 
 .detail-05 {
@@ -36,15 +27,10 @@
     margin-bottom: 5.5px;
     font-size: 15px;
     line-height: 22px;
-    display: flex;
-    align-items: center;
 }
 
 .detail-07 {
     padding: 0 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .detail-08 {
@@ -54,37 +40,57 @@
 
 .detail-09 {
     margin: 0 0 0 -22px;
-    display: flex;
 }
 
 .detail-10,
 .detail-11 {
     padding-left: 22px;
+    position: relative;
 }
 
 .detail-10 > button {
     margin: 0;
     padding: 0 44px;
+    cursor: pointer;
     line-height: 2.4;
     font-size: 20px;
     outline: none;
     border: none;
+    border: 2px solid white;
     background: white;
     border-radius: 999px;
     font-weight: 700;
     width: auto;
+    transition: all 0.3s ease-in-out;
     height: 50px;
 }
 
+.detail-10 > button:hover {
+    background-color: green;
+    color: white;
+}
+
+.detail-10 > button:hover,
+.detail-11 > button:hover {
+    border-color: green;
+}
+
 .detail-11 > button {
-    border: 1px solid white;
+    border: 2px solid white;
     outline: none;
     background: none;
     border-radius: 50%;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
     padding: 15px;
     height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 50px;
+}
+
+
+.options01 {
+    position: absolute;
+    z-index: 3;
+    opacity: 1;
+    transition: all 0.3s ease-in-out;
 }
