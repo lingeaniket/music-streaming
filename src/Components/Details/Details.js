@@ -2,8 +2,6 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { faHeart01 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle, faEllipsis } from "@fortawesome/free-solid-svg-icons";
 
@@ -116,6 +114,7 @@ const Details = ({ type }) => {
             }
             setLiked(likedData[`${type}s`].findIndex((idx) => idx === id) > -1);
         }
+        // eslint-disable-next-line 
     }, [id, type]);
 
     return (
