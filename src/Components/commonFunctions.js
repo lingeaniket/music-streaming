@@ -37,3 +37,14 @@ export function convertName(name) {
 
     return name.replace(/%20|%22|%27|%2C|%3F|&quot;|&#039;|&amp;/g, (match) => sequenceMap[match]);
 }
+
+export function closeForceOptions() {
+    const containers = document.querySelectorAll(".options01");
+    const containersArray = Array.from(containers);
+
+    for (let i = 0; i < containersArray.length; i++) {
+        const optionsDiv = containersArray[i];
+        optionsDiv.style.visibility = "hidden";
+        optionsDiv.style.opacity = 0;
+    }
+}

@@ -5,17 +5,47 @@ import { useNavigate } from "react-router-dom";
 import { playAlbum } from "../../../../Features/musicPlayerSlice";
 import { getPlayListData } from "../listFunctions";
 import he from "he";
-import { convertName } from "../../../commonFunctions";
+import { closeForceOptions, convertName } from "../../../commonFunctions";
 import Play from "../../../Icons/Play/Play";
 import { addLiked, removeLiked } from "../../../../Features/userSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import Options from "../../../Options/Options";
 
 const ListItem = ({ data }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [liked, setLiked] = useState(false);
+    const [options, setoptions] = useState(false);
     const likedData = useSelector((state) => state.user.liked);
+
+    const handleOptions = (event) => {
+        event.stopPropagation();
+        closeForceOptions();
+
+        const { top, right } = event.target.parentNode.getBoundingClientRect();
+        const parent = event.target.closest(".options");
+
+        const option = parent.querySelector(".options01");
+        option.style.opacity = 1;
+        option.style.visibility = "visible";
+
+        if (top > window.innerHeight / 2) {
+            option.style.bottom = "10%";
+        } else {
+            option.style.top = "100%";
+        }
+
+        if (right < window.innerWidth / 2) {
+            option.style.left = "25%";
+        } else {
+            option.style.right = "10%";
+        }
+
+        setTimeout(() => {
+            setoptions(true);
+        }, 0);
+    };
 
     const handleLike = (event) => {
         event.stopPropagation();
@@ -50,7 +80,7 @@ const ListItem = ({ data }) => {
 
     useEffect(() => {
         setLiked(likedData[`${data.type}s`].findIndex((idx) => idx === data.id) > -1);
-        // eslint-disable-next-line 
+        // eslint-disable-next-line
     }, [data]);
 
     return (
@@ -78,14 +108,21 @@ const ListItem = ({ data }) => {
                                 </div>
                                 {data.type !== "artist" && (
                                     <>
-                                        <div onClick={handleLike}>
+                                        <div onClick={handleLike} className="list08">
                                             <i
-                                                className={`fa-${liked ? "solid" : "regular"} fa-heart fa-xl`}
+                                                className={`fa-${liked ? "solid" : "regular"} fa-heart fa-lg`}
                                                 style={{ color: `${liked ? "green" : "#ffffff"}` }}
                                             ></i>
                                         </div>
-                                        <div className="app05">
-                                            <FontAwesomeIcon icon={faEllipsis} size="2xl" style={{ color: "#ffffff" }} />
+                                        <div className="options">
+                                            <div className="app05" onClick={handleOptions}>
+                                                <FontAwesomeIcon icon={faEllipsis} size="xl" style={{ color: "#ffffff" }} />
+                                            </div>
+                                            <div className="options01">
+                                                {options && (
+                                                    <Options liked={liked} data={data} handleLike={handleLike} setoptions={setoptions} />
+                                                )}
+                                            </div>
                                         </div>
                                     </>
                                 )}
@@ -97,14 +134,26 @@ const ListItem = ({ data }) => {
                     <h4 className="listTitle">{data.name ? convertName(data.name) : convertName(data.title)}</h4>
                     <p className="listTitle">
                         {convertName(
-                            Array.isArray(data.primaryArtists)
-                                ? data?.primaryArtists.map((artist, id, arr) => {
-                                      if (id === arr.length - 1) {
-                                          return artist.name;
-                                      } else {
-                                          return `${artist.name}, `;
-                                      }
-                                  })
+                            Array.isArray(data.primaryArtists) && data?.primaryArtists.length > 0
+                                ? data?.primaryArtists
+                                      .map((artist, id, arr) => {
+                                          if (id === arr.length - 1) {
+                                              return artist.name;
+                                          } else {
+                                              return `${artist.name}, `;
+                                          }
+                                      })
+                                      .toString()
+                                : Array.isArray(data.artists) && data.artists.length > 0
+                                ? data?.artists
+                                      .map((artist, id, arr) => {
+                                          if (id === arr.length - 1) {
+                                              return artist.name;
+                                          } else {
+                                              return `${artist.name}, `;
+                                          }
+                                      })
+                                      .toString()
                                 : data.primaryArtists
                                 ? data.primaryArtists
                                 : data.subtitle

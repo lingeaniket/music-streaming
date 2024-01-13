@@ -1,12 +1,16 @@
 import React, { useEffect, useRef } from "react";
 import "./options.css";
 
-const Options = ({ liked, data, handleLike, setoptions, options }) => {
+const Options = ({ liked, data, handleLike, setoptions }) => {
     const opref = useRef();
 
     const handleLiked = (e) => {
         setoptions(false);
         handleLike(e);
+    };
+
+    const stayInModel = (event) => {
+        event.stopPropagation();
     };
 
     const handleClick = (e) => {
@@ -26,6 +30,7 @@ const Options = ({ liked, data, handleLike, setoptions, options }) => {
     return (
         <div
             ref={opref}
+            onClick={stayInModel}
             style={{
                 width: "150px",
                 padding: "8px 0",
