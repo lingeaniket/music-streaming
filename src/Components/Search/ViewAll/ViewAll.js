@@ -67,11 +67,11 @@ const ViewAll = () => {
                 <div>{searchData?.total?.toLocaleString()} results</div>
             </div>
             <div className="vAll002">
-                <div className="vAll005">
+                <div className="vAll005 app06">
                     {["playlist", "song", "album", "artist"].map((mode) => (
                         <div className="vAll006">
                             <div
-                                className="vAll007"
+                                className="vAll007 app06"
                                 style={{
                                     borderBottom: `${type === mode ? "1px solid white" : "none"}`,
                                 }}
@@ -106,7 +106,7 @@ const ViewAll = () => {
             ) : (
                 <div>
                     <div className="vAll013">
-                        <div className="loadMoreSpin">
+                        <div className="loadMoreSpin app01">
                             {searchData?.results?.map((search) => {
                                 // if (!search.type) {
                                 search.type = type;
@@ -132,12 +132,12 @@ const ViewAll = () => {
                     height: "50px",
                 }}
             >
-                <div className="vAll009">
+                <div className="vAll009 app05">
                     {totalPages > 1 && (
                         <>
                             <div className="vAll010">
                                 <button
-                                    className="vAll011"
+                                    className="vAll011 app05"
                                     disabled={page === 1}
                                     onClick={() => {
                                         handleButtonPage(1);
@@ -147,7 +147,7 @@ const ViewAll = () => {
                                 </button>
                             </div>
                             <div className="vAll010">
-                                <button className="vAll011" onClick={handlePrev} disabled={page === 1}>
+                                <button className="vAll011 app05" onClick={handlePrev} disabled={page === 1}>
                                     Prev
                                 </button>
                             </div>
@@ -161,7 +161,7 @@ const ViewAll = () => {
                                     return <PageButton key={index} page={page} index={index} handleButtonPage={handleButtonPage} />;
                                 } else if (index + 1 === Math.floor(page - 4) || index + 1 === Math.floor(page + 4)) {
                                     return (
-                                        <div className="vAll012">
+                                        <div className="vAll012 app05">
                                             <FontAwesomeIcon icon={faEllipsis} size="sm" style={{ color: "#ffffff" }} />
                                         </div>
                                     );
@@ -169,13 +169,13 @@ const ViewAll = () => {
                                 return <></>;
                             })}
                             <div className="vAll010">
-                                <button className="vAll011" onClick={handleNext} disabled={page === totalPages}>
+                                <button className="vAll011 app05" onClick={handleNext} disabled={page === totalPages}>
                                     Next
                                 </button>
                             </div>
                             <div className="vAll010">
                                 <button
-                                    className="vAll011"
+                                    className="vAll011 app05"
                                     disabled={page === totalPages}
                                     onClick={() => {
                                         handleButtonPage(totalPages);
