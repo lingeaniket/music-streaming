@@ -3,22 +3,41 @@ import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart01 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle, faEllipsis } from "@fortawesome/free-solid-svg-icons";
 
-import { formatTime } from "../commonFunctions.js";
+import { convertName, formatTime } from "../commonFunctions.js";
 
 import SongList from "../SongList/SongList";
 
 import "./details.css";
 import MightLike from "../MightLike/MightLike.js";
 import Loader from "../Icons/Loader/Loader.js";
+import { useDispatch, useSelector } from "react-redux";
+import { addLiked, removeLiked } from "../../Features/userSlice.js";
+import Options from "../Options/Options.js";
 
 const Details = ({ type }) => {
     const { id } = useParams();
+    const dispatch = useDispatch();
     const [songs, setSongs] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [liked, setLiked] = useState(false);
+    const likedData = useSelector((state) => state.user.liked);
+    const [options, setoptions] = useState(false);
     const [details, setDetails] = useState({});
+
+    const handleLike = (event) => {
+        event.stopPropagation();
+        if (liked) {
+            dispatch(removeLiked({ id, type }));
+            setLiked(false);
+        } else {
+            dispatch(addLiked({ id, type }));
+            setLiked(true);
+        }
+    };
 
     const findPlays = (songs) => {
         const plays = songs.reduce((acc, song) => {
@@ -32,6 +51,29 @@ const Details = ({ type }) => {
             return acc + Number(song.duration);
         }, 0);
         return duration;
+    };
+
+    const handleOptions = (event) => {
+        const { top, right } = event.target.parentNode.getBoundingClientRect();
+        const parent = event.target.closest(".options");
+
+        const option = parent.querySelector(".options01");
+
+        if (top > window.innerHeight / 2) {
+            option.style.bottom = "10%";
+        } else {
+            option.style.top = "100%";
+        }
+
+        if (right < window.innerWidth / 2) {
+            option.style.left = "25%";
+        } else {
+            option.style.right = "10%";
+        }
+
+        setTimeout(() => {
+            setoptions(true);
+        }, 0);
     };
 
     useEffect(() => {
@@ -72,6 +114,7 @@ const Details = ({ type }) => {
             } else if (type === "song") {
                 loadSong();
             }
+            setLiked(likedData[`${type}s`].findIndex((idx) => idx === id) > -1);
         }
     }, [id, type]);
 
@@ -97,41 +140,59 @@ const Details = ({ type }) => {
             ) : (
                 <>
                     <div className="detail-02">
-                        <div className="detail-03">
+                        <div className="app01">
                             <div className="detail-04">
                                 <img src={details.image ? details?.image[2]?.link : ""} alt="" />
                             </div>
                             <div>
-                                <h1 className="detail-05">{details.name.replace(/&quot;/g, '"')}</h1>
-                                <p className="detail-06">
+                                <h1 className="detail-05">{convertName(details.name)}</h1>
+                                <p className="detail-06 app06">
                                     <span>by {details.primaryArtists}</span>
-                                    <span className="detail-07">
+                                    <span className="detail-07 app05">
                                         <FontAwesomeIcon icon={faCircle} size="2xs" style={{ color: "#ffffff", fontSize: "3px" }} />
                                     </span>
-                                    <span>{details.songCount} Songs</span>
-                                    <span className="detail-07">
-                                        <FontAwesomeIcon icon={faCircle} size="2xs" style={{ color: "#ffffff", fontSize: "3px" }} />
-                                    </span>
-                                    {/* <span>{details.totalPlays.toLocaleString()} Plays</span> */}
-                                    <span className="detail-07">
+                                    {type !== "song" && (
+                                        <>
+                                            <span>{details.songCount} Songs</span>
+                                            <span className="detail-07  app05">
+                                                <FontAwesomeIcon icon={faCircle} size="2xs" style={{ color: "#ffffff", fontSize: "3px" }} />
+                                            </span>
+                                        </>
+                                    )}
+                                    <span>{details?.totalPlays?.toLocaleString()} Plays</span>
+                                    <span className="detail-07  app05">
                                         <FontAwesomeIcon icon={faCircle} size="2xs" style={{ color: "#ffffff", fontSize: "3px" }} />
                                     </span>
                                     <span>{formatTime(details.totalDuration)}</span>
                                 </p>
                                 <p className="detail-08">{songs[0]?.copyright}</p>
-                                <div className="detail-09">
+                                <div className="detail-09 app01">
                                     <div className="detail-10">
                                         <button>Play</button>
                                     </div>
                                     <div className="detail-11">
-                                        <button>
-                                            <FontAwesomeIcon icon={faHeart} size="xl" style={{ color: "#ffffff" }} />
+                                        <button className="app05" onClick={handleLike}>
+                                            <i
+                                                className={`fa-${liked ? "solid" : "regular"} fa-heart fa-2xl`}
+                                                style={{ color: `${liked ? "green" : "#ffffff"}` }}
+                                            ></i>
                                         </button>
                                     </div>
-                                    <div className="detail-11">
-                                        <button>
+                                    <div className="detail-11 options">
+                                        <button className="app05" onClick={handleOptions}>
                                             <FontAwesomeIcon icon={faEllipsis} size="2xl" style={{ color: "#ffffff" }} />
                                         </button>
+                                        <div className="options01">
+                                            {options && (
+                                                <Options
+                                                    liked={liked}
+                                                    data={details}
+                                                    handleLike={handleLike}
+                                                    options={options}
+                                                    setoptions={setoptions}
+                                                />
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -145,15 +206,30 @@ const Details = ({ type }) => {
                         </div>
                     ) : (
                         <div className="detail-02">
-                            <h3 style={{
-                                display: 'flex',
-                                marginBottom: '22px'
-                            }}>More from {songs[0].album.name}</h3>
-                            {songs
-                                .filter((song) => song.id !== id)
-                                .map((song, index) => (
-                                    <SongList key={song.id} song={song} mode="moreAlbumSongs" index={index} type="album" queue={songs} />
-                                ))}
+                            {songs.length > 1 && (
+                                <>
+                                    <h3
+                                        style={{
+                                            display: "flex",
+                                            marginBottom: "22px",
+                                        }}
+                                    >
+                                        More from {convertName(songs[0].album.name)}
+                                    </h3>
+                                    {songs
+                                        .filter((song) => song.id !== id)
+                                        .map((song, index) => (
+                                            <SongList
+                                                key={song.id}
+                                                song={song}
+                                                mode="moreAlbumSongs"
+                                                index={index}
+                                                type="album"
+                                                queue={songs}
+                                            />
+                                        ))}
+                                </>
+                            )}
                         </div>
                     )}
 
