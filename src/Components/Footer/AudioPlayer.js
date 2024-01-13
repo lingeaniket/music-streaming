@@ -98,12 +98,12 @@ const AudioPlayer = () => {
 
     return (
         <>
-            <div className="audio-player01">
-                <div className="audio-player02">
+            <div className="audio-player01 w-30">
+                <div className="audio-player02 app01">
                     <div className="audio-player03">
                         <img src={currentSongDetails?.image ? currentSongDetails?.image[2].link : ""} alt="" />
                     </div>
-                    <div className="audio-player04">
+                    <div className="audio-player04 app02 app08">
                         <h4 className="audio-player05">{currentSongDetails?.name?.replace(/&quot;/g, '"')}</h4>
                         <div className="audio-player05">{currentSongDetails?.primaryArtists}</div>
                     </div>

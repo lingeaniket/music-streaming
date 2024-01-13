@@ -21,23 +21,23 @@ const AudioTab = ({ audioRef, currentSong, currentTime, togglePlay, isPlaying, h
     };
     
     return (
-        <div className="audio-player06">
+        <div className="audio-player06 w-40">
             <div>
                 <audio id="audio-player" ref={audioRef} src={currentSong} onEnded={handleSongEnd} />
-                <div className="audio-container">
-                    <div className="audio-player07">
-                        <div className="audio-player08">
-                            <div className="audio-player09 audio-player12">
+                <div className="app01 app06">
+                    <div className="app02 app01">
+                        <div className="audio-player08 app01">
+                            <div className="audio-player09 audio-player12 app01 app02">
                                 <button>
                                     <FontAwesomeIcon icon={faRepeat} size="xl" style={{ color: "#ffffff" }} />
                                 </button>
                             </div>
-                            <div className="audio-player09 audio-player12">
+                            <div className="audio-player09 audio-player12 app01 app02">
                                 <button disabled={currentSongIndex === 0} onClick={handlePrevSong}>
                                     <FontAwesomeIcon icon={faBackwardStep} size="xl" style={{ color: "#ffffff" }} />
                                 </button>
                             </div>
-                            <div className="audio-player09 audio-player12">
+                            <div className="audio-player09 audio-player12 app01 app02">
                                 <button onClick={togglePlay}>
                                     {isPlaying ? (
                                         <FontAwesomeIcon icon={faPause} size="xl" style={{ color: "#ffffff" }} />
@@ -46,20 +46,20 @@ const AudioTab = ({ audioRef, currentSong, currentTime, togglePlay, isPlaying, h
                                     )}
                                 </button>
                             </div>
-                            <div className="audio-player09 audio-player12">
+                            <div className="audio-player09 audio-player12 app01 app02">
                                 <button onClick={handleSongEnd}>
                                     <FontAwesomeIcon icon={faForwardStep} size="xl" style={{ color: "#ffffff" }} />
                                 </button>
                             </div>
 
-                            <div className="audio-player09 audio-player12">
+                            <div className="audio-player09 audio-player12 app01 app02">
                                 <button>
                                     <FontAwesomeIcon icon={faShuffle} size="xl" style={{ color: "#ffffff" }} />
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <div className="range-container">
+                    <div className="w-100 app01">
                         <div className="time-stamp">{formatTime(currentTime)}</div>
                         <div className="range-cont">
                             <input

@@ -15,12 +15,12 @@ const AudioSettingTab = ({ volume, handleVolumeChange }) => {
     };
     return (
         <div
-            className="audio-player01"
+            className="audio-player01 w-30"
             style={{
                 display: "flex",
             }}
         >
-            <div className="audio-player10">
+            <div className="audio-player10 w-50 app06">
                 <div className="audio-player11">
                     {volume === 0 ? (
                         <FontAwesomeIcon icon={faVolumeXmark} size="lg" />
@@ -48,10 +48,10 @@ const AudioSettingTab = ({ volume, handleVolumeChange }) => {
                     </div>
                 </div>
             </div>
-            <div className="audio-player13">
-                <div className="audio-player14" onClick={handleQueue}>
+            <div className="audio-player13 app01 app03 app07">
+                <div className="audio-player14 app01 app03 app07" onClick={handleQueue}>
                     <div
-                        className="audio-player15"
+                        className="audio-player15 app01 app04"
                         style={{
                             border: `2px solid ${queueOpened ? "green" : "white"}`,
                         }}
@@ -59,7 +59,7 @@ const AudioSettingTab = ({ volume, handleVolumeChange }) => {
                         <FontAwesomeIcon icon={faPlay} size="2xs" style={{ color: `${queueOpened ? "green" : "white"}` }} />
                     </div>
                     {queueOpened && (
-                        <div className="audio-player16">
+                        <div className="audio-player16 app01 app02">
                             <FontAwesomeIcon icon={faCircle} style={{ color: "green", fontSize: "5px" }} />
                         </div>
                     )}
