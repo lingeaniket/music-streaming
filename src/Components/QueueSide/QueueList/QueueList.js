@@ -6,7 +6,7 @@ import { faItunesNote } from "@fortawesome/free-brands-svg-icons";
 
 const QueueList = ({ item }) => {
     const [songData, setSongData] = useState({});
-    
+
     useEffect(() => {
         const loadData = async (id) => {
             const data = await axios.get(`https://saavn.me/songs?id=${id}`);
@@ -20,8 +20,8 @@ const QueueList = ({ item }) => {
 
     return (
         <div className="queue10">
-            <div className="queue11">
-                <div className="queue12">
+            <div className="app06">
+                <div className="queue12 app05">
                     <FontAwesomeIcon icon={faItunesNote} size="2xs" />
                 </div>
                 <div className="queue13">
