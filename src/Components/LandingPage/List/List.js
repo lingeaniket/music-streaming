@@ -7,7 +7,7 @@ import "./list.css";
 const List = ({ data }) => {
     return (
         <div
-            className="list01"
+            className="list01 app01"
             style={{
                 margin: "0 0 22px -22px",
             }}
