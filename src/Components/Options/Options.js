@@ -21,6 +21,7 @@ const Options = ({ liked, data, handleLike, setoptions, options }) => {
         return () => {
             window.removeEventListener("click", handleClick);
         };
+        // eslint-disable-next-line
     }, []);
     return (
         <div
