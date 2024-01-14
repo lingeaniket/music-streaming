@@ -20,7 +20,9 @@
 }
 
 .queue06 {
-    margin: 0px;
+    margin: 0;
+    margin-top: 5px;
+    font-size: 12px;
 }
 
 .queue07 {
@@ -102,4 +104,13 @@
 
 .queue20:hover {
     background-color: rgba(255, 255, 255, 0.07);
+}
+
+
+.queue21{
+    font-size: 12px;
+}
+.queue21{
+    font-size: 14px;
+    font-weight: 600;
 }

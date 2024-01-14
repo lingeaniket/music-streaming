@@ -100,33 +100,27 @@
 }
 
 .queue-shift .list02 {
-    width: 20%;
+    width: 25%;
 }
 
 @media screen and (max-width: 1000px) {
     .list01 {
         flex-wrap: wrap;
     }
-    .list02 {
+    .list02, .queue-shift .list02 {
         margin-bottom: 20px;
         width: 20%;
     }
 
-    .queue-shift .list02 {
-        width: 25%;
-    }
 }
 @media screen and (max-width: 768px) {
-    .list02 {
+    .list02, .queue-shift .list02 {
         margin-bottom: 20px;
         width: 25%;
     }
-    .queue-shift .list02 {
-        width: 50%;
-    }
 }
 @media screen and (max-width: 590px) {
-    .list02 {
+    .list02, .queue-shift .list02 {
         margin-bottom: 20px;
         width: 50%;
     }
