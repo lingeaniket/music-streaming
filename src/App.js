@@ -34,12 +34,16 @@ const router = createBrowserRouter([
             {
                 path: 'search',
                 element: <Search/>,
-                children : [
-                    {
-                        path: "/search/:type/:key",
-                        element: <ViewAll/>
-                    }
-                ]
+                // children : [
+                //     {
+                //         path: "/search/:type/:key",
+                //         element: <ViewAll/>
+                //     }
+                // ]
+            },
+            {
+                path: "/search/:type/:key",
+                element: <ViewAll/>
             }
         ],
     },
