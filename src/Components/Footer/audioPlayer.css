@@ -5,7 +5,9 @@
 .range-input {
     height: 4px;
     width: 100%;
+    background-color: gray;
     appearance: none;
+    cursor: pointer;
     outline: none;
     border: none;
     border-radius: 15px;
@@ -22,7 +24,9 @@
 
 .overlayDiv {
     position: absolute;
+    cursor: pointer;
     left: 0;
+    pointer-events: none;
     height: 4px;
     top: 12px;
     background: white;
@@ -132,4 +136,92 @@
 .audio-player16 {
     margin-top: 2px;
     align-items: flex-start;
+}
+
+.audio-player17 {
+    height: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+    .audio-player06 > div > .app06 {
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 768px) {
+    .range-input {
+        height: 8px;
+        border-radius: 0;
+        background-color: transparent;
+    }
+
+    .overlayDiv {
+        height: 8px;
+        top: 8px;
+        background: green;
+
+        border-radius: 0;
+    }
+    .footer > div > div:nth-of-type(3) {
+        display: none;
+    }
+
+    .footer > div > div:first-of-type {
+        width: 75%;
+    }
+    .footer > div > div:nth-of-type(2) {
+        width: 25%;
+    }
+
+    .audio-player07 .song-main-range {
+        position: absolute;
+        top: -8px;
+        left: 0;
+        /* display: none; */
+    }
+
+    .song-main-range .time-stamp {
+        display: none;
+    }
+
+    .audio-player08 > div:nth-of-type(1),
+    .audio-player08 > div:nth-of-type(2),
+    .audio-player08 > div:nth-of-type(5) {
+        display: none;
+    }
+
+    .audio-player09 {
+        padding-left: 8px;
+    }
+
+    .audio-player12 {
+        width: 50px;
+    }
+
+    .audio-player12 svg {
+        font-size: 24px;
+    }
+
+    .audio-player08 > div:nth-of-type(3) > button {
+        border-radius: 50%;
+        width: 100%;
+        aspect-ratio: 1/1;
+        background-color: green;
+        position: relative;
+    }
+    .audio-player08 > div:nth-of-type(3) > button > svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-40%, -48%);
+    }
+
+    .audio-player17 {
+        margin-top: 10px;
+        height: calc(100% - 10px);
+    }
+    .range-input::-webkit-slider-thumb {
+        display: flex;
+        position: relative;
+        z-index: 12;
+    }
 }
