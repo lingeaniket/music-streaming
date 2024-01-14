@@ -57,8 +57,9 @@ const ViewAll = () => {
         };
         loadData();
     }, [page, type, key]);
-    
+
     return (
+        // <div className="srch02">
         <div className="vAll001">
             <div className="vAll002">
                 <div className="vAll003">
@@ -117,21 +118,7 @@ const ViewAll = () => {
                     </div>
                 </div>
             )}
-            <div
-                className="vAll002"
-                style={{
-                    position: "fixed",
-                    zIndex: 15,
-                    bottom: "68px",
-                    // right: 0,
-                    width: "calc(100% - 350px)",
-                    display: "flex",
-                    alignItems: "center",
-                    background: "black",
-                    justifyContent: "center",
-                    height: "50px",
-                }}
-            >
+            <div className="vAll014">
                 <div className="vAll009 app05">
                     {totalPages > 1 && (
                         <>
@@ -154,12 +141,12 @@ const ViewAll = () => {
                             {Array.from({ length: totalPages }).map((value, index, arr) => {
                                 if (
                                     index === 0 ||
-                                    (index + 1 >= page - 3 && index + 1 <= page + 3) ||
+                                    (index + 1 >= page - 4 && index + 1 <= page + 4) ||
                                     index === arr.length - 1 ||
                                     page === index
                                 ) {
                                     return <PageButton key={index} page={page} index={index} handleButtonPage={handleButtonPage} />;
-                                } else if (index + 1 === Math.floor(page - 4) || index + 1 === Math.floor(page + 4)) {
+                                } else if (index + 1 === Math.floor(page - 5) || index + 1 === Math.floor(page + 5)) {
                                     return (
                                         <div className="vAll012 app05">
                                             <FontAwesomeIcon icon={faEllipsis} size="sm" style={{ color: "#ffffff" }} />
@@ -189,6 +176,7 @@ const ViewAll = () => {
                 </div>
             </div>
         </div>
+        // </div>
     );
 };
 
