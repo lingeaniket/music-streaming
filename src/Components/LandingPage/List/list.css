@@ -62,6 +62,12 @@
 .list08{
     opacity: 0;
 }
+
+
+.list09{
+    border-radius: 50%;
+    overflow: hidden;
+}
 .listTitle {
     margin: 0;
     padding: 0;
