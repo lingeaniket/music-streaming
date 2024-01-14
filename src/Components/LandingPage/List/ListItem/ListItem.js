@@ -13,6 +13,7 @@ import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import Options from "../../../Options/Options";
 
 const ListItem = ({ data }) => {
+    console.log(data.type);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [liked, setLiked] = useState(false);
@@ -86,12 +87,7 @@ const ListItem = ({ data }) => {
     return (
         <div className="list02">
             <div className="listButtons" onClick={handleAlbumRoute}>
-                <div
-                    className="list03"
-                    style={{
-                        borderRadius: `${data.type === "artist" ? "50%" : 0}`,
-                    }}
-                >
+                <div className={`list03 ${data.type === "artist" ? "list09" : ""}`}>
                     <div className="list04 w-100 app01">
                         <img src={Array.isArray(data?.image) ? data?.image[2].link : data.image} alt="" />
                     </div>
@@ -131,7 +127,7 @@ const ListItem = ({ data }) => {
                     </div>
                 </div>
                 <div>
-                    <h4 className="listTitle">{data.name ? convertName(data.name) : convertName(data.title)}</h4>
+                    <h4 className="listTitle">{data.name ? convertName(data.name) : data.title ? convertName(data.title) : ""}</h4>
                     <p className="listTitle">
                         {convertName(
                             Array.isArray(data.primaryArtists) && data?.primaryArtists.length > 0
