@@ -35,7 +35,7 @@ export function convertName(name) {
         "&amp;": "&",
     };
 
-    return name.replace(/%20|%22|%27|%2C|%3F|&quot;|&#039;|&amp;/g, (match) => sequenceMap[match]);
+    return name ?  name.replace(/%20|%22|%27|%2C|%3F|&quot;|&#039;|&amp;/g, (match) => sequenceMap[match]): ""
 }
 
 export function closeForceOptions() {
