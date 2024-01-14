@@ -19,12 +19,12 @@ const AudioTab = ({ audioRef, currentSong, currentTime, togglePlay, isPlaying, h
     const handlePrevSong = () => {
         dispatch(playPrevSong());
     };
-    
+
     return (
         <div className="audio-player06 w-40">
             <div>
                 <audio id="audio-player" ref={audioRef} src={currentSong} onEnded={handleSongEnd} />
-                <div className="app01 app06">
+                <div className="app01 app06 audio-player07">
                     <div className="app02 app01">
                         <div className="audio-player08 app01">
                             <div className="audio-player09 audio-player12 app01 app02">
@@ -59,7 +59,7 @@ const AudioTab = ({ audioRef, currentSong, currentTime, togglePlay, isPlaying, h
                             </div>
                         </div>
                     </div>
-                    <div className="w-100 app01">
+                    <div className="w-100 app01 song-main-range">
                         <div className="time-stamp">{formatTime(currentTime)}</div>
                         <div className="range-cont">
                             <input
@@ -72,6 +72,7 @@ const AudioTab = ({ audioRef, currentSong, currentTime, togglePlay, isPlaying, h
                                 value={currentTime}
                                 onInput={handleInputSeekChange}
                                 onMouseUp={handleInputSeek}
+                                onTouchEnd={handleInputSeek}
                             />
                             <div className="overlayDiv" id="overlay-div"></div>
                         </div>

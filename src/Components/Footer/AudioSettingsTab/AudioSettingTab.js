@@ -15,10 +15,8 @@ const AudioSettingTab = ({ volume, handleVolumeChange }) => {
     };
     return (
         <div
-            className="audio-player01 w-30"
-            style={{
-                display: "flex",
-            }}
+            className="audio-player01 w-30 app01"
+           
         >
             <div className="audio-player10 w-50 app06">
                 <div className="audio-player11">

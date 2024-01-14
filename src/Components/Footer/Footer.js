@@ -5,15 +5,7 @@ import AudioPlayer from "./AudioPlayer";
 const Footer = () => {
     return (
         <div className="footer">
-            <div
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    width: "100%",
-                    height: "100%",
-                }}
-            >
+            <div className="app06 app03 w-100 audio-player17">
                 <AudioPlayer />
             </div>
         </div>

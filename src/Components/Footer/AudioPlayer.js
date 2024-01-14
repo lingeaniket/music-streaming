@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import React, { useState, useRef, useEffect } from "react";
 
 import { handleSeek, handleVolumeSeek } from "./audioFunction";
@@ -8,9 +8,11 @@ import AudioSettingTab from "./AudioSettingsTab/AudioSettingTab";
 
 import "./audioPlayer.css";
 import axios from "axios";
+import { toggleQueue } from "../../Features/musicPlayerSlice";
 
 const AudioPlayer = () => {
     const selectedSong = useSelector((state) => state.player.currentSong);
+    const dispatch = useDispatch()
 
     const [volume, setVolume] = useState(0.5);
     const [isPlaying, setIsPlaying] = useState(false);
@@ -59,13 +61,19 @@ const AudioPlayer = () => {
         isSeeking.current = false;
         audioRef.current.currentTime = currentTime;
     };
-
+    
     const handleInputSeekChange = (e) => {
         isSeeking.current = true;
         const seekTime = parseFloat(e.target.value);
         const percent = (seekTime * 100) / audioRef.current.duration;
         handleOverlay(percent);
         setCurrentTime(seekTime);
+    };
+
+    const handleQueue = () => {
+        if(window.innerWidth < 768){
+            dispatch(toggleQueue());
+        }
     };
 
     useEffect(() => {
@@ -100,7 +108,7 @@ const AudioPlayer = () => {
         <>
             <div className="audio-player01 w-30">
                 <div className="audio-player02 app01">
-                    <div className="audio-player03">
+                    <div className="audio-player03" onClick={handleQueue}>
                         <img src={currentSongDetails?.image ? currentSongDetails?.image[2].link : ""} alt="" />
                     </div>
                     <div className="audio-player04 app02 app08">
