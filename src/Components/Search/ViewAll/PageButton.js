@@ -7,16 +7,14 @@ const PageButton = ({ page, index, handleButtonPage }) => {
         }
     };
     return (
-        <div className="vAll010"
-            key={index}
-            
-        >
-            <div className="vAll011 app05"
+        <div className="vAll010" key={index}>
+            <div
+                className={`vAll011 app05 vAll015 ${page === index + 1 ? "vAll016" : "vAll017"}`}
                 key={index}
                 style={{
                     background: `${page === index + 1 ? "green" : "white"}`,
-                    width: "50px",
-                    border: `2px solid ${page === index+1 ? "white": "black"}`,
+                    
+                    border: `2px solid ${page === index + 1 ? "white" : "black"}`,
                     color: `${page === index + 1 ? "white" : "black"}`,
                 }}
                 onClick={handleClick}
