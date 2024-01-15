@@ -24,6 +24,10 @@ img {
     width: 100%;
 }
 
+.h-100{
+    height: 100%;
+}
+
 .w-30 {
     width: 30%;
 }
@@ -93,6 +97,7 @@ img {
 
 .mainContainer {
     height: 100vh;
+    position: relative;
     background-color: #000;
 }
 
