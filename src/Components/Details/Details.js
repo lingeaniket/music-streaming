@@ -145,8 +145,8 @@ const Details = ({ type }) => {
                             </div>
                             <div>
                                 <h1 className="detail-05">{convertName(details.name)}</h1>
-                                <p className="detail-06 app06">
-                                    <span>by {details.primaryArtists}</span>
+                                <div className="detail-06 app06">
+                                    <span>by {convertName(details.primaryArtists)}</span>
                                     <span className="detail-07 app05">
                                         <FontAwesomeIcon icon={faCircle} size="2xs" style={{ color: "#ffffff", fontSize: "3px" }} />
                                     </span>
@@ -163,7 +163,7 @@ const Details = ({ type }) => {
                                         <FontAwesomeIcon icon={faCircle} size="2xs" style={{ color: "#ffffff", fontSize: "3px" }} />
                                     </span>
                                     <span>{formatTime(details.totalDuration)}</span>
-                                </p>
+                                </div>
                                 <p className="detail-08">{songs[0]?.copyright}</p>
                                 <div className="detail-09 app01">
                                     <div className="detail-10">
