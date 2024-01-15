@@ -1,23 +1,27 @@
+import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 import { playAlbum } from "../../../../Features/musicPlayerSlice";
-import { getPlayListData } from "../listFunctions";
-import he from "he";
-import { closeForceOptions, convertName } from "../../../commonFunctions";
-import Play from "../../../Icons/Play/Play";
 import { addLiked, removeLiked } from "../../../../Features/userSlice";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { getPlayListData } from "../listFunctions";
+import { closeForceOptions, convertName } from "../../../commonFunctions";
+
+import Play from "../../../Icons/Play/Play";
 import Options from "../../../Options/Options";
 
 const ListItem = ({ data }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const likedData = useSelector((state) => state.user.liked);
+
     const [liked, setLiked] = useState(false);
     const [options, setoptions] = useState(false);
-    const likedData = useSelector((state) => state.user.liked);
 
     const handleOptions = (event) => {
         event.stopPropagation();
@@ -66,7 +70,7 @@ const ListItem = ({ data }) => {
 
     const handleAlbumRoute = () => {
         const songTitle = data.name ? data.name : data.title;
-        const nString = he.decode(songTitle).toLowerCase();
+        const nString = convertName(songTitle).toLowerCase();
         const conTitle = nString
             .replace(/[^a-zA-Z0-9]/g, "-")
             .replace(/-+/g, "-")

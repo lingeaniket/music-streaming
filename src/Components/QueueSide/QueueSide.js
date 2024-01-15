@@ -11,14 +11,14 @@ import "./queue.css";
 const QueueSide = () => {
     const dispatch = useDispatch();
 
-    const currentSong = useSelector((state) => state.player.currentSong);
-    const currentName = useSelector((state) => state.player.currentName);
-    const songIndex = useSelector((state) => state.player.songIndex);
     const songQueue = useSelector((state) => state.player.songQueue);
-    // eslint-disable-next-line
-    const autoPlaylist = useSelector((state) => state.player.autoPlaylist);
+    const songIndex = useSelector((state) => state.player.songIndex);
     // eslint-disable-next-line
     const isAutoPlay = useSelector((state) => state.player.isAutoPlay);
+    const currentSong = useSelector((state) => state.player.currentSong);
+    const currentName = useSelector((state) => state.player.currentName);
+    // eslint-disable-next-line
+    const autoPlaylist = useSelector((state) => state.player.autoPlaylist);
     // eslint-disable-next-line
     const autoPlaylistIndex = useSelector((state) => state.player.autoPlaylistIndex);
 

@@ -1,23 +1,21 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle, faPlay, faVolumeHigh, faVolumeLow, faVolumeOff, faVolumeXmark } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch, useSelector } from "react-redux";
+
 import { toggleQueue } from "../../../Features/musicPlayerSlice";
 
 const AudioSettingTab = ({ volume, handleVolumeChange }) => {
-    const queueOpened = useSelector((state) => state.player.queueOpened);
-
     const dispatch = useDispatch();
+
+    const queueOpened = useSelector((state) => state.player.queueOpened);
 
     const handleQueue = () => {
         dispatch(toggleQueue());
     };
     return (
-        <div
-            className="audio-player01 w-30 app01"
-           
-        >
+        <div className="audio-player01 w-30 app01">
             <div className="audio-player10 w-50 app06">
                 <div className="audio-player11">
                     {volume === 0 ? (

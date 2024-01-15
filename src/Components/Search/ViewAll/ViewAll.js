@@ -13,13 +13,12 @@ import "./viewAll.css";
 
 const ViewAll = () => {
     const navigate = useNavigate();
-
     const { type, key } = useParams();
 
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(true);
-    const [searchData, setSearchData] = useState({});
     const [totalPages, setTotalPages] = useState(0);
+    const [searchData, setSearchData] = useState({});
 
     const handleNext = () => {
         if (page < totalPages) {
@@ -59,7 +58,6 @@ const ViewAll = () => {
     }, [page, type, key]);
 
     return (
-        // <div className="srch02">
         <div className="vAll001">
             <div className="vAll002">
                 <div className="vAll003">
@@ -176,7 +174,6 @@ const ViewAll = () => {
                 </div>
             </div>
         </div>
-        // </div>
     );
 };
 

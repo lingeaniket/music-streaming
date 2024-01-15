@@ -1,15 +1,15 @@
-import React from "react";
+import { useParams } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import "../LandingPage/List/list.css";
+
+import { loadAData, loadPData, loadSData } from "./mightLikeFunction";
 
 import List from "../LandingPage/List/List";
-import "../LandingPage/List/list.css";
-import { useState } from "react";
-import { useEffect } from "react";
-import { loadAData, loadPData, loadSData } from "./mightLikeFunction";
-import { useParams } from "react-router-dom";
 
 const MightLike = ({ type, mode, details }) => {
-    const [data, setData] = useState([]);
     const { id } = useParams();
+
+    const [data, setData] = useState([]);
 
     useEffect(() => {
         // album - yml, taosy

@@ -11,13 +11,13 @@ import axios from "axios";
 import { toggleQueue } from "../../Features/musicPlayerSlice";
 
 const AudioPlayer = () => {
-    const selectedSong = useSelector((state) => state.player.currentSong);
     const dispatch = useDispatch()
+    const selectedSong = useSelector((state) => state.player.currentSong);
 
     const [volume, setVolume] = useState(0.5);
+    const [currentTime, setCurrentTime] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentSong, setCurrentSong] = useState("");
-    const [currentTime, setCurrentTime] = useState(0);
     const [currentSongDetails, setCurrentSongDetails] = useState("");
 
     const audioRef = useRef(new Audio(currentSong));

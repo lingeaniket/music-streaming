@@ -1,18 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import Footer from "../Footer/Footer";
 import Sidebar from "../Sidebar/Sidebar";
-import { useSelector } from "react-redux";
 import QueueSide from "../QueueSide/QueueSide";
 import NewPlaylist from "../Modals/NewPlaylist/NewPlaylist";
 
 const Home = () => {
+    const queueOpened = useSelector((state) => state.player.queueOpened);
     const selectedSong = useSelector((state) => state.player.currentSong);
     const playlistOpen = useSelector((state) => state.playlist.playlistOpen);
-    const queueOpened = useSelector((state) => state.player.queueOpened);
-
-    useEffect(() => {}, []);
 
     return (
         <div className="mainContainer">
@@ -22,7 +20,6 @@ const Home = () => {
                     <div
                         className="scrollHider"
                         style={{
-                            // border: "1px solid white",
                             padding: "8px",
                             margin: "0px 8px",
                             height: "100%",
@@ -37,7 +34,6 @@ const Home = () => {
                     </div>
                 )}
                 {selectedSong && <Footer />}
-                {/* <Footer /> */}
             </div>
             {playlistOpen && <NewPlaylist />}
         </div>

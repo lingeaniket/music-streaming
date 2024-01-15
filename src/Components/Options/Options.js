@@ -5,12 +5,12 @@ import { addSongsToPlaylist, openPlaylist, updateCurrentdata } from "../../Featu
 import axios from "axios";
 
 const Options = ({ liked, data, handleLike, setoptions }) => {
-    console.log(data);
     const opref = useRef();
+    const dispatch = useDispatch();
+    
     const myPlaylists = useSelector((state) => state.playlist.myPlaylists);
 
     const [main, setMain] = useState(true);
-    const dispatch = useDispatch();
 
     const handleLiked = (e) => {
         setoptions(false);

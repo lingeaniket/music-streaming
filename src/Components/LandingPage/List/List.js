@@ -1,8 +1,7 @@
 import React from "react";
+import "./list.css";
 
 import ListItem from "./ListItem/ListItem";
-
-import "./list.css";
 
 const List = ({ data }) => {
     return (

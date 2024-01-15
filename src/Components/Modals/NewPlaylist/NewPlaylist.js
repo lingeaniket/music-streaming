@@ -5,11 +5,13 @@ import { addNewPlayList, addSongsToPlaylist, openPlaylist, updateCurrentdata } f
 import axios from "axios";
 
 const NewPlaylist = () => {
+    const ref = useRef();
     const dispatch = useDispatch();
-    const addToPlaylist = useSelector((state) => state.playlist.addPlaylistOpen);
+
     const currentData = useSelector((state) => state.playlist.currentData);
     const myPlaylists = useSelector((state) => state.playlist.myPlaylists);
-    const ref = useRef();
+    const addToPlaylist = useSelector((state) => state.playlist.addPlaylistOpen);
+    
     const [inp, setInp] = useState("");
     const [nameError, setNameError] = useState(false);
 

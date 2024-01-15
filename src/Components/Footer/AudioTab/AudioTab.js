@@ -1,16 +1,16 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBackwardStep, faForwardStep, faPause, faPlay, faRepeat, faShuffle } from "@fortawesome/free-solid-svg-icons";
 
-import { formatTime } from "../../commonFunctions.js";
-import { useDispatch, useSelector } from "react-redux";
 import { playNextSong, playPrevSong } from "../../../Features/musicPlayerSlice.js";
 
-const AudioTab = ({ audioRef, currentSong, currentTime, togglePlay, isPlaying, handleInputSeekChange, handleInputSeek }) => {
-    const currentSongIndex = useSelector((state) => state.player.songIndex);
+import { formatTime } from "../../commonFunctions.js";
 
+const AudioTab = ({ audioRef, currentSong, currentTime, togglePlay, isPlaying, handleInputSeekChange, handleInputSeek }) => {
     const dispatch = useDispatch();
+    const currentSongIndex = useSelector((state) => state.player.songIndex);
 
     const handleSongEnd = () => {
         dispatch(playNextSong());

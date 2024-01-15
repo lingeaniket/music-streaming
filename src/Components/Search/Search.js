@@ -7,21 +7,21 @@ import "./search.css";
 import { playAlbum } from "../../Features/musicPlayerSlice";
 import { getPlayListData } from "../LandingPage/List/listFunctions";
 
-import SongList from "../SongList/SongList";
-import ListItem from "../LandingPage/List/ListItem/ListItem";
-
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import SongList from "../SongList/SongList";
+import ListItem from "../LandingPage/List/ListItem/ListItem";
+
 const Search = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const [timer, setTimer] = useState(null);
     const [searchKey, setsearchkey] = useState("");
     const [topSearch, setTopSearch] = useState([]);
     const [searchData, setSearchData] = useState({});
     const [isSearching, setisSearching] = useState(false);
-
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     function handleViewAll() {
         navigate(`/search/${this.type}/${searchKey}`);
@@ -75,7 +75,6 @@ const Search = () => {
 
     return (
         <div className="srch01">
-            {/* <Outlet /> */}
             <div className="app06 srch03 w-100">
                 <div className="app03 srch04">
                     <div>back</div>
@@ -110,8 +109,6 @@ const Search = () => {
                                         <p>{data.description}</p>
                                         <div className="srch11 app05">{data.type}</div>
                                     </div>
-
-                                    {/* show only if parent hovered */}
                                     <div className="srch13">
                                         <button className="srch14" onClick={handleTopSearch}>
                                             Play
