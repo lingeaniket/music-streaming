@@ -3,9 +3,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import Library from "../Icons/Library/Library";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { openPlaylist } from "../../Features/newPlaylistSlice";
 
 const Sidebar = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const handleOpenNew = () => {
+        setTimeout(()=>{
+
+            dispatch(openPlaylist(true));
+        }, 0)
+    };
     return (
         <div className="sidebarContainer">
             <div
@@ -217,6 +227,7 @@ const Sidebar = () => {
                         >
                             <div>
                                 <button
+                                    onClick={handleOpenNew}
                                     style={{
                                         margin: 0,
                                         padding: "0 22px",
