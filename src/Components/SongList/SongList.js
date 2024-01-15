@@ -1,30 +1,67 @@
-import he from "he";
-import React from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { faPlay } from "@fortawesome/free-solid-svg-icons";
-
-import { convertName, formatTime } from "../commonFunctions.js";
-// eslint-disable-next-line
-import { addAutoPlay, playAlbum } from "../../Features/musicPlayerSlice";
-
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./songList.css";
+
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { playAlbum } from "../../Features/musicPlayerSlice";
+import { convertName, formatTime } from "../commonFunctions.js";
+import { addLiked, removeLiked } from "../../Features/userSlice.js";
+
+import Options from "../Options/Options.js";
 
 const SongList = ({ song, index, type, mode, queue }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [options, setoptions] = useState(false);
+    const [liked, setLiked] = useState(false);
+    const likedData = useSelector((state) => state.user.liked);
+
+    const handleOptions = (event) => {
+        const { top, right } = event.target.parentNode.getBoundingClientRect();
+        const parent = event.target.closest(".options");
+
+        const option = parent.querySelector(".options01");
+
+        if (top > window.innerHeight / 2) {
+            option.style.bottom = "10%";
+        } else {
+            option.style.top = "100%";
+        }
+
+        if (right < window.innerWidth / 2) {
+            option.style.left = "25%";
+        } else {
+            option.style.right = "10%";
+        }
+
+        setTimeout(() => {
+            setoptions(true);
+        }, 0);
+    };
 
     const handleSong = () => {
-        const nString = he.decode(song.name ? song.name : song.title).toLowerCase();
+        const nString = convertName(song.name ? song.name : song.title).toLowerCase();
         const conTitle = nString
             .replace(/[^a-zA-Z0-9]/g, "-")
             .replace(/-+/g, "-")
             .replace(/^-+|-+$/g, "");
         navigate(`/song/${conTitle}/${song.id}`);
+    };
+
+    const handleLike = (event) => {
+        event.stopPropagation();
+        if (liked) {
+            dispatch(removeLiked({ id: song.id, type }));
+            setLiked(false);
+        } else {
+            dispatch(addLiked({ id: song.id, type }));
+            setLiked(true);
+        }
     };
 
     const handleSongPlay = async () => {
@@ -57,6 +94,11 @@ const SongList = ({ song, index, type, mode, queue }) => {
         }
     };
 
+    useEffect(() => {
+        setLiked(likedData[`${type}s`].findIndex((idx) => idx === song.id) > -1);
+        // eslint-disable-next-line
+    }, [type, song]);
+
     return (
         <div className="song-list-01 app06">
             <div className="song-list-02 app05">{mode !== "search" && <span className="song-list-03">{index + 1}</span>}</div>
@@ -81,10 +123,24 @@ const SongList = ({ song, index, type, mode, queue }) => {
                     <div>{convertName(song.primaryArtists)}</div>
                 </div>
             </div>
-            <div className="song-list-06">
-                <FontAwesomeIcon icon={faHeart} size="lg" />
+            <div className="song-list-06" onClick={handleLike}>
+                <i className={`fa-${liked ? "solid liked-hrt" : "regular"} fa-heart fa-lg`}></i>
             </div>
-            {mode !== "search" && <div className="song-list-07">{formatTime(Number(song.duration))}</div>}
+            {mode !== "search" && (
+                <div className="song-list-07  pRel">
+                    <div className="song-list-10 app05 h-100">{formatTime(Number(song.duration))}</div>
+                    <div className="song-list-11 options app02">
+                        <button className="app05" onClick={handleOptions}>
+                            <FontAwesomeIcon icon={faEllipsis} size="lg" style={{ color: "#000000" }} />
+                        </button>
+                        <div className="options01">
+                            {options && (
+                                <Options liked={liked} data={song} handleLike={handleLike} options={options} setoptions={setoptions} />
+                            )}
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

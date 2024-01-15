@@ -4,7 +4,7 @@ export const playerSlice = createSlice({
     name: "player",
     initialState: {
         currentSong: 0,
-        currentName : "",
+        currentName: "",
         songIndex: 0,
         songQueue: [],
         isAutoPlay: true,
@@ -22,13 +22,12 @@ export const playerSlice = createSlice({
             state.songQueue.push(action.payload.song);
         },
         playAlbum: (state, action) => {
-            state.currentName = ""
+            state.currentName = "";
             state.currentSong = action.payload.song;
             state.songIndex = 0;
             state.autoPlaylistIndex = -1;
-            if(action.payload.nameOfList){
-                state.currentName = action.payload.nameOfList
-
+            if (action.payload.nameOfList) {
+                state.currentName = action.payload.nameOfList;
             }
             state.songQueue = action.payload.playlist;
         },
