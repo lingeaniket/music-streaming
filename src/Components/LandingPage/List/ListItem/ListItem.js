@@ -13,7 +13,6 @@ import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import Options from "../../../Options/Options";
 
 const ListItem = ({ data }) => {
-    console.log(data.type);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [liked, setLiked] = useState(false);
