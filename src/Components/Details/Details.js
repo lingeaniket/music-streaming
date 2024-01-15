@@ -19,12 +19,13 @@ import Options from "../Options/Options.js";
 const Details = ({ type }) => {
     const { id } = useParams();
     const dispatch = useDispatch();
-    const [songs, setSongs] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [liked, setLiked] = useState(false);
     const likedData = useSelector((state) => state.user.liked);
-    const [options, setoptions] = useState(false);
+
+    const [songs, setSongs] = useState([]);
+    const [liked, setLiked] = useState(false);
     const [details, setDetails] = useState({});
+    const [loading, setLoading] = useState(true);
+    const [options, setoptions] = useState(false);
 
     const handleLike = (event) => {
         event.stopPropagation();
@@ -114,19 +115,13 @@ const Details = ({ type }) => {
             }
             setLiked(likedData[`${type}s`].findIndex((idx) => idx === id) > -1);
         }
-        // eslint-disable-next-line 
+        // eslint-disable-next-line
     }, [id, type]);
 
     return (
         <div className="detail-01">
             {loading ? (
-                <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                    }}
-                >
+                <div className="app05">
                     <div
                         style={{
                             height: "50px",
