@@ -17,9 +17,11 @@ import Options from "../Options/Options.js";
 const SongList = ({ song, index, type, mode, queue }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [options, setoptions] = useState(false);
-    const [liked, setLiked] = useState(false);
+
     const likedData = useSelector((state) => state.user.liked);
+
+    const [liked, setLiked] = useState(false);
+    const [options, setoptions] = useState(false);
 
     const handleOptions = (event) => {
         const { top, right } = event.target.parentNode.getBoundingClientRect();
