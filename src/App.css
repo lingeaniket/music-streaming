@@ -12,7 +12,7 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
-.pRel{
+.pRel {
     position: relative;
 }
 
@@ -24,7 +24,7 @@ img {
     width: 100%;
 }
 
-.h-100{
+.h-100 {
     height: 100%;
 }
 
@@ -32,7 +32,7 @@ img {
     width: 30%;
 }
 
-.w-35{
+.w-35 {
     width: 35%;
 }
 
@@ -93,6 +93,14 @@ img {
 .app10 {
     display: flex;
     justify-content: flex-end;
+}
+
+.fa-heart {
+    color: white;
+}
+
+.fa-heart.liked-hrt {
+    color: green;
 }
 
 .mainContainer {

@@ -73,6 +73,7 @@
 
 .song-list-07 {
     width: 66px;
+    height: 100%;
     font-size: 13px;
 }
 
@@ -106,4 +107,55 @@
     transition: opacity 0.3s ease-in-out 0.15s;
     border-radius: 4px;
     padding: 5px;
+}
+
+.song-list-01:hover .song-list-10 {
+    display: none;
+}
+.song-list-01:hover .song-list-11 > .app05 {
+    display: block;
+}
+.song-list-01 .song-list-11 > .app05 {
+    display: none;
+}
+
+.song-list-11.options > .app05 {
+    opacity: 1;
+}
+
+.song-list-01:hover .fa-heart {
+    color: black;
+}
+.song-list-01:hover .fa-heart.liked-hrt {
+    color: green;
+}
+
+.song-list-11 > button {
+    outline: none;
+    border: none;
+    background: none;
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    padding: 15px;
+    height: 45px;
+    width: 45px;
+}
+
+@media screen and (max-width: 600px) {
+    .song-list-05 {
+        flex-direction: column;
+    }
+
+    .song-list-05 > * {
+        width: 100%;
+    }
+
+    .song-list-01 > div:first-of-type {
+        display: none;
+    }
+
+    .song-list-06 {
+        display: none;
+    }
 }

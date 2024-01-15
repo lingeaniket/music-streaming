@@ -50,9 +50,9 @@
 
 .detail-10 > button {
     margin: 0;
-    padding: 0 44px;
+    padding: 0 33px;
     cursor: pointer;
-    line-height: 2.4;
+    /* line-height: 2.4; */
     font-size: 20px;
     outline: none;
     border: none;
@@ -62,12 +62,16 @@
     font-weight: 700;
     width: auto;
     transition: all 0.3s ease-in-out;
-    height: 50px;
+    height: 45px;
 }
 
 .detail-10 > button:hover {
     background-color: green;
     color: white;
+}
+
+.detail-11.options > .app05{
+    opacity: 1;
 }
 
 .detail-10 > button:hover,
@@ -83,8 +87,51 @@
     transition: all 0.3s ease-in-out;
     cursor: pointer;
     padding: 15px;
-    height: 50px;
-    width: 50px;
+    height: 45px;
+    width: 45px;
 }
 
+@media screen and (max-width: 900px) {
+    .detail-02 > .app01 {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .detail-04 {
+        margin-bottom: 44px;
+        margin-right: 0;
+    }
+    
+    .detail-05,
+    .detail-06,
+    .detail-08,
+    .detail-09 {
+        justify-content: center;
+        text-align: center;
+    }
 
+    .detail-09 {
+        justify-content: center;
+    }
+}
+@media screen and (max-width: 600px) {
+    .detail-06 {
+        display: block;
+        flex-wrap: wrap;
+    }
+
+    .detail-06>span:first-of-type{
+        display: block;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .detail-06>span:nth-of-type(2){
+        display: none;
+    }
+
+    .detail-07{
+        display: inline-flex;
+        height: 20px;
+    }
+}
