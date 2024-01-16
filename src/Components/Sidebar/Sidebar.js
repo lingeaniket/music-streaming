@@ -5,16 +5,16 @@ import Library from "../Icons/Library/Library";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { openPlaylist } from "../../Features/newPlaylistSlice";
+import MyPlaylist from "../MyPlaylist/MyPlaylist";
 
 const Sidebar = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const handleOpenNew = () => {
-        setTimeout(()=>{
-
+        setTimeout(() => {
             dispatch(openPlaylist(true));
-        }, 0)
+        }, 0);
     };
     return (
         <div className="sidebarContainer">
@@ -260,6 +260,7 @@ const Sidebar = () => {
                                     </span>
                                 </button>
                             </div>
+                            <MyPlaylist/>
                         </div>
                     </div>
                 </div>
