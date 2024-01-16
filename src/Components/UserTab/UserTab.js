@@ -7,11 +7,12 @@ import SongListMain from "./SongList/SongListMain";
 
 const UserTab = () => {
     const { id } = useParams();
+    const playlists = useSelector((state) => state.playlist.myPlaylists);
+    
     const [imageData, setImageData] = useState([]);
     const [currentLoad, setCurrentLoad] = useState(20);
     const [currentList, setCurrentList] = useState({});
     const [currentSongs, setCurrentSongs] = useState([]);
-    const playlists = useSelector((state) => state.playlist.myPlaylists);
 
     const loadMoreSongs = () => {
         setCurrentLoad((prev) => prev + 20);
