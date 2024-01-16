@@ -20,9 +20,7 @@ const Home = () => {
                     <div
                         className="scrollHider"
                         style={{
-                            padding: "8px",
-                            margin: "0px 8px",
-                            height: "100%",
+                           
                         }}
                     >
                         <Outlet />
@@ -33,7 +31,7 @@ const Home = () => {
                         <QueueSide />
                     </div>
                 )}
-                {selectedSong && <Footer />}
+                {selectedSong ? <Footer /> : null}
             </div>
             {playlistOpen && <NewPlaylist />}
         </div>
