@@ -11,7 +11,7 @@ const NewPlaylist = () => {
     const currentData = useSelector((state) => state.playlist.currentData);
     const myPlaylists = useSelector((state) => state.playlist.myPlaylists);
     const addToPlaylist = useSelector((state) => state.playlist.addPlaylistOpen);
-    
+
     const [inp, setInp] = useState("");
     const [nameError, setNameError] = useState(false);
 
@@ -35,7 +35,16 @@ const NewPlaylist = () => {
             dispatch(addSongsToPlaylist({ id: currentid, songs: data.data.data.songs }));
         } else if (type === "song") {
             const data = await axios.get(`https://saavn.me/songs?id=${currentData.id}`);
-            dispatch(addSongsToPlaylist({ id: currentid, songs: data.data.data[0] }));
+            dispatch(addSongsToPlaylist({ id: currentid, songs: data.data.data }));
+        } else if (type === "my-playlist") {
+            dispatch(
+                addSongsToPlaylist({
+                    id: currentid,
+                    songs: currentData.songs.map((song) => {
+                        return { id: song };
+                    }),
+                })
+            );
         }
     }
 
@@ -49,7 +58,11 @@ const NewPlaylist = () => {
     const createPlaylist = () => {
         if (checkAvailable()) {
             if (currentData) {
-                dispatch(addNewPlayList({ name: inp, id: new Date().getTime(), songs: [currentData.id] }));
+                const id = new Date().getTime();
+                dispatch(addNewPlayList({ name: inp, id, songs: [] }));
+                setTimeout(() => {
+                    handleAddToPlaylist.bind({ id })();
+                }, 200);
             } else {
                 dispatch(addNewPlayList({ name: inp, id: new Date().getTime(), songs: [] }));
             }
@@ -105,18 +118,20 @@ const NewPlaylist = () => {
                                 </button>
                             </div>
                         </div>
-                        {addToPlaylist && (
+                        {addToPlaylist && myPlaylists.filter((playlist) => playlist.id !== currentData.id).length > 0 && (
                             <div className="np09">
                                 <div className="np10">or add to an existing playlist</div>
                                 <div>
-                                    {myPlaylists.map((playlist) => (
-                                        <div key={playlist.id} className="np11" onClick={handleAddToPlaylist.bind({ id: playlist.id })}>
-                                            <div className="np12">{playlist.name}</div>
-                                            <div className="np13">
-                                                {playlist.songs.length} song{playlist.songs.length > 1 ? "s" : ""}
+                                    {myPlaylists
+                                        .filter((playlist) => playlist.id !== currentData.id)
+                                        .map((playlist) => (
+                                            <div key={playlist.id} className="np11" onClick={handleAddToPlaylist.bind({ id: playlist.id })}>
+                                                <div className="np12">{playlist.name}</div>
+                                                <div className="np13">
+                                                    {playlist.songs.length} song{playlist.songs.length > 1 ? "s" : ""}
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))}
+                                        ))}
                                 </div>
                             </div>
                         )}

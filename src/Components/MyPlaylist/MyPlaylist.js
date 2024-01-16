@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import PlaylistItem from "./PlaylistItem";
+import "./myPlaylist.css"
 
 const MyPlaylist = () => {
     const playlists = useSelector((state) => state.playlist.myPlaylists);

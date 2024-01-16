@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const PlaylistItem = ({ playlist }) => {
+    const { id } = useParams();
     const [imageData, setImageData] = useState([]);
     const navigate = useNavigate();
 
@@ -24,34 +25,12 @@ const PlaylistItem = ({ playlist }) => {
         };
 
         loadImages();
-    }, [playlist]);
+    }, [playlist, id]);
     return (
-        <div
-            onClick={handleNavigate}
-            style={{
-                display: "flex",
-                alignItems: "center",
-            }}
-        >
-            <div
-                style={{
-                    height: "50px",
-                    margin: "5px",
-                    width: "50px",
-                    display: "flex",
-                    flexWrap: "wrap",
-                }}
-            >
+        <div className={`app06 mplay03 ${playlist.id === Number(id) ? "mplay01" : ""}`} onClick={handleNavigate}>
+            <div className="mplay02 app01">
                 {[0, 1, 2, 3].map((idx) => (
-                    <div
-                        style={{
-                            width: "50%",
-                            height: "50%",
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                        }}
-                    >
+                    <div className="app05 w-50 h-50">
                         {imageData[idx] ? (
                             <img src={imageData[idx].image[2].link} alt="" />
                         ) : (
