@@ -1,0 +1,18 @@
+.mplay01 {
+    background-color: white;
+    color: black;
+}
+
+.mplay02 {
+    height: 50px;
+    margin: 5px;
+    width: 50px;
+    flex-wrap: wrap;
+}
+
+.mplay03 {
+    border-radius: 4px;
+    margin: 11px 0;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}

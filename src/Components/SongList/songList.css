@@ -3,6 +3,10 @@
     color: black;
 }
 
+.song-list-01:hover .song-list-03 {
+    font-size: 14px;
+}
+
 .song-list-01:hover .song-list-08 {
     opacity: 1;
     visibility: visible;
@@ -11,10 +15,6 @@
     opacity: 1;
     visibility: visible;
 }
-
-/* .song-list-01:hover .song-list-03 {
-    opacity: 0;
-} */
 
 .song-list-01:hover .song-list-06 svg {
     color: black;
@@ -25,9 +25,8 @@
 }
 .song-list-01 {
     width: 100%;
-    height: 45px;
-    /* border: 1px solid black; */
-
+    height: 56px;
+    border-radius: 4px;
     transition: all 0.3s ease-in-out;
 }
 
@@ -38,8 +37,9 @@
 }
 
 .song-list-03 {
-    /* transition: all 0.3s ease-in-out; */
+    transition: font-size 0.3s ease-in-out;
     font-size: 13px;
+    font-weight: 600;
     line-height: 1.4;
     position: relative;
 }
@@ -138,8 +138,8 @@
     transition: all 0.3s ease-in-out;
     cursor: pointer;
     padding: 15px;
-    height: 45px;
-    width: 45px;
+    height: 56px;
+    width: 56px;
 }
 
 @media screen and (max-width: 600px) {
