@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./options.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addSongsToPlaylist, openPlaylist, updateCurrentdata } from "../../Features/newPlaylistSlice";
+import { addSongsToPlaylist, openAddPlaylist, openPlaylist, updateCurrentdata } from "../../Features/newPlaylistSlice";
 import axios from "axios";
 
-const Options = ({ liked, data, handleLike, setoptions }) => {
+const Options = ({ liked, data, handleLike, setoptions, playlist }) => {
     const opref = useRef();
     const dispatch = useDispatch();
-    
+
     const myPlaylists = useSelector((state) => state.playlist.myPlaylists);
 
     const [main, setMain] = useState(true);
@@ -20,15 +20,19 @@ const Options = ({ liked, data, handleLike, setoptions }) => {
     async function handleAddToPlaylist() {
         const currentid = this.id;
         const { type, id } = data;
-        if (type === "album" || type === "playlist") {
-            const data = await axios.get(`https://saavn.me/${type}s?id=${id}`);
-            dispatch(addSongsToPlaylist({ id: currentid, songs: data.data.data.songs }));
-        } else if (type === "song") {
-            const data = await axios.get(`https://saavn.me/songs?id=${id}`);
-            dispatch(addSongsToPlaylist({ id: currentid, songs: data.data.data[0] }));
+        if (playlist) {
+            dispatch(addSongsToPlaylist({ id: currentid, songs: data.songs }));
+        } else {
+            if (type === "album" || type === "playlist") {
+                const data = await axios.get(`https://saavn.me/${type}s?id=${id}`);
+                dispatch(addSongsToPlaylist({ id: currentid, songs: data.data.data.songs }));
+            } else if (type === "song") {
+                const data = await axios.get(`https://saavn.me/songs?id=${id}`);
+                dispatch(addSongsToPlaylist({ id: currentid, songs: data.data.data[0] }));
+            }
+            dispatch(updateCurrentdata(""));
+            setoptions(false);
         }
-        dispatch(updateCurrentdata(""));
-        setoptions(false);
     }
 
     const stayInModel = (event) => {
@@ -48,8 +52,13 @@ const Options = ({ liked, data, handleLike, setoptions }) => {
     const handleOpenNew = () => {
         setoptions(false);
         setTimeout(() => {
-            dispatch(updateCurrentdata(data));
+            if (playlist) {
+                dispatch(updateCurrentdata({ ...data, type: "my-playlist" }));
+            } else {
+                dispatch(updateCurrentdata(data));
+            }
             dispatch(openPlaylist(true));
+            dispatch(openAddPlaylist(true));
         }, 0);
     };
 
@@ -78,9 +87,11 @@ const Options = ({ liked, data, handleLike, setoptions }) => {
         >
             {main ? (
                 <>
-                    <div className="opt03" onClick={handleLiked}>
-                        {liked ? "Remove from Library" : "Save to Library"}
-                    </div>
+                    {!playlist && (
+                        <div className="opt03" onClick={handleLiked}>
+                            {liked ? "Remove from Library" : "Save to Library"}
+                        </div>
+                    )}
                     <div className="opt03">Play Playlist Now</div>
                     <div className="opt03">Add to Queue</div>
                     <div className="opt03" onClick={handleMode}>
