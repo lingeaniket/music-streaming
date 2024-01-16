@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Home from "./Components/Home/Home";
 import Details from "./Components/Details/Details";
+import UserTab from "./Components/UserTab/UserTab"
 import LandingPage from "./Components/LandingPage/LandingPage";
 
 import store from "./Store/store";
@@ -28,23 +29,21 @@ const router = createBrowserRouter([
                 element: <Details type="song" />,
             },
             {
-                path: "featured/:name/:id",
+                path: "/featured/:name/:id",
                 element: <Details type="playlist" />,
             },
             {
-                path: 'search',
-                element: <Search/>,
-                // children : [
-                //     {
-                //         path: "/search/:type/:key",
-                //         element: <ViewAll/>
-                //     }
-                // ]
+                path: "/search",
+                element: <Search />,
+            },
+            {
+                path: "/my-list/:id",
+                element: <UserTab />,
             },
             {
                 path: "/search/:type/:key",
-                element: <ViewAll/>
-            }
+                element: <ViewAll />,
+            },
         ],
     },
 ]);
