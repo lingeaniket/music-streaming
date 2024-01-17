@@ -105,6 +105,7 @@ const SongList = ({ song, index, type, mode, queue, isDragging }) => {
         } else {
             setCurrentPlaying(false);
         }
+         // eslint-disable-next-line
     }, [currentSong]);
 
     useEffect(() => {
