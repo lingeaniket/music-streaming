@@ -14,7 +14,7 @@ import { addLiked, removeLiked } from "../../Features/userSlice.js";
 
 import Options from "../Options/Options.js";
 
-const SongList = ({ song, index, type, mode, queue }) => {
+const SongList = ({ song, index, type, mode, queue, isDragging }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -102,7 +102,7 @@ const SongList = ({ song, index, type, mode, queue }) => {
     }, [type, song]);
 
     return (
-        <div className="song-list-01 app06">
+        <div className={`song-list-01 app06 ${isDragging ? "song-dragging" : ""}`}>
             <div className="song-list-02 app05">{mode !== "search" && <span className="song-list-03">{index + 1}</span>}</div>
             <div className="song-list-02 app05">
                 <img
