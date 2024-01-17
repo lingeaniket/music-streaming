@@ -23,3 +23,7 @@
 .opt04 {
     opacity: 1;
 }
+
+.opt05{
+    text-transform: capitalize;
+}
