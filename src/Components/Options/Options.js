@@ -92,7 +92,7 @@ const Options = ({ liked, data, handleLike, setoptions, playlist }) => {
                             {liked ? "Remove from Library" : "Save to Library"}
                         </div>
                     )}
-                    <div className="opt03">Play Playlist Now</div>
+                    <div className="opt03 opt05">Play {data.type ? data.type : "Playlist"} Now</div>
                     <div className="opt03">Add to Queue</div>
                     <div className="opt03" onClick={handleMode}>
                         Add to Playlist
