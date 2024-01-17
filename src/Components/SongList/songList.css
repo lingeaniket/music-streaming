@@ -1,5 +1,6 @@
 .song-list-01 {
     width: 100%;
+    padding: 8px 5.5px 8px 0;
     height: 56px;
     border-radius: 4px;
     transition: all 0.3s ease-in-out;
@@ -9,6 +10,10 @@
 .song-list-01.song-dragging {
     background-color: white;
     color: black;
+}
+
+.song-list-01 > div:nth-of-type(2) {
+    padding: 0;
 }
 
 .song-list-01.song-dragging {
@@ -111,8 +116,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 35px;
-    width: 35px;
+    height: 40px;
+    width: 40px;
     visibility: hidden;
     background-color: rgba(0, 0, 0, 0.5);
     cursor: pointer;
@@ -154,8 +159,28 @@
     transition: all 0.3s ease-in-out;
     cursor: pointer;
     padding: 15px;
-    height: 56px;
-    width: 56px;
+    height: 40px;
+    width: 40px;
+}
+
+.song-list-12 {
+    height: 30px;
+    width: 30px;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+
+.song-list-13 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 40px;
+    width: 40px;
+    background-color: rgb(43, 197, 180);
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 5px;
 }
 
 @media screen and (max-width: 600px) {

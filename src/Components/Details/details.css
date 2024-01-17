@@ -66,7 +66,7 @@
 }
 
 .detail-10 > button:hover {
-    background-color: green;
+    background-color: rgb(43, 197, 180);
     color: white;
 }
 
@@ -76,7 +76,7 @@
 
 .detail-10 > button:hover,
 .detail-11 > button:hover {
-    border-color: green;
+    border-color: rgb(43, 197, 180);
 }
 
 .detail-11 > button {

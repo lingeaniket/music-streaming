@@ -1,18 +1,35 @@
 .mplay01 {
-    background-color: white;
-    color: black;
+    background-color: rgba(255, 255, 255, 0.15);
 }
 
 .mplay02 {
-    height: 50px;
-    margin: 5px;
-    width: 50px;
+    height: 40px;
+    margin: 10px 5px;
+    border-radius: 4px;
+    overflow: hidden;
+    width: 40px;
+    background-color: rgb(18, 18, 18);
     flex-wrap: wrap;
 }
 
 .mplay03 {
     border-radius: 4px;
-    margin: 11px 0;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+}
+
+.mplay03.mplay01:hover {
+    background-color: rgba(255, 255, 255, 0.18);
+}
+
+.mplay03:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.mplay03 i {
+    transition: all 0.3s ease-in-out;
+}
+
+.mplay03:hover i {
+    color: white;
 }
