@@ -25,8 +25,8 @@ export const playListSlice = createSlice({
                     spliceidx = idx;
                 }
                 return playlist.id === id;
-            })[0]
-            console.log(prevSongs)
+            })[0];
+            console.log(prevSongs);
             if (prevSongs) {
                 for (let i = 0; i < songData.length; i++) {
                     const newidx = prevSongs.songs.indexOf(songData[i]);
@@ -43,6 +43,20 @@ export const playListSlice = createSlice({
         updateCurrentdata: (state, action) => {
             state.currentData = action.payload;
         },
+
+        updatePlaylistDnD: (state, action) => {
+            const { id, songs } = action.payload;
+            const reqPlaylist = state.myPlaylists.findIndex((playlist) => playlist.id === id);
+            if (reqPlaylist > -1) {
+                const add = state.myPlaylists.splice(reqPlaylist, 1);
+
+                add.songs = songs;
+
+                state.myPlaylists.splice(reqPlaylist, 0, add);
+
+                localStorage.setItem("my-playlists", JSON.stringify(state.myPlaylists));
+            }
+        },
         openPlaylist: (state, action) => {
             state.playlistOpen = action.payload;
         },
@@ -53,6 +67,7 @@ export const playListSlice = createSlice({
     },
 });
 
-export const { openAddPlaylist, openPlaylist, addNewPlayList, addSongsToPlaylist, updateCurrentdata } = playListSlice.actions;
+export const { openAddPlaylist, openPlaylist, addNewPlayList, addSongsToPlaylist, updateCurrentdata, updatePlaylistDnD } =
+    playListSlice.actions;
 
 export default playListSlice.reducer;
