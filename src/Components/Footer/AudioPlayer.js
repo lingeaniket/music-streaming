@@ -8,10 +8,10 @@ import AudioSettingTab from "./AudioSettingsTab/AudioSettingTab";
 
 import "./audioPlayer.css";
 import axios from "axios";
-import { toggleQueue } from "../../Features/musicPlayerSlice";
+import { toggleIsPlaying, toggleQueue } from "../../Features/musicPlayerSlice";
 
 const AudioPlayer = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const selectedSong = useSelector((state) => state.player.currentSong);
 
     const [volume, setVolume] = useState(0.5);
@@ -30,6 +30,7 @@ const AudioPlayer = () => {
             audioRef.current.play();
         }
         setIsPlaying(!isPlaying);
+        dispatch(toggleIsPlaying());
     };
 
     const handleVolumeChange = (e) => {
@@ -61,7 +62,7 @@ const AudioPlayer = () => {
         isSeeking.current = false;
         audioRef.current.currentTime = currentTime;
     };
-    
+
     const handleInputSeekChange = (e) => {
         isSeeking.current = true;
         const seekTime = parseFloat(e.target.value);
@@ -71,7 +72,7 @@ const AudioPlayer = () => {
     };
 
     const handleQueue = () => {
-        if(window.innerWidth < 768){
+        if (window.innerWidth < 768) {
             dispatch(toggleQueue());
         }
     };

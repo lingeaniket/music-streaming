@@ -15,6 +15,8 @@ import Loader from "../Icons/Loader/Loader.js";
 import { useDispatch, useSelector } from "react-redux";
 import { addLiked, removeLiked } from "../../Features/userSlice.js";
 import Options from "../Options/Options.js";
+import { getPlayListData } from "../LandingPage/List/listFunctions.js";
+import { playAlbum } from "../../Features/musicPlayerSlice.js";
 
 const Details = ({ type }) => {
     const { id } = useParams();
@@ -50,6 +52,12 @@ const Details = ({ type }) => {
             return acc + Number(song.duration);
         }, 0);
         return duration;
+    };
+
+    const handlePlay = async (event) => {
+        event.stopPropagation();
+        const playerData = await getPlayListData(details);
+        dispatch(playAlbum(playerData));
     };
 
     const handleOptions = (event) => {
@@ -161,7 +169,7 @@ const Details = ({ type }) => {
                                 </div>
                                 <p className="detail-08">{songs[0]?.copyright}</p>
                                 <div className="detail-09 app01">
-                                    <div className="detail-10">
+                                    <div className="detail-10" onClick={handlePlay}>
                                         <button>Play</button>
                                     </div>
                                     <div className="detail-11">

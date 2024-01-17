@@ -10,6 +10,7 @@ import Options from "../Options/Options";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
 import { updatePlaylistDnD } from "../../Features/newPlaylistSlice";
+import { playAlbum } from "../../Features/musicPlayerSlice";
 
 const UserTab = () => {
     const { id } = useParams();
@@ -41,6 +42,12 @@ const UserTab = () => {
         songs.splice(destination.index, 0, add);
         setCurrentSongs(songs);
         dispatch(updatePlaylistDnD({ id, songs }));
+    };
+
+    const handlePlay = async (event) => {
+        event.stopPropagation();
+        const playerData = { playlist: currentSongs, nameOfList: currentList.name, song: currentSongs[0] };
+        dispatch(playAlbum(playerData));
     };
 
     const handleOptions = (event) => {
@@ -117,7 +124,7 @@ const UserTab = () => {
                             {currentList?.songs?.length} <span>{currentList?.songs?.length > 1 ? "songs" : "song"}</span>
                         </div>
                         <div className="detail-09 app01">
-                            <div className="detail-10">
+                            <div className="detail-10" onClick={handlePlay}>
                                 <button>Play</button>
                             </div>
 

@@ -35,7 +35,12 @@ const PlaylistItem = ({ playlist }) => {
                             <img src={imageData[idx].image[2].link} alt="" />
                         ) : (
                             <>
-                                <i className="fa-solid fa-music fa-2xs"></i>
+                                <i
+                                    style={{
+                                        fontSize: "6px",
+                                    }}
+                                    className="fa-solid fa-music"
+                                ></i>
                             </>
                         )}
                     </div>
@@ -43,7 +48,14 @@ const PlaylistItem = ({ playlist }) => {
             </div>
             <div>
                 <div>
-                    <span>{playlist.name}</span>
+                    <span
+                        style={{
+                            fontWeight: 600,
+                            fontSize: "13px",
+                        }}
+                    >
+                        {playlist.name}
+                    </span>
                 </div>
                 <div>
                     <span

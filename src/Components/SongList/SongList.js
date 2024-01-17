@@ -13,14 +13,18 @@ import { convertName, formatTime } from "../commonFunctions.js";
 import { addLiked, removeLiked } from "../../Features/userSlice.js";
 
 import Options from "../Options/Options.js";
+import Equilizer from "../Icons/Equilizer/Equilizer.js";
 
 const SongList = ({ song, index, type, mode, queue, isDragging }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const likedData = useSelector((state) => state.user.liked);
+    const currentSong = useSelector((state) => state.player.currentSong);
+    const isPlaying = useSelector((state) => state.player.isPlaying);
 
     const [liked, setLiked] = useState(false);
+    const [currentPlaying, setCurrentPlaying] = useState(false);
     const [options, setoptions] = useState(false);
 
     const handleOptions = (event) => {
@@ -95,6 +99,13 @@ const SongList = ({ song, index, type, mode, queue, isDragging }) => {
             dispatch(playAlbum({ song: song.id, playlist: [song.id] }));
         }
     };
+    useEffect(() => {
+        if (currentSong === song.id) {
+            setCurrentPlaying(true);
+        } else {
+            setCurrentPlaying(false);
+        }
+    }, [currentSong]);
 
     useEffect(() => {
         setLiked(likedData[`${type}s`].findIndex((idx) => idx === song.id) > -1);
@@ -105,17 +116,44 @@ const SongList = ({ song, index, type, mode, queue, isDragging }) => {
         <div className={`song-list-01 app06 ${isDragging ? "song-dragging" : ""}`}>
             <div className="song-list-02 app05">{mode !== "search" && <span className="song-list-03">{index + 1}</span>}</div>
             <div className="song-list-02 app05">
-                <img
-                    src={song.image ? song.image[2].link : ""}
-                    alt=""
+                <div
                     style={{
-                        width: "100%",
-                        borderRadius: "4px",
+                        maxHeight: "40px",
+                        maxWidth: "40px",
                     }}
-                />
-                <div className="song-list-09 app05" onClick={handleSongPlay}>
-                    <FontAwesomeIcon icon={faPlay} size="sm" style={{ color: "#ffffff" }} />
+                >
+                    <img
+                        src={song.image ? song.image[0].link : ""}
+                        alt=""
+                        style={{
+                            width: "100%",
+                            borderRadius: "4px",
+                        }}
+                    />
                 </div>
+                {currentPlaying ? (
+                    <>
+                        {isPlaying ? (
+                            <div className="song-list-13 app05">
+                                <Equilizer />
+                            </div>
+                        ) : (
+                            <div className="song-list-13 app05" onClick={handleSongPlay}>
+                                <div className="app05 song-list-12">
+                                    <FontAwesomeIcon icon={faPlay} size="sm" style={{ color: "#ffffff" }} />
+                                </div>
+                            </div>
+                        )}
+                    </>
+                ) : (
+                    <>
+                        <div className="song-list-09 app05" onClick={handleSongPlay}>
+                            <div className="app05 song-list-12">
+                                <FontAwesomeIcon icon={faPlay} size="sm" style={{ color: "#ffffff" }} />
+                            </div>
+                        </div>
+                    </>
+                )}
             </div>
             <div className="song-list-04">
                 <div className="song-list-05 app01 w-100">
