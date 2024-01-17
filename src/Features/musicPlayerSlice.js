@@ -4,6 +4,7 @@ export const playerSlice = createSlice({
     name: "player",
     initialState: {
         currentSong: 0,
+        isPlaying: false,
         currentName: "",
         songIndex: 0,
         songQueue: [],
@@ -30,6 +31,7 @@ export const playerSlice = createSlice({
                 state.currentName = action.payload.nameOfList;
             }
             state.songQueue = action.payload.playlist;
+            state.isPlaying = true;
         },
 
         playNextSong: (state, action) => {
@@ -39,6 +41,8 @@ export const playerSlice = createSlice({
             } else if (state.songQueue.length === state.songIndex + 1 && state.isAutoPlay) {
                 state.autoPlaylistIndex += 1;
                 state.currentSong = state.autoPlaylist[state.autoPlaylistIndex];
+            } else {
+                state.isPlaying = false;
             }
         },
         playPrevSong: (state, action) => {
@@ -70,10 +74,23 @@ export const playerSlice = createSlice({
         toggleQueue: (state, action) => {
             state.queueOpened = !state.queueOpened;
         },
+
+        toggleIsPlaying: (state, action) => {
+            state.isPlaying = !state.isPlaying;
+        },
     },
 });
 
-export const { playNewSong, addSongToQueue, playAlbum, playNextSong, playPrevSong, removeSongFromQueue, addAutoPlay, toggleQueue } =
-    playerSlice.actions;
+export const {
+    playNewSong,
+    addSongToQueue,
+    playAlbum,
+    playNextSong,
+    playPrevSong,
+    removeSongFromQueue,
+    addAutoPlay,
+    toggleQueue,
+    toggleIsPlaying,
+} = playerSlice.actions;
 
 export default playerSlice.reducer;
