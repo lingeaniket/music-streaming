@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SongList from "../../SongList/SongList";
 import axios from "axios";
+import { Draggable } from "react-beautiful-dnd";
 
 const SongListMain = ({ id, index }) => {
     const [currentSong, setCurrentSong] = useState({});
@@ -11,7 +12,15 @@ const SongListMain = ({ id, index }) => {
         };
         loadData();
     }, [id]);
-    return <div>{currentSong.id && <SongList song={currentSong} type="song" index={index} />}</div>;
+    return (
+        <Draggable draggableId={id.toString()} index={index}>
+            {(provided, snapshot) => (
+                <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                    {currentSong.id && <SongList song={currentSong} type="song" index={index}  isDragging={snapshot.isDragging}/>}
+                </div>
+            )}
+        </Draggable>
+    );
 };
 
 export default SongListMain;
