@@ -15,7 +15,7 @@ const Home = () => {
 
     return (
         <div className="mainContainer">
-            <div className="gridMain">
+            <div className={`gridMain ${queueOpened ? "queue-open" : ""}`}>
                 <Sidebar />
                 <div className={`main-content ${queueOpened ? "queue-shift" : ""}`}>
                     <div className="scrollHider" style={{}}>

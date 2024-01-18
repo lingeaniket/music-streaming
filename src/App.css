@@ -21,6 +21,7 @@ img {
     max-width: 100%;
     vertical-align: middle;
 }
+
 .w-100 {
     width: 100%;
 }
@@ -136,6 +137,7 @@ img {
 .right-sidebar::-webkit-scrollbar {
     display: none;
 }
+
 .gridMain {
     display: grid;
     position: relative;
@@ -144,18 +146,22 @@ img {
     height: 100%;
     width: 100%;
     /* padding: 8px; */
-    grid-template-areas: "sidebar main-content right-sidebar" "music-player music-player music-player";
+    grid-template-areas: "sidebar main-content" "music-player music-player";
     gap: 8px;
 }
 
-button{
+.gridMain.queue-open {
+    grid-template-areas: "sidebar main-content right-sidebar" "music-player music-player music-player";
+}
+
+button {
     cursor: pointer;
 }
 /* *::-webkit-scrollbar{
     display: none;
 } */
 
-html{
+html {
     overflow: hidden;
 }
 
@@ -232,16 +238,18 @@ html{
         height: 80px;
     }
 
-    .gridMain {
+    .gridMain, .gridMain.queue-open {
         padding: 0;
-        grid-template-areas: "main-content main-content" "music-player music-player" "bottom-bar bottom-bar";
+        grid-template-areas: "main-content" "music-player" "bottom-bar";
+        grid-template-columns: auto;
+        grid-template-rows: auto;
     }
 
     .right-sidebar {
         position: absolute;
         top: 10px;
         right: 0;
-        bottom: 98px;
+        bottom: 165px;
         background-color: rgba(18, 18, 18, 0.75);
         backdrop-filter: blur(10px);
     }
