@@ -6,6 +6,7 @@ import Footer from "../Footer/Footer";
 import Sidebar from "../Sidebar/Sidebar";
 import QueueSide from "../QueueSide/QueueSide";
 import NewPlaylist from "../Modals/NewPlaylist/NewPlaylist";
+import BottomBar from "../BottomBar/BottomBar";
 
 const Home = () => {
     const queueOpened = useSelector((state) => state.player.queueOpened);
@@ -17,12 +18,7 @@ const Home = () => {
             <div className="gridMain">
                 <Sidebar />
                 <div className={`main-content ${queueOpened ? "queue-shift" : ""}`}>
-                    <div
-                        className="scrollHider"
-                        style={{
-                           
-                        }}
-                    >
+                    <div className="scrollHider" style={{}}>
                         <Outlet />
                     </div>
                 </div>
@@ -32,6 +28,7 @@ const Home = () => {
                     </div>
                 )}
                 {selectedSong ? <Footer /> : null}
+                <BottomBar />
             </div>
             {playlistOpen && <NewPlaylist />}
         </div>
