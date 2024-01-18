@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import PlaylistItem from "./PlaylistItem";
-import "./myPlaylist.css"
+import "./myPlaylist.css";
 
 const MyPlaylist = () => {
     const playlists = useSelector((state) => state.playlist.myPlaylists);
@@ -12,7 +12,7 @@ const MyPlaylist = () => {
             }}
         >
             {playlists.map((playlist) => (
-                <PlaylistItem playlist={playlist} />
+                <PlaylistItem key={playlist.id} playlist={playlist} />
             ))}
         </div>
     );

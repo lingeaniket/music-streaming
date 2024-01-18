@@ -30,7 +30,7 @@ const PlaylistItem = ({ playlist }) => {
         <div className={`app06 mplay03 ${playlist.id === Number(id) ? "mplay01" : ""}`} onClick={handleNavigate}>
             <div className="mplay02 app01">
                 {[0, 1, 2, 3].map((idx) => (
-                    <div className="app05 w-50 h-50">
+                    <div key={idx} className="app05 w-50 h-50">
                         {imageData[idx] ? (
                             <img height={'100%'} width={'100%'} src={imageData[idx].image[1].link} alt="" />
                         ) : (
