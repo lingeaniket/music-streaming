@@ -7,7 +7,7 @@ export const userSlice = createSlice({
         liked: localStorage.getItem("liked")
             ? JSON.parse(localStorage.getItem("liked"))
             : { songs: [], playlists: [], albums: [], artists: [] },
-        history: [],
+        history: localStorage.getItem("history") ? JSON.parse(localStorage.getItem("history")) : [],
     },
     reducers: {
         addLiked: (state, action) => {
@@ -31,6 +31,9 @@ export const userSlice = createSlice({
                 state.liked[`${type}s`].splice(idx, 1);
             }
             localStorage.setItem("liked", JSON.stringify(state.liked));
+        },
+        updateHistory: (state, action) => {
+            // const { mode, id } = action.payload;
         },
     },
 });
