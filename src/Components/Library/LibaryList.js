@@ -11,6 +11,7 @@ const LibraryList = ({ id, mode }) => {
             mode === "song" ? setCurrentData(data.data.data[0]) : setCurrentData(data.data.data);
         };
         loadData();
+        // eslint-disable-next-line
     }, [id]);
     return <>{currentData.id && <ListItem data={{ ...currentData, type: mode }} />}</>;
 };
