@@ -4,12 +4,13 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Home from "./Components/Home/Home";
 import Details from "./Components/Details/Details";
-import UserTab from "./Components/UserTab/UserTab"
+import UserTab from "./Components/UserTab/UserTab";
 import LandingPage from "./Components/LandingPage/LandingPage";
 
 import store from "./Store/store";
 import Search from "./Components/Search/Search";
 import ViewAll from "./Components/Search/ViewAll/ViewAll";
+import Library from "./Components/Library/Library";
 
 const router = createBrowserRouter([
     {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
             {
                 path: "/search/:type/:key",
                 element: <ViewAll />,
+            },
+            {
+                path: "/library/:type",
+                element: <Library />,
             },
         ],
     },
