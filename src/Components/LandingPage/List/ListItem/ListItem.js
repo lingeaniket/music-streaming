@@ -92,7 +92,13 @@ const ListItem = ({ data }) => {
             <div className="listButtons" onClick={handleAlbumRoute}>
                 <div className={`list03 ${data.type === "artist" ? "list09" : ""}`}>
                     <div className="list04 w-100 app01">
-                        <img src={Array.isArray(data?.image) ? data?.image[2].link : data.image} alt="" />
+                        <img
+                            height={"100%"}
+                            width={"100%"}
+                            loading="lazy"
+                            src={Array.isArray(data?.image) ? data?.image[1].link : data.image}
+                            alt=""
+                        />
                     </div>
                     <div className="listTabs">
                         <div className="list05">
@@ -110,7 +116,7 @@ const ListItem = ({ data }) => {
                                         <div onClick={handleLike} className="list08">
                                             <i
                                                 className={`fa-${liked ? "solid" : "regular"} fa-heart fa-lg`}
-                                                style={{ color: `${liked ? "green" : "#ffffff"}` }}
+                                                style={{ color: `${liked ? "red" : "#ffffff"}` }}
                                             ></i>
                                         </div>
                                         <div className="options">
@@ -132,7 +138,7 @@ const ListItem = ({ data }) => {
                 <div>
                     <h4 className="listTitle">{data.name ? convertName(data.name) : data.title ? convertName(data.title) : ""}</h4>
                     <p className="listTitle">
-                        {convertName(
+                        {/* {convertName(
                             Array.isArray(data.primaryArtists) && data?.primaryArtists.length > 0
                                 ? data?.primaryArtists
                                       .map((artist, id, arr) => {
@@ -156,7 +162,7 @@ const ListItem = ({ data }) => {
                                 : data.primaryArtists
                                 ? data.primaryArtists
                                 : data.subtitle
-                        )}
+                        )} */}
                     </p>
                 </div>
             </div>
