@@ -201,8 +201,8 @@ html {
     overflow-y: scroll;
     overflow-x: hidden;
     padding: 8px;
-    margin: 0px 8px;
-    height: 100%;
+    margin: 8px 8px;
+    height: calc(100% - 16px);
 }
 
 .scrollHider::-webkit-scrollbar {
@@ -238,7 +238,8 @@ html {
         height: 80px;
     }
 
-    .gridMain, .gridMain.queue-open {
+    .gridMain,
+    .gridMain.queue-open {
         padding: 0;
         grid-template-areas: "main-content" "music-player" "bottom-bar";
         grid-template-columns: auto;
