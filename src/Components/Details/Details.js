@@ -56,7 +56,7 @@ const Details = ({ type }) => {
 
     const handlePlay = async (event) => {
         event.stopPropagation();
-        const playerData = await getPlayListData(details);
+        const playerData = await getPlayListData(details, type);
         dispatch(playAlbum(playerData));
     };
 

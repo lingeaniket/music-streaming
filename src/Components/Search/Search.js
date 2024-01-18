@@ -76,11 +76,11 @@ const Search = () => {
     return (
         <div className="srch01">
             <div className="app06 srch03 w-100">
-                <div className="app03 srch04">
+                {/* <div className="app03 srch04">
                     <div>back</div>
                     <div>next</div>
-                </div>
-                <div className="w-35 pRel">
+                </div> */}
+                <div className="pRel">
                     <input
                         type="text"
                         className="srch05"

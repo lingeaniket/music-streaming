@@ -102,6 +102,32 @@
     flex-wrap: wrap;
 }
 
-.srch18{
-  text-transform: capitalize;
+.srch18 {
+    text-transform: capitalize;
+}
+
+@media screen and (max-width: 768px) {
+    .srch01 > .app06 {
+        flex-direction: column;
+        /* align-items: flex-start; */
+    }
+
+    .srch04 {
+        width: 100%;
+        padding: 0;
+        margin-bottom: 22px;
+    }
+
+    .srch03 {
+        padding: 0;
+    }
+}
+@media screen and (max-width: 400px) {
+    .srch03 > .pRel {
+        width: 100%;
+    }
+
+    .srch05 {
+        width: 100%;
+    }
 }

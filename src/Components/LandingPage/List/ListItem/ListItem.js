@@ -64,7 +64,7 @@ const ListItem = ({ data }) => {
 
     const handleAlbum = async (event) => {
         event.stopPropagation();
-        const playerData = await getPlayListData(data);
+        const playerData = await getPlayListData(data, data.type);
         dispatch(playAlbum(playerData));
     };
 

@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export const getPlayListData = async (data) => {
-    if (data.type === "album") {
-        const albumSongsData = await axios.get(`https://saavn.me/albums?id=${data.id}`);
+export const getPlayListData = async (data, type) => {
+    if (type === "album" || type === "playlist") {
+        const albumSongsData = await axios.get(`https://saavn.me/${type}s?id=${data.id}`);
         const albumData = albumSongsData.data.data;
         const playerData = {
             song: albumData.songs[0].id,
@@ -14,16 +14,6 @@ export const getPlayListData = async (data) => {
         const playerData = {
             song: data.id,
             playlist: [data.id],
-        };
-
-        return playerData;
-    } else if (data.type === "playlist") {
-        const albumSongsData = await axios.get(`https://saavn.me/playlists?id=${data.id}`);
-        const albumData = albumSongsData.data.data;
-        const playerData = {
-            song: albumData.songs[0].id,
-            playlist: albumData.songs.map((song) => song.id),
-            nameOfList: albumData.name,
         };
 
         return playerData;

@@ -158,7 +158,7 @@ img {
 button {
     cursor: pointer;
 }
-*::-webkit-scrollbar{
+*::-webkit-scrollbar {
     display: none;
 }
 
