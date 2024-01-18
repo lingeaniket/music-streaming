@@ -15,17 +15,17 @@ import { addLiked, removeLiked } from "../../Features/userSlice.js";
 import Options from "../Options/Options.js";
 import Equilizer from "../Icons/Equilizer/Equilizer.js";
 
-const SongList = ({ song, index, type, mode, queue, isDragging }) => {
+const SongList = ({ song, index, type, mode, queue, isDragging, myPlaylist }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const likedData = useSelector((state) => state.user.liked);
-    const currentSong = useSelector((state) => state.player.currentSong);
     const isPlaying = useSelector((state) => state.player.isPlaying);
+    const currentSong = useSelector((state) => state.player.currentSong);
 
     const [liked, setLiked] = useState(false);
-    const [currentPlaying, setCurrentPlaying] = useState(false);
     const [options, setoptions] = useState(false);
+    const [currentPlaying, setCurrentPlaying] = useState(false);
 
     const handleOptions = (event) => {
         const { top, right } = event.target.parentNode.getBoundingClientRect();
@@ -99,13 +99,14 @@ const SongList = ({ song, index, type, mode, queue, isDragging }) => {
             dispatch(playAlbum({ song: song.id, playlist: [song.id] }));
         }
     };
+
     useEffect(() => {
         if (currentSong === song.id) {
             setCurrentPlaying(true);
         } else {
             setCurrentPlaying(false);
         }
-         // eslint-disable-next-line
+        // eslint-disable-next-line
     }, [currentSong]);
 
     useEffect(() => {
@@ -115,7 +116,15 @@ const SongList = ({ song, index, type, mode, queue, isDragging }) => {
 
     return (
         <div className={`song-list-01 app06 ${isDragging ? "song-dragging" : ""}`}>
-            <div className="song-list-02 app05">{mode !== "search" && <span className="song-list-03">{index + 1}</span>}</div>
+            <div className="song-list-02 app05">
+                {myPlaylist ? (
+                    <>
+                        <i className="fa-solid fa-grip-vertical fa-sm" style={{ color: "#B197FC" }}></i>
+                    </>
+                ) : (
+                    <>{mode !== "search" && <span className="song-list-03">{index + 1}</span>}</>
+                )}
+            </div>
             <div className="song-list-02 app05">
                 <div
                     style={{
