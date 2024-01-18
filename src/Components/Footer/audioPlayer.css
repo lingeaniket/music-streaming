@@ -5,6 +5,7 @@
 .range-input {
     height: 4px;
     width: 100%;
+    margin: 0;
     background-color: gray;
     appearance: none;
     cursor: pointer;
