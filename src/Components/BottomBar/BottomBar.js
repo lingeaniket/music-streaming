@@ -66,14 +66,14 @@ const BottomBar = () => {
                         </div>
                     ) : null}
                 </div>
-                <div
+                {/* <div
                     className="app05 h-100 w-20"
                     style={{
                         width: "20%",
                     }}
                 >
                     Account
-                </div>
+                </div> */}
             </div>
         </div>
     );
