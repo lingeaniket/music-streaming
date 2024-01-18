@@ -8,7 +8,7 @@ const MyPlaylist = () => {
     return (
         <div
             style={{
-                margin: "22px 0",
+                margin: "22px 0 0",
             }}
         >
             {playlists.map((playlist) => (

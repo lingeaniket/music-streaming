@@ -32,7 +32,7 @@ const PlaylistItem = ({ playlist }) => {
                 {[0, 1, 2, 3].map((idx) => (
                     <div className="app05 w-50 h-50">
                         {imageData[idx] ? (
-                            <img src={imageData[idx].image[2].link} alt="" />
+                            <img height={'100%'} width={'100%'} src={imageData[idx].image[1].link} alt="" />
                         ) : (
                             <>
                                 <i
