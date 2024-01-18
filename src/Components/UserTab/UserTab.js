@@ -79,7 +79,7 @@ const UserTab = () => {
             setCurrentSongs(isAvail.songs.slice(0, currentLoad));
         }
         // eslint-disable-next-line
-    }, [currentLoad]);
+    }, [currentLoad, id]);
 
     useEffect(() => {
         const loadData = async () => {
@@ -107,7 +107,7 @@ const UserTab = () => {
                         {[0, 1, 2, 3].map((idx) => (
                             <div className="app05 w-50 h-50">
                                 {imageData[idx] ? (
-                                    <img src={imageData[idx].image[2].link} alt="" />
+                                    <img src={imageData[idx].image[1].link} alt="" />
                                 ) : (
                                     <>
                                         <i className="fa-solid fa-music fa-xl"></i>
@@ -127,7 +127,6 @@ const UserTab = () => {
                             <div className="detail-10" onClick={handlePlay}>
                                 <button>Play</button>
                             </div>
-
                             <div className="detail-11 options">
                                 <button className="app05" onClick={handleOptions}>
                                     <FontAwesomeIcon icon={faEllipsis} size="2xl" style={{ color: "#ffffff" }} />
