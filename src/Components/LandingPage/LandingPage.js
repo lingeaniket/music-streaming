@@ -30,40 +30,44 @@ const LandingPage = () => {
                 padding: "22px",
             }}
         >
-            {[trending, albums, playlists, charts].map((val, i) => (
-                <div
-                    key={i}
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        marginBottom: "20px",
-                    }}
-                >
-                    <div>
-                        <h2
+            {trending && (
+                <>
+                    {[trending, albums, playlists, charts].map((val, i) => (
+                        <div
+                            key={i}
                             style={{
-                                margin: 0,
-                                padding: 0,
-                                marginBottom: "22px",
-                                fontWeight: 700,
-                                lineHeight: 1.375,
+                                display: "flex",
+                                flexDirection: "column",
+                                marginBottom: "20px",
                             }}
                         >
-                            {i === 0 ? "Trending Now" : i === 1 ? "Albums" : i === 2 ? "Playlists" : i === 3 ? "Charts" : ""}
-                        </h2>
-                    </div>
-                    <div className="listDiv">
-                        {Array.isArray(val) ? (
-                            <List data={val} />
-                        ) : (
-                            <>
-                                {val.albums && <List data={val?.albums} />}
-                                {val.songs && <List data={val?.songs} />}
-                            </>
-                        )}
-                    </div>
-                </div>
-            ))}
+                            <div>
+                                <h2
+                                    style={{
+                                        margin: 0,
+                                        padding: 0,
+                                        marginBottom: "22px",
+                                        fontWeight: 700,
+                                        lineHeight: 1.375,
+                                    }}
+                                >
+                                    {i === 0 ? "Trending Now" : i === 1 ? "Albums" : i === 2 ? "Playlists" : i === 3 ? "Charts" : ""}
+                                </h2>
+                            </div>
+                            <div className="listDiv">
+                                {Array.isArray(val) ? (
+                                    <List data={val} />
+                                ) : (
+                                    <>
+                                        {val.albums && <List data={val?.albums} />}
+                                        {val.songs && <List data={val?.songs} />}
+                                    </>
+                                )}
+                            </div>
+                        </div>
+                    ))}
+                </>
+            )}
         </div>
     );
 };
