@@ -1,0 +1,24 @@
+.lbry01 {
+    margin: 22px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.lbry02 {
+    width: 75px;
+    margin-bottom: -1px;
+    cursor: pointer;
+}
+
+.lbry03 {
+    padding: 10px;
+}
+
+.lbry03_s {
+    border-bottom: 2px solid white;
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.lbry04 {
+    margin: 0 0 0 -22px;
+    flex-wrap: wrap;
+}

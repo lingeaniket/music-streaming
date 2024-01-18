@@ -1,0 +1,16 @@
+.btmbr01 {
+    padding: 12px 12px;
+}
+
+.btmbr02 {
+    gap: 8px;
+}
+
+.btmbr02 > div:nth-of-type(2) {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.btmbr03 {
+    position: relative;
+}

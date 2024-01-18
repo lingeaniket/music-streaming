@@ -1,0 +1,112 @@
+.sb01 {
+    gap: 8px;
+}
+
+.sb02 {
+    background-color: #121212;
+    border-radius: 8px;
+}
+
+.sb03 {
+    padding: 8px 12px;
+}
+
+.sb03 > div:nth-of-type(2),
+.sb03 > div:nth-of-type(3) {
+    cursor: pointer;
+}
+
+.sb03 > div:nth-of-type(2):hover,
+.sb03 > div:nth-of-type(3):hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.sb04 {
+    padding: 4px 12px;
+}
+
+.sb05 {
+    height: 40px;
+    gap: 20px;
+    cursor: pointer;
+}
+
+.sb06 {
+    flex: 1;
+}
+
+.sb07 {
+    height: 50px;
+    gap: 20px;
+}
+.sb08 {
+    background: linear-gradient(to top left, rgb(255, 255, 255), rgb(14, 0, 255));
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.sb09 {
+    padding-top: 10px;
+    border-bottom: 1px solid white;
+}
+
+.sbBtn {
+    margin: 0;
+    padding: 0 22px;
+    line-height: 2.4;
+    font-size: 20px;
+    outline: none;
+    border: none;
+    background: white;
+    border-radius: 999px;
+    font-weight: 700;
+    width: auto;
+    height: 40px;
+    transition: all 0.3s ease-in-out;
+}
+
+.sbBtn:hover {
+    background-color: rgb(43, 197, 180);
+    color: white!important;
+}
+
+.sb10 {
+    padding: 0 12px 0 0;
+}
+
+.sb11 {
+    font-size: 12px;
+}
+
+@media screen and (max-width: 1240px) {
+    .sb05 {
+        justify-content: center;
+    }
+    .sb05 > div:nth-of-type(2),
+    .sb07 > div:nth-of-type(2),
+    .sb11 {
+        display: none;
+    }
+
+    .sb08 {
+        justify-content: center;
+    }
+
+    .sb10 {
+        padding: 0;
+    }
+
+    .sbBtn {
+        padding: 0 16px;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .sb11 {
+        display: block;
+    }
+
+    .sb10 {
+        padding: 0 12px 0 0;
+    }
+}

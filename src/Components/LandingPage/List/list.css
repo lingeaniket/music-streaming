@@ -1,19 +1,34 @@
+.list01 {
+    overflow-x: scroll;
+}
+
+.list01::-webkit-scrollbar {
+    display: none;
+}
+
 .list02 {
     padding-left: 22px;
     width: 14.2857%;
     position: relative;
+    flex-shrink: 0;
     margin-bottom: 20px;
 }
 
 .listButtons:hover .list05 {
-    background: #000000d3;
+    background: #0000009b;
 }
 
-.listButtons:hover .list06 > div:first-of-type,.listButtons:hover .list06 > div:nth-of-type(2), .listButtons:hover .options .app05 {
+.listButtons:hover .list06 > div:first-of-type,
+.listButtons:hover .list06 > div:nth-of-type(2),
+.listButtons:hover .options .app05 {
     opacity: 1;
 }
 
-.options .app05{
+.listButtons {
+    width: 100%;
+}
+
+.options .app05 {
     opacity: 0;
 }
 
@@ -31,7 +46,8 @@
 }
 
 .list04 img {
-    width: auto;
+    width: auto !important;
+    height: auto !important;
 }
 
 .list05 {
@@ -58,13 +74,11 @@
     transform: translate(-50%, -50%);
 }
 
-
-.list08{
+.list08 {
     opacity: 0;
 }
 
-
-.list09{
+.list09 {
     border-radius: 50%;
     overflow: hidden;
 }
@@ -113,20 +127,22 @@
     .list01 {
         flex-wrap: wrap;
     }
-    .list02, .queue-shift .list02 {
+    .list02,
+    .queue-shift .list02 {
         margin-bottom: 20px;
         width: 20%;
     }
-
 }
 @media screen and (max-width: 768px) {
-    .list02, .queue-shift .list02 {
+    .list02,
+    .queue-shift .list02 {
         margin-bottom: 20px;
         width: 25%;
     }
 }
 @media screen and (max-width: 590px) {
-    .list02, .queue-shift .list02 {
+    .list02,
+    .queue-shift .list02 {
         margin-bottom: 20px;
         width: 50%;
     }

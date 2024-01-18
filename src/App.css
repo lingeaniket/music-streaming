@@ -45,8 +45,12 @@ img {
     width: 50%;
 }
 
-.h-50{
+.h-50 {
     height: 50%;
+}
+
+.w-20 {
+    width: 20%;
 }
 
 .app01 {
@@ -139,9 +143,20 @@ img {
     grid-template-rows: 1fr auto;
     height: 100%;
     width: 100%;
-    padding: 8px;
+    /* padding: 8px; */
     grid-template-areas: "sidebar main-content right-sidebar" "music-player music-player music-player";
     gap: 8px;
+}
+
+button{
+    cursor: pointer;
+}
+/* *::-webkit-scrollbar{
+    display: none;
+} */
+
+html{
+    overflow: hidden;
 }
 
 .main-content {
@@ -158,6 +173,7 @@ img {
 .main-content::-webkit-scrollbar {
     display: none;
 }
+
 .footer {
     width: 100%;
     height: 75px;
@@ -165,6 +181,14 @@ img {
     background-color: rgb(18, 18, 18);
     position: relative;
     grid-area: music-player;
+}
+
+.bottom-bar {
+    grid-area: bottom-bar;
+    height: 70px;
+    display: none;
+    background-color: rgb(18, 18, 18);
+    color: white;
 }
 
 .scrollHider {
@@ -195,6 +219,10 @@ img {
         display: none;
     }
 
+    .bottom-bar {
+        display: block;
+    }
+
     .scrollHider {
         margin: 0;
         padding: 0;
@@ -206,7 +234,7 @@ img {
 
     .gridMain {
         padding: 0;
-        grid-template-areas: "main-content main-content" "music-player music-player";
+        grid-template-areas: "main-content main-content" "music-player music-player" "bottom-bar bottom-bar";
     }
 
     .right-sidebar {
