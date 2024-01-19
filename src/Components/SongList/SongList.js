@@ -185,7 +185,13 @@ const SongList = ({ song, index, type, mode, queue, isDragging, myPlaylist }) =>
                         </button>
                         <div className="options01">
                             {options && (
-                                <Options liked={liked} data={song} handleLike={handleLike} options={options} setoptions={setoptions} />
+                                <Options
+                                    liked={liked}
+                                    data={{ ...song, type: "song" }}
+                                    handleLike={handleLike}
+                                    options={options}
+                                    setoptions={setoptions}
+                                />
                             )}
                         </div>
                     </div>
