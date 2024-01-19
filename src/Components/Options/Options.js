@@ -3,6 +3,8 @@ import "./options.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addSongsToPlaylist, openAddPlaylist, openPlaylist, updateCurrentdata } from "../../Features/newPlaylistSlice";
 import axios from "axios";
+import { getPlayListData } from "../LandingPage/List/listFunctions";
+import { playAlbum } from "../../Features/musicPlayerSlice";
 
 const Options = ({ liked, data, handleLike, setoptions, playlist }) => {
     const opref = useRef();
@@ -15,6 +17,13 @@ const Options = ({ liked, data, handleLike, setoptions, playlist }) => {
     const handleLiked = (e) => {
         setoptions(false);
         handleLike(e);
+    };
+
+    const playCategory = async (event) => {
+        event.stopPropagation();
+        const playerData = await getPlayListData(data, data.type);
+        dispatch(playAlbum(playerData));
+        setoptions(false);
     };
 
     async function handleAddToPlaylist() {
@@ -92,7 +101,9 @@ const Options = ({ liked, data, handleLike, setoptions, playlist }) => {
                             {liked ? "Remove from Library" : "Save to Library"}
                         </div>
                     )}
-                    <div className="opt03 opt05">Play {data.type ? data.type : "Playlist"} Now</div>
+                    <div className="opt03 opt05" onClick={playCategory}>
+                        Play {data.type ? data.type : "Playlist"} Now
+                    </div>
                     <div className="opt03">Add to Queue</div>
                     <div className="opt03" onClick={handleMode}>
                         Add to Playlist
