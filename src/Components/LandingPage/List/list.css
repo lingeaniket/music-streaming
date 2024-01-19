@@ -1,6 +1,4 @@
-.list01 {
-    overflow-x: scroll;
-}
+
 
 .list01::-webkit-scrollbar {
     display: none;
