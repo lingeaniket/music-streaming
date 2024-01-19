@@ -14,7 +14,6 @@ export const playerSlice = createSlice({
         queueOpened: false,
     },
     reducers: {
-        
         playNewSong: (state, action) => {
             state.currentSong = action.payload.song;
             state.songIndex = 0;
