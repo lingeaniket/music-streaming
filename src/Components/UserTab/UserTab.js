@@ -79,13 +79,13 @@ const UserTab = () => {
             setCurrentSongs(isAvail.songs.slice(0, currentLoad));
         }
         // eslint-disable-next-line
-    }, [currentLoad, id]);
+    }, [currentLoad, id, playlists]);
 
     useEffect(() => {
         const loadData = async () => {
             const isAvail = playlists.filter((list) => list.id === Number(id))[0];
             if (isAvail) {
-                setCurrentList(isAvail);
+                setCurrentList({ ...isAvail, type: "my-playlist" });
                 const imgData = [];
                 for (let i = 0; i < 4; i++) {
                     if (isAvail.songs[i]) {
@@ -98,7 +98,7 @@ const UserTab = () => {
         };
         loadData();
         // eslint-disable-next-line
-    }, [id]);
+    }, [id, playlists]);
     return (
         <DragDropContext onDragEnd={onDragEnd}>
             <div className="ust01">
