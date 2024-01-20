@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./songList.css";
@@ -14,8 +14,10 @@ import { addLiked, removeLiked } from "../../Features/userSlice.js";
 
 import Options from "../Options/Options.js";
 import Equilizer from "../Icons/Equilizer/Equilizer.js";
+import { removeSongsFromPlaylist } from "../../Features/newPlaylistSlice.js";
 
 const SongList = ({ song, index, type, mode, queue, isDragging, myPlaylist }) => {
+    const { id } = useParams();
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -100,6 +102,10 @@ const SongList = ({ song, index, type, mode, queue, isDragging, myPlaylist }) =>
         }
     };
 
+    const handleRemoveFromList = () => {
+        dispatch(removeSongsFromPlaylist({ id: Number(id), songId: song.id }));
+    };
+
     useEffect(() => {
         if (currentSong === song.id) {
             setCurrentPlaying(true);
@@ -173,6 +179,13 @@ const SongList = ({ song, index, type, mode, queue, isDragging, myPlaylist }) =>
                     <div>{convertName(song.primaryArtists)}</div>
                 </div>
             </div>
+            {myPlaylist && (
+                <div className="song-list-06">
+                    <div className="app05 song-list-14">
+                        <i onClick={handleRemoveFromList} className="fa-regular fa-circle-xmark fa-xl"></i>
+                    </div>
+                </div>
+            )}
             <div className="song-list-06" onClick={handleLike}>
                 <i className={`fa-${liked ? "solid liked-hrt" : "regular"} fa-heart fa-lg`}></i>
             </div>
