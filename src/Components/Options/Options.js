@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addSongsToPlaylist, openAddPlaylist, openPlaylist, updateCurrentdata } from "../../Features/newPlaylistSlice";
 import axios from "axios";
 import { getPlayListData } from "../LandingPage/List/listFunctions";
-import { playAlbum } from "../../Features/musicPlayerSlice";
+import { addSongsToQueue, playAlbum } from "../../Features/musicPlayerSlice";
+import { addToQueue } from "../commonFunctions";
 
 const Options = ({ liked, data, handleLike, setoptions, playlist }) => {
     const opref = useRef();
@@ -13,6 +14,13 @@ const Options = ({ liked, data, handleLike, setoptions, playlist }) => {
     const myPlaylists = useSelector((state) => state.playlist.myPlaylists);
 
     const [main, setMain] = useState(true);
+
+    const handleAddToQueue = async () => {
+        setoptions(false);
+        const queueFunction = addToQueue.bind({ id: data.id, type: data.type });
+        const songs = await queueFunction();
+        dispatch(addSongsToQueue({ songs }));
+    };
 
     const handleLiked = (e) => {
         setoptions(false);
@@ -104,7 +112,9 @@ const Options = ({ liked, data, handleLike, setoptions, playlist }) => {
                     <div className="opt03 opt05" onClick={playCategory}>
                         Play {data.type ? data.type : "Playlist"} Now
                     </div>
-                    <div className="opt03">Add to Queue</div>
+                    <div className="opt03" onClick={handleAddToQueue}>
+                        Add to Queue
+                    </div>
                     <div className="opt03" onClick={handleMode}>
                         Add to Playlist
                     </div>
