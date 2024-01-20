@@ -35,7 +35,7 @@ export function convertName(name) {
         "&amp;": "&",
     };
 
-    return name ?  name.replace(/%20|%22|%27|%2C|%3F|&quot;|&#039;|&amp;/g, (match) => sequenceMap[match]): ""
+    return name ? name.replace(/%20|%22|%27|%2C|%3F|&quot;|&#039;|&amp;/g, (match) => sequenceMap[match]) : "";
 }
 
 export function closeForceOptions() {
@@ -46,5 +46,27 @@ export function closeForceOptions() {
         const optionsDiv = containersArray[i];
         optionsDiv.style.visibility = "hidden";
         optionsDiv.style.opacity = 0;
+    }
+}
+
+export async function addToQueue() {
+    const { id, type } = this;
+    if (id && type) {
+        let songArray = [];
+        if (type === "album" || type === "playlist") {
+            const albumData = await axios.get(`https://saavn.me/${type}s?id=${id}`);
+            songArray = albumData.data.data.songs;
+        } else if (type === "song") {
+            const songData = await axios.get(`https://saavn.me/songs?id=${id}`);
+            songArray = songData.data.data;
+        } else if (type === "my-plylist") {
+            const data = localStorage.getItem("my-playlists") ? JSON.parse(localStorage.getItem("my-playlists")) : [];
+            const prevSongs = data.filter((playlist, idx) => {
+                return playlist.id === id;
+            })[0];
+            songArray = prevSongs.songs;
+        }
+
+        return songArray.map((song) => song.id);
     }
 }
