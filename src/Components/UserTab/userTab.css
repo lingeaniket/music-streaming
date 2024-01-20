@@ -9,11 +9,12 @@
 
 .ust03 {
     height: 200px;
+    overflow: hidden;
     width: 200px;
     box-shadow: 0px 4px 22px 4px rgba(0, 0, 0, 0.132);
     background: darkgrey;
     flex-wrap: wrap;
-    border-radius: 8px;
+    border-radius: 4px;
 }
 
 .ust04 {
