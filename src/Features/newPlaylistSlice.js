@@ -19,14 +19,12 @@ export const playListSlice = createSlice({
             let spliceidx = -1;
 
             const data = localStorage.getItem("my-playlists") ? JSON.parse(localStorage.getItem("my-playlists")) : [];
-            // console.log(data);
             const prevSongs = data.filter((playlist, idx) => {
                 if (playlist.id === id) {
                     spliceidx = idx;
                 }
                 return playlist.id === id;
             })[0];
-            console.log(prevSongs);
             if (prevSongs) {
                 for (let i = 0; i < songData.length; i++) {
                     const newidx = prevSongs.songs.indexOf(songData[i]);
@@ -37,7 +35,30 @@ export const playListSlice = createSlice({
                 }
                 state.myPlaylists.splice(spliceidx, 1);
                 state.myPlaylists.unshift(prevSongs);
-                console.log(state.myPlaylists)
+                localStorage.setItem("my-playlists", JSON.stringify(state.myPlaylists));
+            }
+        },
+        removeSongsFromPlaylist: (state, action) => {
+            const songId = action.payload.songId;
+            const id = action.payload.id;
+            let spliceidx = -1;
+
+            const data = localStorage.getItem("my-playlists") ? JSON.parse(localStorage.getItem("my-playlists")) : [];
+            const prevSongs = data.filter((playlist, idx) => {
+                if (playlist.id === id) {
+                    spliceidx = idx;
+                }
+                return playlist.id === id;
+            })[0];
+            if (prevSongs) {
+                const newidx = prevSongs.songs.indexOf(songId);
+                if (newidx > -1) {
+                    prevSongs.songs.splice(newidx, 1);
+                }
+
+                state.myPlaylists.splice(spliceidx, 1);
+                state.myPlaylists.unshift(prevSongs);
+                console.log(prevSongs)
                 localStorage.setItem("my-playlists", JSON.stringify(state.myPlaylists));
             }
         },
@@ -68,7 +89,14 @@ export const playListSlice = createSlice({
     },
 });
 
-export const { openAddPlaylist, openPlaylist, addNewPlayList, addSongsToPlaylist, updateCurrentdata, updatePlaylistDnD } =
-    playListSlice.actions;
+export const {
+    openAddPlaylist,
+    openPlaylist,
+    addNewPlayList,
+    addSongsToPlaylist,
+    updateCurrentdata,
+    updatePlaylistDnD,
+    removeSongsFromPlaylist,
+} = playListSlice.actions;
 
 export default playListSlice.reducer;

@@ -60,6 +60,22 @@ export const playerSlice = createSlice({
         removeSongFromQueue: (state, action) => {
             state.songQueue.splice(action.payload.index, 1);
         },
+        addSongsToQueue: (state, action) => {
+            const { songs } = action.payload;
+            if (songs) {
+                console.log(songs);
+                for (let i = 0; i < songs.length; i++) {
+                    const idx = state.songQueue.indexOf(songs[i]) === -1;
+                    if (idx) {
+                        state.songQueue.push(songs[i]);
+                    }
+                }
+            }
+
+            if (state.currentSong === 0 && state.songQueue.length > 0) {
+                state.currentSong = state.songQueue[0];
+            }
+        },
 
         addAutoPlay: (state, action) => {
             state.autoPlaylist = [];
@@ -87,6 +103,7 @@ export const {
     playAlbum,
     playNextSong,
     playPrevSong,
+    addSongsToQueue,
     removeSongFromQueue,
     addAutoPlay,
     toggleQueue,
