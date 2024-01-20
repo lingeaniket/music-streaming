@@ -37,6 +37,7 @@ export const playListSlice = createSlice({
                 }
                 state.myPlaylists.splice(spliceidx, 1);
                 state.myPlaylists.unshift(prevSongs);
+                console.log(state.myPlaylists)
                 localStorage.setItem("my-playlists", JSON.stringify(state.myPlaylists));
             }
         },

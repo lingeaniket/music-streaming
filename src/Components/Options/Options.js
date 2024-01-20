@@ -37,7 +37,7 @@ const Options = ({ liked, data, handleLike, setoptions, playlist }) => {
                 dispatch(addSongsToPlaylist({ id: currentid, songs: data.data.data.songs }));
             } else if (type === "song") {
                 const data = await axios.get(`https://saavn.me/songs?id=${id}`);
-                dispatch(addSongsToPlaylist({ id: currentid, songs: data.data.data[0] }));
+                dispatch(addSongsToPlaylist({ id: currentid, songs: data.data.data }));
             }
             dispatch(updateCurrentdata(""));
             setoptions(false);
