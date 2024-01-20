@@ -13,10 +13,10 @@ import { toggleIsPlaying, toggleQueue } from "../../Features/musicPlayerSlice";
 const AudioPlayer = () => {
     const dispatch = useDispatch();
     const selectedSong = useSelector((state) => state.player.currentSong);
+    const isPlaying = useSelector((state) => state.player.isPlaying);
 
     const [volume, setVolume] = useState(0.5);
     const [currentTime, setCurrentTime] = useState(0);
-    const [isPlaying, setIsPlaying] = useState(false);
     const [currentSong, setCurrentSong] = useState("");
     const [currentSongDetails, setCurrentSongDetails] = useState("");
 
@@ -29,7 +29,6 @@ const AudioPlayer = () => {
         } else {
             audioRef.current.play();
         }
-        setIsPlaying(!isPlaying);
         dispatch(toggleIsPlaying());
     };
 
@@ -94,7 +93,7 @@ const AudioPlayer = () => {
             setCurrentSongDetails(curSong);
             setTimeout(() => {
                 audioRef.current.play();
-                setIsPlaying(true);
+                dispatch(toggleIsPlaying());
             }, 200);
             handleVolumeOverlay(volume * 100);
             handleOverlay(0);
@@ -123,7 +122,6 @@ const AudioPlayer = () => {
                 currentSong={currentSong}
                 currentTime={currentTime}
                 togglePlay={togglePlay}
-                isPlaying={isPlaying}
                 handleInputSeekChange={handleInputSeekChange}
                 handleInputSeek={handleInputSeek}
             />

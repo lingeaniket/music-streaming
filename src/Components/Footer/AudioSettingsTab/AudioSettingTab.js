@@ -47,7 +47,7 @@ const AudioSettingTab = ({ volume, handleVolumeChange }) => {
             <div className="audio-player13 app01 app03 app07">
                 <div className="audio-player14 app01 app03 app07" onClick={handleQueue}>
                     <div className="audio-player15 app01 app04">
-                        <i class="fa-solid fa-list-ul fa-lg" style={{ color: `${queueOpened ? "rgb(43, 197, 180)" : "white"}` }}></i>
+                        <i className="fa-solid fa-list-ul fa-lg" style={{ color: `${queueOpened ? "rgb(43, 197, 180)" : "white"}` }}></i>
                     </div>
                     {queueOpened && (
                         <div className="audio-player16 app01 app02">
