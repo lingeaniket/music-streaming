@@ -117,12 +117,24 @@ const Options = ({ liked, data, handleLike, setoptions, playlist }) => {
                     </div>
                     <div className="opt03" onClick={handleMode}>
                         Add to Playlist
+                        <div>
+                            <i className="fa-solid fa-chevron-right"></i>
+                        </div>
                     </div>
                 </>
             ) : (
                 <>
                     <div className="opt03" onClick={handleMode}>
-                        Back
+                        <div className="app01">
+                            <div
+                                style={{
+                                    paddingRight: "11px",
+                                }}
+                            >
+                                <i className="fa-solid fa-chevron-left"></i>
+                            </div>
+                            Back
+                        </div>
                     </div>
                     <div
                         style={{
