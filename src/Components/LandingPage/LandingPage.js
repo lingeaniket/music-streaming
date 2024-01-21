@@ -58,10 +58,7 @@ const LandingPage = () => {
                                 {Array.isArray(val) ? (
                                     <List data={val} />
                                 ) : (
-                                    <>
-                                        {val.albums && <List data={val?.albums} />}
-                                        {val.songs && <List data={val?.songs} />}
-                                    </>
+                                    <>{val.albums && <List data={[...val.albums, ...val.songs]} />}</>
                                 )}
                             </div>
                         </div>
