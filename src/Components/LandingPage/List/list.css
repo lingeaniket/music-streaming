@@ -82,6 +82,27 @@
     border-radius: 50%;
     overflow: hidden;
 }
+
+.list10 {
+    margin: 0 0 22px -22px;
+}
+
+.list11 {
+    padding: 22px;
+}
+
+.list12 {
+    margin-bottom: 20px;
+}
+
+.list13 {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 22px;
+    font-weight: 700;
+    line-height: 1.375;
+}
+
 .listTitle {
     margin: 0;
     padding: 0;

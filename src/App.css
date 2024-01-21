@@ -106,6 +106,11 @@ img {
     justify-content: flex-end;
 }
 
+.loaderDiv {
+    width: 50px;
+    height: 50px;
+}
+
 .fa-heart {
     color: white;
 }
@@ -114,89 +119,16 @@ img {
     color: red;
 }
 
-.mainContainer {
-    height: 100vh;
-    position: relative;
-    background-color: #000;
-}
-
-.sidebarContainer {
-    width: 250px;
-    grid-area: sidebar;
-    color: white;
-}
-
-.right-sidebar {
-    grid-area: right-sidebar;
-    background-color: rgb(18, 18, 18);
-    border-radius: 8px;
-    width: 350px;
-    overflow: hidden;
-    overflow-y: scroll;
-}
-
-.right-sidebar::-webkit-scrollbar {
-    display: none;
-}
-
-.gridMain {
-    display: grid;
-    position: relative;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: 1fr auto;
-    height: 100%;
-    width: 100%;
-    /* padding: 8px; */
-    grid-template-areas: "sidebar main-content" "music-player music-player";
-    gap: 8px;
-}
-
-.gridMain.queue-open {
-    grid-template-areas: "sidebar main-content right-sidebar" "music-player music-player music-player";
-}
-
 button {
     cursor: pointer;
 }
+
 *::-webkit-scrollbar {
     display: none;
 }
 
 html {
     overflow: hidden;
-}
-
-.main-content {
-    color: white;
-    height: 100%;
-    width: 100%;
-    height: calc(100%);
-    background-color: rgb(18, 18, 18);
-    border-radius: 8px;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    grid-area: main-content;
-}
-
-.main-content::-webkit-scrollbar {
-    display: none;
-}
-
-.footer {
-    width: 100vw;
-    height: 75px;
-    color: white;
-    background-color: rgb(18, 18, 18);
-    position: relative;
-    grid-area: music-player;
-}
-
-.bottom-bar {
-    grid-area: bottom-bar;
-    height: 70px;
-    display: none;
-    background-color: rgb(18, 18, 18);
-    color: white;
 }
 
 .scrollHider {

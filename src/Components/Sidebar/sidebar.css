@@ -68,7 +68,7 @@
 
 .sbBtn:hover {
     background-color: rgb(43, 197, 180);
-    color: white!important;
+    color: white !important;
 }
 
 .sb10 {
@@ -77,6 +77,19 @@
 
 .sb11 {
     font-size: 12px;
+}
+
+.sb12 {
+    width: 150px;
+    padding: 12px;
+}
+
+.sb13 {
+    width: 30px;
+}
+
+.sb14 {
+    padding: 0 0 12px 0;
 }
 
 @media screen and (max-width: 1240px) {

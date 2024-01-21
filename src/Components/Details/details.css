@@ -70,7 +70,7 @@
     color: white;
 }
 
-.detail-11.options > .app05{
+.detail-11.options > .app05 {
     opacity: 1;
 }
 
@@ -91,17 +91,29 @@
     width: 45px;
 }
 
+.detail-12 {
+    margin-bottom: 20px;
+}
+
+.detail-13 {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 22px;
+    font-weight: 700;
+    line-height: 1.375;
+}
+
 @media screen and (max-width: 900px) {
     .detail-02 > .app01 {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .detail-04 {
         margin-bottom: 44px;
         margin-right: 0;
     }
-    
+
     .detail-05,
     .detail-06,
     .detail-08,
@@ -120,17 +132,17 @@
         flex-wrap: wrap;
     }
 
-    .detail-06>span:first-of-type{
+    .detail-06 > span:first-of-type {
         display: block;
         width: 100%;
         margin-bottom: 5px;
     }
 
-    .detail-06>span:nth-of-type(2){
+    .detail-06 > span:nth-of-type(2) {
         display: none;
     }
 
-    .detail-07{
+    .detail-07 {
         display: inline-flex;
         height: 20px;
     }

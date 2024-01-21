@@ -34,6 +34,23 @@
     color: white;
 }
 
+.mplay04 {
+    margin: 22px 0 0;
+}
+
+.mplayMusic {
+    font-size: 6px;
+}
+
+.mplay05 {
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.mplay06 {
+    font-size: 11px;
+}
+
 @media screen and (max-width: 1240px) {
     .mplay03 .mplay02 {
         display: none;

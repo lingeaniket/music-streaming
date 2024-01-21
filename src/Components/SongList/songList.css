@@ -26,11 +26,7 @@
 }
 
 .song-list-01:hover .song-list-08,
-.song-list-01.song-dragging .song-list-08 {
-    opacity: 1;
-    visibility: visible;
-}
-
+.song-list-01.song-dragging .song-list-08,
 .song-list-01:hover .song-list-09,
 .song-list-01.song-dragging .song-list-09 {
     opacity: 1;
@@ -45,6 +41,32 @@
 .song-list-01 .song-list-06 svg {
     color: white;
     transition: all 0.3s ease-in-out;
+}
+
+.song-list-01:hover .song-list-10,
+.song-list-01.song-dragging .song-list-10,
+.song-list-01 .song-list-11 > .app05 {
+    display: none;
+}
+
+.song-list-01:hover .song-list-11 > .app05,
+.song-list-01.song-dragging .song-list-11 > .app05 {
+    display: block;
+}
+
+.song-list-11.options > .app05,
+.song-list-01:hover .song-list-14 {
+    opacity: 1;
+}
+
+.song-list-01:hover .fa-heart,
+.song-list-01.song-dragging .fa-heart {
+    color: black;
+}
+
+.song-list-01:hover .fa-heart.liked-hrt,
+.song-list-01.song-dragging .fa-heart.liked-hrt {
+    color: red;
 }
 
 .song-list-02 {
@@ -126,38 +148,6 @@
     padding: 5px;
 }
 
-.song-list-01:hover .song-list-10,
-.song-list-01.song-dragging .song-list-10 {
-    display: none;
-}
-
-.song-list-01:hover .song-list-11 > .app05,
-.song-list-01.song-dragging .song-list-11 > .app05 {
-    display: block;
-}
-
-.song-list-01 .song-list-11 > .app05 {
-    display: none;
-}
-
-.song-list-11.options > .app05 {
-    opacity: 1;
-}
-
-.song-list-01:hover .fa-heart,
-.song-list-01.song-dragging .fa-heart {
-    color: black;
-}
-
-.song-list-01:hover .fa-heart.liked-hrt,
-.song-list-01.song-dragging .fa-heart.liked-hrt {
-    color: red;
-}
-
-.song-list-01:hover .song-list-14 {
-    opacity: 1;
-}
-
 .song-list-11 > button {
     outline: none;
     border: none;
@@ -196,6 +186,11 @@
     transition: all 0.3s ease-in-out;
     aspect-ratio: 1/1;
     height: 28px;
+}
+
+.song-list-15 {
+    max-height: 40px;
+    max-width: 40px;
 }
 
 @media screen and (max-width: 600px) {
