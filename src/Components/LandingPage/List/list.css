@@ -1,4 +1,6 @@
-
+.list01 {
+    flex-wrap: wrap;
+}
 
 .list01::-webkit-scrollbar {
     display: none;
