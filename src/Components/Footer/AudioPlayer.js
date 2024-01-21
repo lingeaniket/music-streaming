@@ -8,7 +8,8 @@ import AudioSettingTab from "./AudioSettingsTab/AudioSettingTab";
 
 import "./audioPlayer.css";
 import axios from "axios";
-import { toggleIsPlaying, toggleQueue } from "../../Features/musicPlayerSlice";
+import { playNextSong, toggleIsPlaying, toggleQueue } from "../../Features/musicPlayerSlice";
+import ReactAudioPlayer from "react-audio-player";
 
 const AudioPlayer = () => {
     const dispatch = useDispatch();
@@ -24,19 +25,21 @@ const AudioPlayer = () => {
     const isSeeking = useRef(false);
 
     const togglePlay = () => {
+        const adRef = audioRef.current.audioEl;
         if (isPlaying) {
-            audioRef.current.pause();
+            adRef.current.pause();
         } else {
-            audioRef.current.play();
+            adRef.current.play();
         }
         dispatch(toggleIsPlaying());
     };
 
     const handleVolumeChange = (e) => {
+        const adRef = audioRef.current.audioEl;
         const newVolume = parseFloat(e.target.value);
         setVolume(newVolume);
         handleVolumeOverlay(newVolume * 100);
-        audioRef.current.volume = newVolume;
+        adRef.current.volume = newVolume;
     };
 
     const handleOverlay = (percent) => {
@@ -48,9 +51,10 @@ const AudioPlayer = () => {
     };
 
     const handleTimeUpdate = () => {
+        const adRef = audioRef.current.audioEl;
         if (!isSeeking.current) {
-            const currentTime = audioRef.current.currentTime;
-            const duration = audioRef.current.duration;
+            const currentTime = adRef.current.currentTime;
+            const duration = adRef.current.duration;
             const newProgress = (currentTime / duration) * 100;
             handleOverlay(newProgress);
             setCurrentTime(currentTime);
@@ -58,14 +62,16 @@ const AudioPlayer = () => {
     };
 
     const handleInputSeek = () => {
+        const adRef = audioRef.current.audioEl
         isSeeking.current = false;
-        audioRef.current.currentTime = currentTime;
+        adRef.current.currentTime = currentTime;
     };
 
     const handleInputSeekChange = (e) => {
+        const adRef = audioRef.current.audioEl
         isSeeking.current = true;
         const seekTime = parseFloat(e.target.value);
-        const percent = (seekTime * 100) / audioRef.current.duration;
+        const percent = (seekTime * 100) / adRef.current.duration;
         handleOverlay(percent);
         setCurrentTime(seekTime);
     };
@@ -75,9 +81,13 @@ const AudioPlayer = () => {
             dispatch(toggleQueue());
         }
     };
+    const handleSongEnd = () => {
+        dispatch(playNextSong());
+    };
 
     useEffect(() => {
-        const adRef = audioRef.current;
+        const adRef = audioRef.current.audioEl.current;
+
         adRef.addEventListener("timeupdate", handleTimeUpdate);
         return () => {
             adRef.removeEventListener("timeupdate", handleTimeUpdate);
@@ -92,8 +102,8 @@ const AudioPlayer = () => {
             setCurrentSong(curSong.downloadUrl[4].link);
             setCurrentSongDetails(curSong);
             setTimeout(() => {
-                audioRef.current.play();
-                dispatch(toggleIsPlaying());
+                audioRef.current.audioEl.current.play();
+                dispatch(toggleIsPlaying({type: true}));
             }, 200);
             handleVolumeOverlay(volume * 100);
             handleOverlay(0);
@@ -117,6 +127,7 @@ const AudioPlayer = () => {
                     </div>
                 </div>
             </div>
+            <ReactAudioPlayer volume={volume} id="audio-player" ref={audioRef} src={currentSong} onEnded={handleSongEnd} />
             <AudioTab
                 audioRef={audioRef}
                 currentSong={currentSong}
@@ -125,7 +136,7 @@ const AudioPlayer = () => {
                 handleInputSeekChange={handleInputSeekChange}
                 handleInputSeek={handleInputSeek}
             />
-            <AudioSettingTab volume={volume} handleVolumeChange={handleVolumeChange} />
+            <AudioSettingTab volume={volume} handleVolumeChange={handleVolumeChange} /> 
         </>
     );
 };
