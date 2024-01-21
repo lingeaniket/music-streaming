@@ -8,7 +8,7 @@ import { playNextSong, playPrevSong } from "../../../Features/musicPlayerSlice.j
 
 import { formatTime } from "../../commonFunctions.js";
 
-const AudioTab = ({ audioRef, currentSong, currentTime, togglePlay, handleInputSeekChange, handleInputSeek }) => {
+const AudioTab = ({ audioRef, currentTime, togglePlay, handleInputSeekChange, handleInputSeek }) => {
     const dispatch = useDispatch();
     const currentSongIndex = useSelector((state) => state.player.songIndex);
     const isPlaying = useSelector((state) => state.player.isPlaying);
@@ -24,7 +24,6 @@ const AudioTab = ({ audioRef, currentSong, currentTime, togglePlay, handleInputS
     return (
         <div className="audio-player06 w-40">
             <div>
-                <audio id="audio-player" ref={audioRef} src={currentSong} onEnded={handleSongEnd} />
                 <div className="app01 app06 audio-player07">
                     <div className="app02 app01">
                         <div className="audio-player08 app01">
@@ -68,7 +67,7 @@ const AudioTab = ({ audioRef, currentSong, currentTime, togglePlay, handleInputS
                                 min="0"
                                 id="seek-range"
                                 className="range-input"
-                                max={audioRef.current.duration ? audioRef.current.duration : 0}
+                                max={audioRef?.current?.audioEl?.current?.duration ? audioRef?.current?.audioEl?.current?.duration : 0}
                                 step="0.01"
                                 value={currentTime}
                                 onInput={handleInputSeekChange}
@@ -77,7 +76,7 @@ const AudioTab = ({ audioRef, currentSong, currentTime, togglePlay, handleInputS
                             />
                             <div className="overlayDiv" id="overlay-div"></div>
                         </div>
-                        <div className="time-stamp">{formatTime(audioRef.current.duration)}</div>
+                        <div className="time-stamp">{formatTime(audioRef?.current?.audioEl?.current?.duration)}</div>
                     </div>
                 </div>
             </div>
