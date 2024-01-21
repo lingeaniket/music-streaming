@@ -1,20 +1,19 @@
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import "./songList.css";
 
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
-import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { playAlbum } from "../../Features/musicPlayerSlice";
+import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { convertName, formatTime } from "../commonFunctions.js";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { addLiked, removeLiked } from "../../Features/userSlice.js";
+import { removeSongsFromPlaylist } from "../../Features/newPlaylistSlice.js";
 
 import Options from "../Options/Options.js";
 import Equilizer from "../Icons/Equilizer/Equilizer.js";
-import { removeSongsFromPlaylist } from "../../Features/newPlaylistSlice.js";
 
 const SongList = ({ song, index, type, mode, queue, isDragging, myPlaylist }) => {
     const { id } = useParams();
@@ -132,17 +131,11 @@ const SongList = ({ song, index, type, mode, queue, isDragging, myPlaylist }) =>
                 )}
             </div>
             <div className="song-list-02 app05">
-                <div
-                    style={{
-                        maxHeight: "40px",
-                        maxWidth: "40px",
-                    }}
-                >
+                <div className="song-list-15">
                     <img
                         src={song.image ? song.image[0].link : ""}
                         alt=""
                         style={{
-                            width: "100%",
                             borderRadius: "4px",
                         }}
                     />

@@ -1,15 +1,17 @@
-import { faClockRotateLeft, faHeart } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { playAlbum } from "../../Features/musicPlayerSlice";
-import LibraryList from "./LibaryList";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./library.css";
+
+import { playAlbum } from "../../Features/musicPlayerSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClockRotateLeft, faHeart } from "@fortawesome/free-solid-svg-icons";
+
+import LibraryList from "./LibaryList";
 
 const Library = () => {
     const { type } = useParams();
+
     const dispatch = useDispatch();
     const history = useSelector((state) => state.user.history);
     const liked = useSelector((state) => state.user.liked);

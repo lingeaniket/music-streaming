@@ -1,22 +1,21 @@
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import "./details.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle, faEllipsis } from "@fortawesome/free-solid-svg-icons";
 
+import { playAlbum } from "../../Features/musicPlayerSlice.js";
 import { convertName, formatTime } from "../commonFunctions.js";
+import { addLiked, removeLiked } from "../../Features/userSlice.js";
+import { getPlayListData } from "../LandingPage/List/listFunctions.js";
 
 import SongList from "../SongList/SongList";
-
-import "./details.css";
-import MightLike from "../MightLike/MightLike.js";
-import Loader from "../Icons/Loader/Loader.js";
-import { useDispatch, useSelector } from "react-redux";
-import { addLiked, removeLiked } from "../../Features/userSlice.js";
 import Options from "../Options/Options.js";
-import { getPlayListData } from "../LandingPage/List/listFunctions.js";
-import { playAlbum } from "../../Features/musicPlayerSlice.js";
+import Loader from "../Icons/Loader/Loader.js";
+import MightLike from "../MightLike/MightLike.js";
 
 const Details = ({ type }) => {
     const { id } = useParams();
@@ -130,12 +129,7 @@ const Details = ({ type }) => {
         <div className="detail-01">
             {loading ? (
                 <div className="app05">
-                    <div
-                        style={{
-                            height: "50px",
-                            width: "50px",
-                        }}
-                    >
+                    <div className="loaderDiv">
                         <Loader />
                     </div>
                 </div>
@@ -156,13 +150,13 @@ const Details = ({ type }) => {
                                     {type !== "song" && (
                                         <>
                                             <span>{details.songCount} Songs</span>
-                                            <span className="detail-07  app05">
+                                            <span className="detail-07 app05">
                                                 <FontAwesomeIcon icon={faCircle} size="2xs" style={{ color: "#ffffff", fontSize: "3px" }} />
                                             </span>
                                         </>
                                     )}
                                     <span>{details?.totalPlays?.toLocaleString()} Plays</span>
-                                    <span className="detail-07  app05">
+                                    <span className="detail-07 app05">
                                         <FontAwesomeIcon icon={faCircle} size="2xs" style={{ color: "#ffffff", fontSize: "3px" }} />
                                     </span>
                                     <span>{formatTime(details.totalDuration)}</span>
@@ -210,14 +204,7 @@ const Details = ({ type }) => {
                         <div className="detail-02">
                             {songs.length > 1 && (
                                 <>
-                                    <h3
-                                        style={{
-                                            display: "flex",
-                                            marginBottom: "22px",
-                                        }}
-                                    >
-                                        More from {convertName(songs[0].album.name)}
-                                    </h3>
+                                    <h3 className="app01 detail-08">More from {convertName(songs[0].album.name)}</h3>
                                     {songs
                                         .filter((song) => song.id !== id)
                                         .map((song, index) => (

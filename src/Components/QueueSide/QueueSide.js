@@ -1,12 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import "./queue.css";
 
+import { convertName } from "../commonFunctions";
 import { toggleQueue } from "../../Features/musicPlayerSlice";
 
 import QueueList from "./QueueList/QueueList";
-
-import "./queue.css";
 
 const QueueSide = () => {
     const dispatch = useDispatch();
@@ -64,8 +64,8 @@ const QueueSide = () => {
                             <img src={currentSongDetails.image ? currentSongDetails.image[2]?.link : ""} alt="" className="" />
                         </div>
                         <div>
-                            <h3 className="queue05">{currentSongDetails.name ? currentSongDetails.name.replace(/&quot;/g, '"') : ""}</h3>
-                            <p className="queue06">{currentSongDetails.primaryArtists}</p>
+                            <h3 className="queue05">{currentSongDetails.name ? convertName(currentSongDetails.name) : ""}</h3>
+                            <p className="queue06">{convertName(currentSongDetails.primaryArtists)}</p>
                         </div>
                     </div>
                     {songQueue.length > 1 && (

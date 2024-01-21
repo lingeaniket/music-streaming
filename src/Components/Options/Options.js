@@ -1,16 +1,17 @@
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useRef, useState } from "react";
 import "./options.css";
-import { useDispatch, useSelector } from "react-redux";
-import { addSongsToPlaylist, openAddPlaylist, openPlaylist, updateCurrentdata } from "../../Features/newPlaylistSlice";
-import axios from "axios";
+
+import { addToQueue } from "../commonFunctions";
 import { getPlayListData } from "../LandingPage/List/listFunctions";
 import { addSongsToQueue, playAlbum } from "../../Features/musicPlayerSlice";
-import { addToQueue } from "../commonFunctions";
+import { addSongsToPlaylist, openAddPlaylist, openPlaylist, updateCurrentdata } from "../../Features/newPlaylistSlice";
 
 const Options = ({ liked, data, handleLike, setoptions, playlist }) => {
     const opref = useRef();
-    const dispatch = useDispatch();
 
+    const dispatch = useDispatch();
     const myPlaylists = useSelector((state) => state.playlist.myPlaylists);
 
     const [main, setMain] = useState(true);
@@ -88,20 +89,7 @@ const Options = ({ liked, data, handleLike, setoptions, playlist }) => {
         // eslint-disable-next-line
     }, []);
     return (
-        <div
-            ref={opref}
-            onClick={stayInModel}
-            style={{
-                width: "150px",
-                padding: "8px 0",
-                boxShadow: "0px 4px 12px 4px rgba(0, 0, 0, 0.1)",
-                borderRadius: "8px",
-                fontSize: "13px",
-                fontWeight: 600,
-                color: "black",
-                background: "white",
-            }}
-        >
+        <div ref={opref} onClick={stayInModel} className="opt06">
             {main ? (
                 <>
                     {!playlist && (
@@ -126,36 +114,16 @@ const Options = ({ liked, data, handleLike, setoptions, playlist }) => {
                 <>
                     <div className="opt03" onClick={handleMode}>
                         <div className="app01">
-                            <div
-                                style={{
-                                    paddingRight: "11px",
-                                }}
-                            >
+                            <div className="opt07">
                                 <i className="fa-solid fa-chevron-left"></i>
                             </div>
                             Back
                         </div>
                     </div>
-                    <div
-                        style={{
-                            border: "1px solid #e9e9e9 ",
-                            borderLeft: "none",
-                            borderRight: "none",
-                            margin: "5px 0",
-                            padding: "5px 0",
-                        }}
-                    >
+                    <div className="opt08">
                         <div className="opt03" onClick={handleOpenNew}>
                             <div>
-                                <span
-                                    style={{
-                                        fontSize: "16px",
-                                        paddingRight: "10px",
-                                    }}
-                                >
-                                    +
-                                </span>{" "}
-                                <span>New Playlist</span>
+                                <span className="opt09">+</span> <span>New Playlist</span>
                             </div>
                         </div>
                     </div>

@@ -1,27 +1,27 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import "./userTab.css";
 import { useParams } from "react-router-dom";
-import SongListMain from "./SongList/SongListMain";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
-import Options from "../Options/Options";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import { useDispatch } from "react-redux";
-import { updatePlaylistDnD } from "../../Features/newPlaylistSlice";
+import "./userTab.css";
+
 import { playAlbum } from "../../Features/musicPlayerSlice";
+import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { updatePlaylistDnD } from "../../Features/newPlaylistSlice";
+
+import Options from "../Options/Options";
+import SongListMain from "./SongList/SongListMain";
 
 const UserTab = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const playlists = useSelector((state) => state.playlist.myPlaylists);
 
+    const [options, setoptions] = useState(false);
     const [imageData, setImageData] = useState([]);
     const [currentLoad, setCurrentLoad] = useState(20);
     const [currentList, setCurrentList] = useState({});
-    const [options, setoptions] = useState(false);
-
     const [currentSongs, setCurrentSongs] = useState([]);
 
     const loadMoreSongs = () => {

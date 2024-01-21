@@ -8,7 +8,6 @@ import { toggleQueue } from "../../../Features/musicPlayerSlice";
 
 const AudioSettingTab = ({ volume, handleVolumeChange }) => {
     const dispatch = useDispatch();
-
     const queueOpened = useSelector((state) => state.player.queueOpened);
 
     const handleQueue = () => {

@@ -1,10 +1,12 @@
-import { faHouse, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
-import "./bottomBar.css";
 import { useNavigate } from "react-router-dom";
-import Library from "../Icons/Library/Library";
+import "./bottomBar.css";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+
 import LibrarryDiv from "./LibrarryDiv";
+import Library from "../Icons/Library/Library";
 
 const BottomBar = () => {
     const navigate = useNavigate();
@@ -16,6 +18,7 @@ const BottomBar = () => {
             setlibraryopen(true);
         }, 0);
     };
+
     return (
         <div className="bottom-bar">
             <div className="app03 h-100 btmbr01">
@@ -34,7 +37,7 @@ const BottomBar = () => {
                 </div>
                 <div className="app05 h-100 w-20">
                     <div
-                        className="app06 app08  btmbr02"
+                        className="app06 app08 btmbr02"
                         onClick={() => {
                             navigate("/search");
                         }}
@@ -45,35 +48,19 @@ const BottomBar = () => {
                         <div>Search</div>
                     </div>
                 </div>
-                <div className="app05 h-100 w-20  btmbr03">
-                    <div className="app06 app08  btmbr02" onClick={handlelibrary}>
+                <div className="app05 h-100 w-20 btmbr03">
+                    <div className="app06 app08 btmbr02" onClick={handlelibrary}>
                         <div>
                             <Library />
                         </div>
                         <div>Library</div>
                     </div>
                     {libraryOpen ? (
-                        <div
-                            style={{
-                                position: "absolute",
-                                bottom: "calc(100% + 15px)",
-                                backgroundColor: "rgb(18,18,18)",
-                                borderRadius: "4px",
-                                boxShadow: "0 0 5px white",
-                            }}
-                        >
+                        <div className="btmbr04">
                             <LibrarryDiv setOpen={setlibraryopen} />
                         </div>
                     ) : null}
                 </div>
-                {/* <div
-                    className="app05 h-100 w-20"
-                    style={{
-                        width: "20%",
-                    }}
-                >
-                    Account
-                </div> */}
             </div>
         </div>
     );

@@ -4,8 +4,10 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const PlaylistItem = ({ playlist }) => {
     const { id } = useParams();
-    const [imageData, setImageData] = useState([]);
+
     const navigate = useNavigate();
+
+    const [imageData, setImageData] = useState([]);
 
     const handleNavigate = () => {
         navigate(`/my-list/${playlist.id}`);
@@ -32,15 +34,10 @@ const PlaylistItem = ({ playlist }) => {
                 {[0, 1, 2, 3].map((idx) => (
                     <div key={idx} className="app05 w-50 h-50">
                         {imageData[idx] ? (
-                            <img height={'100%'} width={'100%'} src={imageData[idx].image[1].link} alt="" />
+                            <img height={"100%"} width={"100%"} src={imageData[idx].image[1].link} alt="" />
                         ) : (
                             <>
-                                <i
-                                    style={{
-                                        fontSize: "6px",
-                                    }}
-                                    className="fa-solid fa-music"
-                                ></i>
+                                <i className="fa-solid fa-music mplayMusic"></i>
                             </>
                         )}
                     </div>
@@ -48,21 +45,10 @@ const PlaylistItem = ({ playlist }) => {
             </div>
             <div>
                 <div>
-                    <span
-                        style={{
-                            fontWeight: 600,
-                            fontSize: "13px",
-                        }}
-                    >
-                        {playlist.name}
-                    </span>
+                    <span className="mplay05">{playlist.name}</span>
                 </div>
                 <div>
-                    <span
-                        style={{
-                            fontSize: "11px",
-                        }}
-                    >
+                    <span className="mplay06">
                         {playlist.songs.length}
                         <span> {playlist.songs.length > 1 ? "songs" : "song"}</span>
                     </span>

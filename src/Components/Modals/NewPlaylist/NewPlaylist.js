@@ -1,8 +1,9 @@
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useRef, useState } from "react";
 import "./newPlaylist.css";
-import { useDispatch, useSelector } from "react-redux";
+
 import { addNewPlayList, addSongsToPlaylist, openPlaylist, updateCurrentdata } from "../../../Features/newPlaylistSlice";
-import axios from "axios";
 
 const NewPlaylist = () => {
     const ref = useRef();
@@ -100,18 +101,7 @@ const NewPlaylist = () => {
                             <div className="app08 np06">
                                 <div>
                                     <input className="np07" type="text" onChange={handleInput} placeholder="Your new playlist name" />
-                                    {nameError && (
-                                        <span
-                                            style={{
-                                                fontSize: "12px",
-                                                padding: "5px 22px",
-                                                fontWeight: 600,
-                                                color: "red",
-                                            }}
-                                        >
-                                            Name is already used
-                                        </span>
-                                    )}
+                                    {nameError && <span className="np15">Name is already used</span>}
                                 </div>
                                 <button className="np08 npbtn" onClick={createPlaylist}>
                                     Save

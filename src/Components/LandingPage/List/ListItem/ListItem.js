@@ -2,14 +2,13 @@ import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import { getPlayListData } from "../listFunctions";
 import { playAlbum } from "../../../../Features/musicPlayerSlice";
 import { addLiked, removeLiked } from "../../../../Features/userSlice";
+import { closeForceOptions, convertName } from "../../../commonFunctions";
 
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import { getPlayListData } from "../listFunctions";
-import { closeForceOptions, convertName } from "../../../commonFunctions";
 
 import Play from "../../../Icons/Play/Play";
 import Options from "../../../Options/Options";
@@ -138,7 +137,7 @@ const ListItem = ({ data }) => {
                 <div>
                     <h4 className="listTitle">{data.name ? convertName(data.name) : data.title ? convertName(data.title) : ""}</h4>
                     <p className="listTitle">
-                        {/* {convertName(
+                        {convertName(
                             Array.isArray(data.primaryArtists) && data?.primaryArtists.length > 0
                                 ? data?.primaryArtists
                                       .map((artist, id, arr) => {
@@ -162,7 +161,7 @@ const ListItem = ({ data }) => {
                                 : data.primaryArtists
                                 ? data.primaryArtists
                                 : data.subtitle
-                        )} */}
+                        )}
                     </p>
                 </div>
             </div>

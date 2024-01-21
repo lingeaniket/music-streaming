@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
-import SongList from "../../SongList/SongList";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+
 import { Draggable } from "react-beautiful-dnd";
+
+import SongList from "../../SongList/SongList";
 
 const SongListMain = ({ id, index }) => {
     const [currentSong, setCurrentSong] = useState({});
+
     useEffect(() => {
         const loadData = async () => {
             const data = await axios.get(`https://saavn.me/songs?id=${id}`);
@@ -12,6 +15,7 @@ const SongListMain = ({ id, index }) => {
         };
         loadData();
     }, [id]);
+
     return (
         <Draggable draggableId={id.toString()} index={index}>
             {(provided, snapshot) => (

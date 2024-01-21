@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import React, { Fragment, useCallback, useEffect, useState } from "react";
+import "./viewAll.css";
 
 import PageButton from "./PageButton";
 import Loader from "../../Icons/Loader/Loader";
@@ -8,8 +9,6 @@ import ListItem from "../../LandingPage/List/ListItem/ListItem";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
-
-import "./viewAll.css";
 
 const ViewAll = () => {
     const navigate = useNavigate();
@@ -85,20 +84,8 @@ const ViewAll = () => {
                 </div>
             </div>
             {loading ? (
-                <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        width: "100%",
-                        height: "100px",
-                    }}
-                >
-                    <div
-                        style={{
-                            width: "50px",
-                            height: "50px",
-                        }}
-                    >
+                <div className="app02 w-100 vAll018">
+                    <div className="vAll019">
                         <Loader />
                     </div>
                 </div>

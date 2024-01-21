@@ -1,11 +1,13 @@
-import { faClockRotateLeft, faHeart, faHouse, faList, faMagnifyingGlass, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import "./sidebar.css";
-import Library from "../Icons/Library/Library";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import "./sidebar.css";
+
 import { openPlaylist } from "../../Features/newPlaylistSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClockRotateLeft, faHeart, faHouse, faList, faMagnifyingGlass, faPlus } from "@fortawesome/free-solid-svg-icons";
+
+import Library from "../Icons/Library/Library";
 import MyPlaylist from "../MyPlaylist/MyPlaylist";
 
 const Sidebar = () => {

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faItunesNote } from "@fortawesome/free-brands-svg-icons";
+import { convertName } from "../../commonFunctions";
 
 const QueueList = ({ item }) => {
     const [songData, setSongData] = useState({});
@@ -25,14 +26,14 @@ const QueueList = ({ item }) => {
                     <FontAwesomeIcon icon={faItunesNote} size="2xs" />
                 </div>
                 <div className="queue13">
-                    <img src={songData.image ? songData.image[2].link : ""} alt="" />
+                    <img src={songData.image ? songData.image[0].link : ""} alt="" />
                 </div>
                 <div className="queue14">
                     <div>
-                        <h5 className="queue15">{songData.name ? songData.name : ""}</h5>
+                        <h5 className="queue15">{songData.name ? convertName(songData.name) : ""}</h5>
                     </div>
                     <div>
-                        <h5 className="queue16">{songData.primaryArtists}</h5>
+                        <h5 className="queue16">{convertName(songData.primaryArtists)}</h5>
                     </div>
                 </div>
             </div>

@@ -1,20 +1,19 @@
+import axios from "axios";
+import ReactAudioPlayer from "react-audio-player";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState, useRef, useEffect } from "react";
+import "./audioPlayer.css";
 
 import { handleSeek, handleVolumeSeek } from "./audioFunction";
+import { playNextSong, toggleIsPlaying, toggleQueue } from "../../Features/musicPlayerSlice";
 
 import AudioTab from "./AudioTab/AudioTab";
 import AudioSettingTab from "./AudioSettingsTab/AudioSettingTab";
 
-import "./audioPlayer.css";
-import axios from "axios";
-import { playNextSong, toggleIsPlaying, toggleQueue } from "../../Features/musicPlayerSlice";
-import ReactAudioPlayer from "react-audio-player";
-
 const AudioPlayer = () => {
     const dispatch = useDispatch();
-    const selectedSong = useSelector((state) => state.player.currentSong);
     const isPlaying = useSelector((state) => state.player.isPlaying);
+    const selectedSong = useSelector((state) => state.player.currentSong);
 
     const [volume, setVolume] = useState(0.5);
     const [currentTime, setCurrentTime] = useState(0);
@@ -62,13 +61,13 @@ const AudioPlayer = () => {
     };
 
     const handleInputSeek = () => {
-        const adRef = audioRef.current.audioEl
+        const adRef = audioRef.current.audioEl;
         isSeeking.current = false;
         adRef.current.currentTime = currentTime;
     };
 
     const handleInputSeekChange = (e) => {
-        const adRef = audioRef.current.audioEl
+        const adRef = audioRef.current.audioEl;
         isSeeking.current = true;
         const seekTime = parseFloat(e.target.value);
         const percent = (seekTime * 100) / adRef.current.duration;
@@ -103,7 +102,7 @@ const AudioPlayer = () => {
             setCurrentSongDetails(curSong);
             setTimeout(() => {
                 audioRef.current.audioEl.current.play();
-                dispatch(toggleIsPlaying({type: true}));
+                dispatch(toggleIsPlaying({ type: true }));
             }, 200);
             handleVolumeOverlay(volume * 100);
             handleOverlay(0);
@@ -136,7 +135,7 @@ const AudioPlayer = () => {
                 handleInputSeekChange={handleInputSeekChange}
                 handleInputSeek={handleInputSeek}
             />
-            <AudioSettingTab volume={volume} handleVolumeChange={handleVolumeChange} /> 
+            <AudioSettingTab volume={volume} handleVolumeChange={handleVolumeChange} />
         </>
     );
 };

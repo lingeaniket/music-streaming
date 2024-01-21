@@ -24,33 +24,13 @@ const LandingPage = () => {
     }, []);
 
     return (
-        <div
-            style={{
-                width: "100%",
-                padding: "22px",
-            }}
-        >
+        <div className="w-100 list11">
             {trending && (
                 <>
                     {[trending, albums, playlists, charts].map((val, i) => (
-                        <div
-                            key={i}
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                marginBottom: "20px",
-                            }}
-                        >
+                        <div key={i} className="app08 list12">
                             <div>
-                                <h2
-                                    style={{
-                                        margin: 0,
-                                        padding: 0,
-                                        marginBottom: "22px",
-                                        fontWeight: 700,
-                                        lineHeight: 1.375,
-                                    }}
-                                >
+                                <h2 className="list13">
                                     {i === 0 ? "Trending Now" : i === 1 ? "Albums" : i === 2 ? "Playlists" : i === 3 ? "Charts" : ""}
                                 </h2>
                             </div>

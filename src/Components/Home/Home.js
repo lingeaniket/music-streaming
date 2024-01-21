@@ -5,8 +5,8 @@ import { useSelector } from "react-redux";
 import Footer from "../Footer/Footer";
 import Sidebar from "../Sidebar/Sidebar";
 import QueueSide from "../QueueSide/QueueSide";
-import NewPlaylist from "../Modals/NewPlaylist/NewPlaylist";
 import BottomBar from "../BottomBar/BottomBar";
+import NewPlaylist from "../Modals/NewPlaylist/NewPlaylist";
 
 const Home = () => {
     const queueOpened = useSelector((state) => state.player.queueOpened);

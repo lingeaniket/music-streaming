@@ -6,11 +6,7 @@ import "./myPlaylist.css";
 const MyPlaylist = () => {
     const playlists = useSelector((state) => state.playlist.myPlaylists);
     return (
-        <div
-            style={{
-                margin: "22px 0 0",
-            }}
-        >
+        <div className="mplay04">
             {playlists.map((playlist) => (
                 <PlaylistItem key={playlist.id} playlist={playlist} />
             ))}

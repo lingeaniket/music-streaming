@@ -37,7 +37,7 @@ export const loadSData = async (mode, artId, language, songId, albumId, year) =>
 
         const random1 = generateRandom(13, 24);
         const newData = yearData.data
-            .slice(random1-13, random1)
+            .slice(random1 - 13, random1)
             .map((album) => {
                 const random = generateRandom(0, album.list_count);
                 return album.list[random];

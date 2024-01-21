@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "../LandingPage/List/list.css";
 
 import { loadAData, loadPData, loadSData } from "./mightLikeFunction";
@@ -12,9 +12,6 @@ const MightLike = ({ type, mode, details }) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        // album - yml, taosy
-        // song - tsosar, tsosact
-        //playlis - rp
         const loadAlbumData = async () => {
             const apiData = await loadAData(mode, id, details?.language, details?.year);
             setData(apiData);
@@ -42,25 +39,11 @@ const MightLike = ({ type, mode, details }) => {
         // eslint-disable-next-line
     }, [type, id, details?.year]);
     return (
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                marginBottom: "20px",
-            }}
-        >
+        <div className="app08 detail-12">
             {data.length > 0 && (
                 <>
                     <div>
-                        <h2
-                            style={{
-                                margin: 0,
-                                padding: 0,
-                                marginBottom: "22px",
-                                fontWeight: 700,
-                                lineHeight: 1.375,
-                            }}
-                        >
+                        <h2 className="detail-13">
                             {mode === "YML"
                                 ? "You Might Like"
                                 : mode === "TAOSY"
