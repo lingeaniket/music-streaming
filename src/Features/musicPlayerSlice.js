@@ -92,7 +92,11 @@ export const playerSlice = createSlice({
         },
 
         toggleIsPlaying: (state, action) => {
-            state.isPlaying = !state.isPlaying;
+            if (action.payload && action.payload.type) {
+                state.isPlaying = true;
+            } else {
+                state.isPlaying = !state.isPlaying;
+            }
         },
     },
 });
