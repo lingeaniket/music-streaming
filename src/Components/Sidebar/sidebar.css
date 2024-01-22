@@ -92,6 +92,41 @@
     padding: 0 0 12px 0;
 }
 
+.sb15 {
+    border: 1px solid green;
+    color: white;
+    border-radius: 999px;
+    padding: 6px 9px;
+    background-color: green;
+    font-size: 12px;
+    margin: 10px 0;
+}
+
+.sb16 {
+    font-size: 12px;
+    text-transform: capitalize;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 11px;
+}
+
+.sb17 {
+    display: block;
+    cursor: pointer;
+    margin: 2px 0;
+}
+
+.sb18 {
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+.sb01>.sb04{
+    padding: 0;
+    width: 100%;
+}
+
 @media screen and (max-width: 1240px) {
     .sb05 {
         justify-content: center;
