@@ -8,6 +8,7 @@ export const userSlice = createSlice({
             ? JSON.parse(localStorage.getItem("liked"))
             : { songs: [], playlists: [], albums: [], artists: [] },
         history: localStorage.getItem("history") ? JSON.parse(localStorage.getItem("history")) : [],
+        languages: localStorage.getItem("languages") ? JSON.parse(localStorage.getItem("languages")) : ["hindi", "english"],
     },
     reducers: {
         addLiked: (state, action) => {
@@ -35,9 +36,14 @@ export const userSlice = createSlice({
         updateHistory: (state, action) => {
             // const { mode, id } = action.payload;
         },
+
+        updateLanguages: (state, action) => {
+            state.languages = action.payload.languages;
+            localStorage.setItem("languages", JSON.stringify(action.payload.languages));
+        },
     },
 });
 
-export const { addLiked, removeLiked } = userSlice.actions;
+export const { addLiked, removeLiked, updateLanguages } = userSlice.actions;
 
 export default userSlice.reducer;
