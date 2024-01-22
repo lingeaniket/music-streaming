@@ -2,8 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 import List from "./List/List";
+import { useSelector } from "react-redux";
 
 const LandingPage = () => {
+    const selectedLang = useSelector((state) => state.user.languages);
+
     const [charts, setCharts] = useState([]);
     const [albums, setAlbums] = useState([]);
     const [trending, setTrending] = useState({});
@@ -11,7 +14,7 @@ const LandingPage = () => {
 
     useEffect(() => {
         const loadData = async () => {
-            await axios.get("https://saavn.me/modules?language=hindi,english").then((response) => {
+            await axios.get(`https://saavn.me/modules?language=${selectedLang.toString()}`).then((response) => {
                 const musicData = response.data.data;
                 setTrending(musicData.trending);
                 setAlbums(musicData.albums);
@@ -21,7 +24,7 @@ const LandingPage = () => {
         };
 
         loadData();
-    }, []);
+    }, [selectedLang]);
 
     return (
         <div className="w-100 list11">
