@@ -9,6 +9,7 @@ import { faClockRotateLeft, faHeart, faHouse, faList, faMagnifyingGlass, faPlus 
 
 import Library from "../Icons/Library/Library";
 import MyPlaylist from "../MyPlaylist/MyPlaylist";
+import LanguageDiv from "./LanguageDiv/LanguageDiv";
 
 const Sidebar = () => {
     const navigate = useNavigate();
@@ -64,6 +65,7 @@ const Sidebar = () => {
                                 <div>Your Library</div>
                             </div>
                         </div>
+                        <LanguageDiv />
                         <div
                             className="sb04"
                             onClick={() => {
@@ -114,7 +116,7 @@ const Sidebar = () => {
                                     <span className="sb11">New Playlist</span>
                                 </button>
                             </div>
-                            <MyPlaylist />
+                            <MyPlaylist handleClose={false} />
                         </div>
                     </div>
                 </div>
