@@ -8,15 +8,19 @@ import { faClockRotateLeft, faHeart, faList, faPlus } from "@fortawesome/free-so
 
 import Library from "../Icons/Library/Library";
 import MyPlaylist from "../MyPlaylist/MyPlaylist";
+import LanguageDiv from "../Sidebar/LanguageDiv/LanguageDiv";
+import { useNavigate } from "react-router-dom";
 
 const LibrarryDiv = ({ setOpen }) => {
     const lbRef = useRef();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [main, setMain] = useState(true);
     const [mode, setMode] = useState("main");
 
     const handleOpenNew = () => {
+        setOpen(false);
         setTimeout(() => {
             dispatch(openPlaylist(true));
         }, 0);
@@ -35,10 +39,19 @@ const LibrarryDiv = ({ setOpen }) => {
         }, 0);
     }
 
+    function handleRoute() {
+        setOpen(false);
+        navigate(`/library/${this.mode}`);
+    }
+
     const handleClick = (event) => {
         if (lbRef.current && !lbRef.current.contains(event.target)) {
             setOpen(false);
         }
+    };
+
+    const handleClose = () => {
+        setOpen(false);
     };
 
     useEffect(() => {
@@ -69,11 +82,21 @@ const LibrarryDiv = ({ setOpen }) => {
             ) : (
                 <div>
                     <div className="sb14" onClick={handleback}>
+                        <span
+                            style={{
+                                marginRight: "12px",
+                            }}
+                        >
+                            <i className="fa-solid fa-chevron-left"></i>
+                        </span>
                         Back
                     </div>
                     {mode === "library" ? (
                         <div className="sb01 app08">
-                            <div className="app06 sb01" onClick={handleMode.bind({ mode: "library" })}>
+                            <div className="sb01 app06">
+                                <LanguageDiv mode="mobile" />
+                            </div>
+                            <div className="app06 sb01" onClick={handleRoute.bind({ mode: "history" })}>
                                 <div className="sb08 app06">
                                     <div>
                                         <FontAwesomeIcon icon={faClockRotateLeft} size="sm" />
@@ -81,7 +104,7 @@ const LibrarryDiv = ({ setOpen }) => {
                                 </div>
                                 <div>History</div>
                             </div>
-                            <div className="app06 sb01" onClick={handleMode.bind({ mode: "playlist" })}>
+                            <div className="app06 sb01" onClick={handleRoute.bind({ mode: "liked" })}>
                                 <div className="sb08 app06">
                                     <div>
                                         <FontAwesomeIcon icon={faHeart} size="sm" style={{ color: "#ffffff" }} />
@@ -100,7 +123,7 @@ const LibrarryDiv = ({ setOpen }) => {
                                     <span className="sb11">New</span>
                                 </button>
                             </div>
-                            <MyPlaylist />
+                            <MyPlaylist handleClose={handleClose} />
                         </div>
                     )}
                 </div>
