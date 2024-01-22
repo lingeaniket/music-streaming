@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-const PlaylistItem = ({ playlist }) => {
+const PlaylistItem = ({ playlist, handleClose }) => {
     const { id } = useParams();
 
     const navigate = useNavigate();
@@ -10,6 +10,9 @@ const PlaylistItem = ({ playlist }) => {
     const [imageData, setImageData] = useState([]);
 
     const handleNavigate = () => {
+        if (handleClose) {
+            handleClose();
+        }
         navigate(`/my-list/${playlist.id}`);
     };
 
