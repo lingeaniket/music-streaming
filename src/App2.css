@@ -30,7 +30,6 @@
     grid-template-rows: 1fr auto;
     height: 100%;
     width: 100%;
-    /* padding: 8px; */
     grid-template-areas: "sidebar main-content" "music-player music-player";
     gap: 8px;
 }
