@@ -105,7 +105,7 @@ const UserTab = () => {
                 <div className="ust02 app06">
                     <div className="app01 ust03">
                         {[0, 1, 2, 3].map((idx) => (
-                            <div className="app05 w-50 h-50">
+                            <div key={idx} className="app05 w-50 h-50">
                                 {imageData[idx] ? (
                                     <img src={imageData[idx].image[1].link} alt="" />
                                 ) : (
