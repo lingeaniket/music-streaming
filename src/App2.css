@@ -6,8 +6,13 @@
 
 .sidebarContainer {
     width: 250px;
+    overflow-y: scroll;
     grid-area: sidebar;
     color: white;
+}
+
+.sidebarContainer::-webkit-scrollbar{
+    display: none;
 }
 
 .right-sidebar {
