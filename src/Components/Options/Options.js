@@ -98,7 +98,7 @@ const Options = ({ liked, data, handleLike, setoptions, playlist }) => {
                         </div>
                     )}
                     <div className="opt03 opt05" onClick={playCategory}>
-                        Play {data.type ? data.type : "Playlist"} Now
+                        Play {data.type && data.type === "my-playlist" ? "Playlist" : data.type} Now
                     </div>
                     <div className="opt03" onClick={handleAddToQueue}>
                         Add to Queue
