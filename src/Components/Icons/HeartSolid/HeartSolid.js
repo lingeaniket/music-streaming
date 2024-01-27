@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const HeartSolid = () => {
-  return (
-    <div>HeartSolid</div>
-  )
-}
+    return <div>HeartSolid</div>;
+};
 
-export default HeartSolid
+export default HeartSolid;
