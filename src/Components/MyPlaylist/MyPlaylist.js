@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { useSelector } from "react-redux";
 import PlaylistItem from "./PlaylistItem";
 import "./myPlaylist.css";
@@ -14,4 +14,4 @@ const MyPlaylist = ({ handleClose }) => {
     );
 };
 
-export default MyPlaylist;
+export default memo(MyPlaylist);

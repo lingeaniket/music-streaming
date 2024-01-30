@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 const PlaylistItem = ({ playlist, handleClose }) => {
@@ -61,4 +61,4 @@ const PlaylistItem = ({ playlist, handleClose }) => {
     );
 };
 
-export default PlaylistItem;
+export default memo(PlaylistItem);

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, memo } from "react";
 import "./newPlaylist.css";
 
 import { addNewPlayList, addSongsToPlaylist, openPlaylist, updateCurrentdata } from "../../../Features/newPlaylistSlice";
@@ -137,4 +137,4 @@ const NewPlaylist = () => {
     );
 };
 
-export default NewPlaylist;
+export default memo(NewPlaylist);
