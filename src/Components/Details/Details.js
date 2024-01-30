@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./details.css";
 
@@ -235,4 +235,4 @@ const Details = ({ type }) => {
     );
 };
 
-export default Details;
+export default memo(Details);
