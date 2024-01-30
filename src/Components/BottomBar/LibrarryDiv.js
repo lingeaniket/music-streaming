@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, memo } from "react";
 
 import { openPlaylist } from "../../Features/newPlaylistSlice";
 
@@ -132,4 +132,4 @@ const LibrarryDiv = ({ setOpen }) => {
     );
 };
 
-export default LibrarryDiv;
+export default memo(LibrarryDiv);

@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 
 import ListItem from "../LandingPage/List/ListItem/ListItem";
 
@@ -17,4 +17,4 @@ const LibraryList = ({ id, mode }) => {
     return <>{currentData.id && <ListItem data={{ ...currentData, type: mode }} />}</>;
 };
 
-export default LibraryList;
+export default memo(LibraryList);
