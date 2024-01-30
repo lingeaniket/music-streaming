@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import { useNavigate } from "react-router-dom";
 import "./bottomBar.css";
 
@@ -66,4 +66,4 @@ const BottomBar = () => {
     );
 };
 
-export default BottomBar;
+export default memo(BottomBar);
