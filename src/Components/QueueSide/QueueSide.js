@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./queue.css";
 
@@ -89,4 +89,4 @@ const QueueSide = () => {
     );
 };
 
-export default QueueSide;
+export default memo(QueueSide);

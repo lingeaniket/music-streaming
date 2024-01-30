@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faItunesNote } from "@fortawesome/free-brands-svg-icons";
@@ -41,4 +41,4 @@ const QueueList = ({ item }) => {
     );
 };
 
-export default QueueList;
+export default memo(QueueList);
