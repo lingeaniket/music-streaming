@@ -1,7 +1,7 @@
 import axios from "axios";
 import ReactAudioPlayer from "react-audio-player";
 import { useDispatch, useSelector } from "react-redux";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, memo } from "react";
 import "./audioPlayer.css";
 
 import { handleSeek, handleVolumeSeek } from "./audioFunction";
@@ -140,4 +140,4 @@ const AudioPlayer = () => {
     );
 };
 
-export default AudioPlayer;
+export default memo(AudioPlayer);

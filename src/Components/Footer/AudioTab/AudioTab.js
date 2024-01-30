@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,7 +6,6 @@ import { faBackwardStep, faForwardStep, faPause, faPlay, faRepeat, faShuffle } f
 
 import { formatTime } from "../../commonFunctions.js";
 import { playNextSong, playPrevSong } from "../../../Features/musicPlayerSlice.js";
-
 
 const AudioTab = ({ audioRef, currentTime, togglePlay, handleInputSeekChange, handleInputSeek }) => {
     const dispatch = useDispatch();
@@ -28,9 +27,9 @@ const AudioTab = ({ audioRef, currentTime, togglePlay, handleInputSeekChange, ha
                     <div className="app02 app01">
                         <div className="audio-player08 app01">
                             <div className="audio-player09 audio-player12 app01 app02">
-                                <button>
+                                {/* <button>
                                     <FontAwesomeIcon icon={faRepeat} size="xl" style={{ color: "#ffffff" }} />
-                                </button>
+                                </button> */}
                             </div>
                             <div className="audio-player09 audio-player12 app01 app02">
                                 <button disabled={currentSongIndex === 0} onClick={handlePrevSong}>
@@ -53,9 +52,9 @@ const AudioTab = ({ audioRef, currentTime, togglePlay, handleInputSeekChange, ha
                             </div>
 
                             <div className="audio-player09 audio-player12 app01 app02">
-                                <button>
+                                {/* <button>
                                     <FontAwesomeIcon icon={faShuffle} size="xl" style={{ color: "#ffffff" }} />
-                                </button>
+                                </button> */}
                             </div>
                         </div>
                     </div>
@@ -84,4 +83,4 @@ const AudioTab = ({ audioRef, currentTime, togglePlay, handleInputSeekChange, ha
     );
 };
 
-export default AudioTab;
+export default memo(AudioTab);

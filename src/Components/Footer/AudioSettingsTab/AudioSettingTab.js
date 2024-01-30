@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -59,4 +59,4 @@ const AudioSettingTab = ({ volume, handleVolumeChange }) => {
     );
 };
 
-export default AudioSettingTab;
+export default memo(AudioSettingTab);
