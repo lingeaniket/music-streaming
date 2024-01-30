@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 const PageButton = ({ page, index, handleButtonPage }) => {
     const handleClick = (e) => {
@@ -13,7 +13,6 @@ const PageButton = ({ page, index, handleButtonPage }) => {
                 key={index}
                 style={{
                     background: `${page === index + 1 ? "green" : "white"}`,
-                    
                     border: `2px solid ${page === index + 1 ? "white" : "black"}`,
                     color: `${page === index + 1 ? "white" : "black"}`,
                 }}
@@ -25,4 +24,4 @@ const PageButton = ({ page, index, handleButtonPage }) => {
     );
 };
 
-export default PageButton;
+export default memo(PageButton);

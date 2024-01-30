@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import React, { Fragment, useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, memo } from "react";
 import "./viewAll.css";
 
 import PageButton from "./PageButton";
@@ -164,4 +164,4 @@ const ViewAll = () => {
     );
 };
 
-export default ViewAll;
+export default memo(ViewAll);
