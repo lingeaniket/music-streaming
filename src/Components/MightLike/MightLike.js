@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import "../LandingPage/List/list.css";
 
 import { loadAData, loadPData, loadSData } from "./mightLikeFunction";
@@ -64,4 +64,4 @@ const MightLike = ({ type, mode, details }) => {
     );
 };
 
-export default MightLike;
+export default memo(MightLike);
