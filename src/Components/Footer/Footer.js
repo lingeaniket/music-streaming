@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import AudioPlayer from "./AudioPlayer";
 
@@ -12,4 +12,4 @@ const Footer = () => {
     );
 };
 
-export default Footer;
+export default memo(Footer);
