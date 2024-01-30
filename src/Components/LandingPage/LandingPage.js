@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 
 import List from "./List/List";
 import { useSelector } from "react-redux";
@@ -52,4 +52,4 @@ const LandingPage = () => {
     );
 };
 
-export default LandingPage;
+export default memo(LandingPage);

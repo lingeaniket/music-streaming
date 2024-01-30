@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import React, { useState, memo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import { updateLanguages } from "../../../Features/userSlice";
 
 const LanguageDiv = ({ mode }) => {
@@ -44,7 +44,7 @@ const LanguageDiv = ({ mode }) => {
     };
 
     const handlelanguages = (event) => {
-      event.stopPropagation();
+        event.stopPropagation();
         event.preventDefault();
 
         const checkboxes = event.target.querySelectorAll('input[name="languages"]');
@@ -86,7 +86,9 @@ const LanguageDiv = ({ mode }) => {
                             </label>
                         ))}
                         <div className="w-100 app02">
-                            <button className=" w-100 sb15" type="submit">Update</button>
+                            <button className=" w-100 sb15" type="submit">
+                                Update
+                            </button>
                         </div>
                     </form>
                 )}
@@ -95,4 +97,4 @@ const LanguageDiv = ({ mode }) => {
     );
 };
 
-export default LanguageDiv;
+export default memo(LanguageDiv);
