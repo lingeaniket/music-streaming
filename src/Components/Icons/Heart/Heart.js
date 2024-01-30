@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 const Heart = () => {
     return (
@@ -11,4 +11,4 @@ const Heart = () => {
     );
 };
 
-export default Heart;
+export default memo(Heart);

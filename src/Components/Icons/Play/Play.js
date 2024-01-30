@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 const Play = () => {
     return (
@@ -11,4 +11,4 @@ const Play = () => {
     );
 };
 
-export default Play;
+export default memo(Play);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 const Library = () => {
     return (
@@ -18,4 +18,4 @@ const Library = () => {
     );
 };
 
-export default Library;
+export default memo(Library);

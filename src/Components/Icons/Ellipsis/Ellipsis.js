@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 const Ellipsis = () => {
     return (
@@ -11,4 +11,4 @@ const Ellipsis = () => {
     );
 };
 
-export default Ellipsis;
+export default memo(Ellipsis);

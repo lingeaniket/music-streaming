@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import "./loader.css";
 
 const Loader = ({ fill = "rgb(85,85,85)" }) => {
@@ -100,4 +100,4 @@ const Loader = ({ fill = "rgb(85,85,85)" }) => {
     );
 };
 
-export default Loader;
+export default memo(Loader);

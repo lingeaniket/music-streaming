@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import "./equilizer.css";
 
 const Equilizer = () => {
@@ -22,4 +22,4 @@ const Equilizer = () => {
     );
 };
 
-export default Equilizer;
+export default memo(Equilizer);
