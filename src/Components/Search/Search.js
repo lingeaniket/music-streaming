@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState, memo } from "react";
 import "./search.css";
 
 import { playAlbum } from "../../Features/musicPlayerSlice";
@@ -172,4 +172,4 @@ const Search = () => {
     );
 };
 
-export default Search;
+export default memo(Search);

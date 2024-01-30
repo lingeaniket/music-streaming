@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, memo } from "react";
 import "./options.css";
 
 import { addToQueue } from "../commonFunctions";
@@ -138,4 +138,4 @@ const Options = ({ liked, data, handleLike, setoptions, playlist }) => {
     );
 };
 
-export default Options;
+export default memo(Options);
