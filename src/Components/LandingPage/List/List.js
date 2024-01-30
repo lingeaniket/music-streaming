@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import "./list.css";
 
 import ListItem from "./ListItem/ListItem";
@@ -13,4 +13,4 @@ const List = ({ data }) => {
     );
 };
 
-export default List;
+export default memo(List);

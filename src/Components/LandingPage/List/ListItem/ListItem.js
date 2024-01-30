@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState, memo } from "react";
 
 import { getPlayListData } from "../listFunctions";
 import { playAlbum } from "../../../../Features/musicPlayerSlice";
@@ -169,4 +169,4 @@ const ListItem = ({ data }) => {
     );
 };
 
-export default ListItem;
+export default memo(ListItem);
