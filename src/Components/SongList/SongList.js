@@ -1,6 +1,6 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState, memo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./songList.css";
 
@@ -207,4 +207,4 @@ const SongList = ({ song, index, type, mode, queue, isDragging, myPlaylist }) =>
     );
 };
 
-export default SongList;
+export default memo(SongList);

@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 
 import { Draggable } from "react-beautiful-dnd";
 
@@ -20,11 +20,13 @@ const SongListMain = ({ id, index }) => {
         <Draggable draggableId={id.toString()} index={index}>
             {(provided, snapshot) => (
                 <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                    {currentSong.id && <SongList song={currentSong} type="song" index={index} myPlaylist={true}  isDragging={snapshot.isDragging}/>}
+                    {currentSong.id && (
+                        <SongList song={currentSong} type="song" index={index} myPlaylist={true} isDragging={snapshot.isDragging} />
+                    )}
                 </div>
             )}
         </Draggable>
     );
 };
 
-export default SongListMain;
+export default memo(SongListMain);
