@@ -43,6 +43,7 @@ const AudioTab = ({ audioRef, currentTime, togglePlay, handleInputSeekChange, ha
                                     ) : (
                                         <FontAwesomeIcon icon={faPlay} size="xl" style={{ color: "#ffffff" }} />
                                     )}
+                                    
                                 </button>
                             </div>
                             <div className="audio-player09 audio-player12 app01 app02">
