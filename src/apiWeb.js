@@ -1,0 +1,1 @@
+export const apiWebsite = "https://saavn.dev";
