@@ -4,13 +4,14 @@ import React, { useEffect, useState, memo } from "react";
 import { Draggable } from "react-beautiful-dnd";
 
 import SongList from "../../SongList/SongList";
+import { apiWebsite } from "../../../apiWeb";
 
 const SongListMain = ({ id, index }) => {
     const [currentSong, setCurrentSong] = useState({});
 
     useEffect(() => {
         const loadData = async () => {
-            const data = await axios.get(`https://saavn.me/songs?id=${id}`);
+            const data = await axios.get(`${apiWebsite}/songs?id=${id}`);
             setCurrentSong(data.data.data[0]);
         };
         loadData();

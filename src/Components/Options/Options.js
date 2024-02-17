@@ -7,6 +7,7 @@ import { addToQueue } from "../commonFunctions";
 import { getPlayListData } from "../LandingPage/List/listFunctions";
 import { addSongsToQueue, playAlbum } from "../../Features/musicPlayerSlice";
 import { addSongsToPlaylist, openAddPlaylist, openPlaylist, updateCurrentdata } from "../../Features/newPlaylistSlice";
+import { apiWebsite } from "../../apiWeb";
 
 const Options = ({ liked, data, handleLike, setoptions, playlist }) => {
     const opref = useRef();
@@ -42,10 +43,10 @@ const Options = ({ liked, data, handleLike, setoptions, playlist }) => {
             dispatch(addSongsToPlaylist({ id: currentid, songs: data.songs }));
         } else {
             if (type === "album" || type === "playlist") {
-                const data = await axios.get(`https://saavn.me/${type}s?id=${id}`);
+                const data = await axios.get(`${apiWebsite}/${type}s?id=${id}`);
                 dispatch(addSongsToPlaylist({ id: currentid, songs: data.data.data.songs }));
             } else if (type === "song") {
-                const data = await axios.get(`https://saavn.me/songs?id=${id}`);
+                const data = await axios.get(`${apiWebsite}/songs?id=${id}`);
                 dispatch(addSongsToPlaylist({ id: currentid, songs: data.data.data }));
             }
             dispatch(updateCurrentdata(""));

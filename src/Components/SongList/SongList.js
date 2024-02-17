@@ -14,6 +14,7 @@ import { removeSongsFromPlaylist } from "../../Features/newPlaylistSlice.js";
 
 import Options from "../Options/Options.js";
 import Equilizer from "../Icons/Equilizer/Equilizer.js";
+import { apiWebsite } from "../../apiWeb.js";
 
 const SongList = ({ song, index, type, mode, queue, isDragging, myPlaylist }) => {
     const { id } = useParams();
@@ -74,7 +75,7 @@ const SongList = ({ song, index, type, mode, queue, isDragging, myPlaylist }) =>
     const handleSongPlay = async () => {
         if (type === "album") {
             if (mode === "moreAlbumSongs") {
-                const albumSongsData = await axios.get(`https://saavn.me/albums?id=${song.album.id}`);
+                const albumSongsData = await axios.get(`${apiWebsite}/albums?id=${song.album.id}`);
                 const albumData = albumSongsData.data.data;
                 const playerData = {
                     song: song.id,

@@ -9,6 +9,7 @@ import ListItem from "../../LandingPage/List/ListItem/ListItem";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import { apiWebsite } from "../../../apiWeb";
 
 const ViewAll = () => {
     const navigate = useNavigate();
@@ -46,7 +47,7 @@ const ViewAll = () => {
     useEffect(() => {
         setLoading(true);
         const loadData = async () => {
-            const data = await axios.get(`https://saavn.me/search/${type}s?query=${key}&page=${page}&limit=24`);
+            const data = await axios.get(`${apiWebsite}/search/${type}s?query=${key}&page=${page}&limit=24`);
             setSearchData(data.data.data);
             setTotalPages(Math.ceil(data.data.data.total / 24));
             setTimeout(() => {

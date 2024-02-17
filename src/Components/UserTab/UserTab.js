@@ -12,6 +12,7 @@ import { updatePlaylistDnD } from "../../Features/newPlaylistSlice";
 
 import Options from "../Options/Options";
 import SongListMain from "./SongList/SongListMain";
+import { apiWebsite } from "../../apiWeb";
 
 const UserTab = () => {
     const { id } = useParams();
@@ -89,7 +90,7 @@ const UserTab = () => {
                 const imgData = [];
                 for (let i = 0; i < 4; i++) {
                     if (isAvail.songs[i]) {
-                        const data = await axios.get(`https://saavn.me/songs?id=${isAvail.songs[i]}`);
+                        const data = await axios.get(`${apiWebsite}/songs?id=${isAvail.songs[i]}`);
                         imgData.push(data.data.data[0]);
                     }
                 }

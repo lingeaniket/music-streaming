@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import SongList from "../SongList/SongList";
 import ListItem from "../LandingPage/List/ListItem/ListItem";
+import { apiWebsite } from "../../apiWeb";
 
 const Search = () => {
     const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const Search = () => {
     const loadSearchingData = async (key) => {
         const newKey = key.replaceAll(" ", "+");
         if (newKey) {
-            const data = await axios.get(`https://saavn.me/search/all?query=${newKey}`);
+            const data = await axios.get(`${apiWebsite}/search/all?query=${newKey}`);
             setSearchData(data.data.data);
         } else {
             setSearchData({});

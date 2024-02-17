@@ -4,13 +4,14 @@ import React, { useEffect, useState, memo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faItunesNote } from "@fortawesome/free-brands-svg-icons";
 import { convertName } from "../../commonFunctions";
+import { apiWebsite } from "../../../apiWeb";
 
 const QueueList = ({ item }) => {
     const [songData, setSongData] = useState({});
 
     useEffect(() => {
         const loadData = async (id) => {
-            const data = await axios.get(`https://saavn.me/songs?id=${id}`);
+            const data = await axios.get(`${apiWebsite}/songs?id=${id}`);
             setSongData(data.data.data[0]);
         };
 

@@ -3,6 +3,7 @@ import React, { useEffect, useState, memo } from "react";
 
 import List from "./List/List";
 import { useSelector } from "react-redux";
+import { apiWebsite } from "../../apiWeb";
 
 const LandingPage = () => {
     const selectedLang = useSelector((state) => state.user.languages);
@@ -14,7 +15,7 @@ const LandingPage = () => {
 
     useEffect(() => {
         const loadData = async () => {
-            await axios.get(`https://saavn.me/modules?language=${selectedLang.toString()}`).then((response) => {
+            await axios.get(`${apiWebsite}/modules?language=${selectedLang.toString()}`).then((response) => {
                 const musicData = response.data.data;
                 setTrending(musicData.trending);
                 setAlbums(musicData.albums);

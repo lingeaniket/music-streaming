@@ -9,6 +9,7 @@ import { playNextSong, toggleIsPlaying, toggleQueue } from "../../Features/music
 
 import AudioTab from "./AudioTab/AudioTab";
 import AudioSettingTab from "./AudioSettingsTab/AudioSettingTab";
+import { apiWebsite } from "../../apiWeb";
 
 const AudioPlayer = () => {
     const dispatch = useDispatch();
@@ -96,7 +97,7 @@ const AudioPlayer = () => {
 
     useEffect(() => {
         const loadData = async (id) => {
-            const data = await axios.get(`https://saavn.me/songs?id=${id}`);
+            const data = await axios.get(`${apiWebsite}/songs?id=${id}`);
             const curSong = data.data.data[0];
             setCurrentSong(curSong.downloadUrl[4].link);
             setCurrentSongDetails(curSong);

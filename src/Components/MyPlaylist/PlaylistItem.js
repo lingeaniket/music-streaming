@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState, memo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { apiWebsite } from "../../apiWeb";
 
 const PlaylistItem = ({ playlist, handleClose }) => {
     const { id } = useParams();
@@ -21,7 +22,7 @@ const PlaylistItem = ({ playlist, handleClose }) => {
             const imgData = [];
             for (let i = 0; i < 4; i++) {
                 if (playlist.songs[i]) {
-                    const data = await axios.get(`https://saavn.me/songs?id=${playlist.songs[i]}`);
+                    const data = await axios.get(`${apiWebsite}/songs?id=${playlist.songs[i]}`);
                     imgData.push(data.data.data[0]);
                 }
             }

@@ -7,6 +7,7 @@ import { convertName } from "../commonFunctions";
 import { toggleQueue } from "../../Features/musicPlayerSlice";
 
 import QueueList from "./QueueList/QueueList";
+import { apiWebsite } from "../../apiWeb";
 
 const QueueSide = () => {
     const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const QueueSide = () => {
 
     useEffect(() => {
         const loadCurrentSong = async (id) => {
-            const data = await axios.get(`https://saavn.me/songs?id=${id}`);
+            const data = await axios.get(`${apiWebsite}/songs?id=${id}`);
 
             setCurrentSongDetails(data.data.data[0]);
         };

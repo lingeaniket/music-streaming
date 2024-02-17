@@ -1,4 +1,5 @@
 import axios from "axios";
+import { apiWebsite } from "../apiWeb";
 
 export const formatTime = (time) => {
     if (time) {
@@ -54,10 +55,10 @@ export async function addToQueue() {
     if (id && type) {
         let songArray = [];
         if (type === "album" || type === "playlist") {
-            const albumData = await axios.get(`https://saavn.me/${type}s?id=${id}`);
+            const albumData = await axios.get(`${apiWebsite}/${type}s?id=${id}`);
             songArray = albumData.data.data.songs;
         } else if (type === "song") {
-            const songData = await axios.get(`https://saavn.me/songs?id=${id}`);
+            const songData = await axios.get(`${apiWebsite}/songs?id=${id}`);
             songArray = songData.data.data;
         } else if (type === "my-plylist") {
             const data = localStorage.getItem("my-playlists") ? JSON.parse(localStorage.getItem("my-playlists")) : [];

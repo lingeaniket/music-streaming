@@ -16,6 +16,7 @@ import SongList from "../SongList/SongList";
 import Options from "../Options/Options.js";
 import Loader from "../Icons/Loader/Loader.js";
 import MightLike from "../MightLike/MightLike.js";
+import { apiWebsite } from "../../apiWeb.js";
 
 const Details = ({ type }) => {
     const { id } = useParams();
@@ -84,7 +85,7 @@ const Details = ({ type }) => {
 
     useEffect(() => {
         const loadAlbum = async (type) => {
-            const albumData = await axios.get(`https://saavn.me/${type}s?id=${id}`);
+            const albumData = await axios.get(`${apiWebsite}/${type}s?id=${id}`);
             setDetails({
                 ...albumData.data.data,
                 songs: [],
