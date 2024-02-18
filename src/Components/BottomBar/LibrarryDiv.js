@@ -1,15 +1,14 @@
 import { useDispatch } from "react-redux";
-import React, { useEffect, useRef, useState, memo } from "react";
-
-import { openPlaylist } from "../../Features/newPlaylistSlice";
-
+import { useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState, memo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClockRotateLeft, faHeart, faList, faPlus } from "@fortawesome/free-solid-svg-icons";
+
+import { openPlaylist } from "../../Features/newPlaylistSlice";
 
 import Library from "../Icons/Library/Library";
 import MyPlaylist from "../MyPlaylist/MyPlaylist";
 import LanguageDiv from "../Sidebar/LanguageDiv/LanguageDiv";
-import { useNavigate } from "react-router-dom";
 
 const LibrarryDiv = ({ setOpen }) => {
     const lbRef = useRef();
