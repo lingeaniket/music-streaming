@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import React, { useEffect, useState, memo } from "react";
+import { useEffect, useState, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./details.css";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle, faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import "./details.css";
 
+import { apiWebsite } from "../../apiWeb.js";
 import { playAlbum } from "../../Features/musicPlayerSlice.js";
 import { convertName, formatTime } from "../commonFunctions.js";
 import { addLiked, removeLiked } from "../../Features/userSlice.js";
@@ -16,7 +16,6 @@ import SongList from "../SongList/SongList";
 import Options from "../Options/Options.js";
 import Loader from "../Icons/Loader/Loader.js";
 import MightLike from "../MightLike/MightLike.js";
-import { apiWebsite } from "../../apiWeb.js";
 
 const Details = ({ type }) => {
     const { id } = useParams();
@@ -99,7 +98,7 @@ const Details = ({ type }) => {
         };
 
         const loadSong = async () => {
-            const songData = await axios.get(`https://saavn.me/songs?id=${id}`);
+            const songData = await axios.get(`${apiWebsite}/songs?id=${id}`);
             setDetails({
                 ...songData.data.data[0],
                 songs: [],
@@ -107,7 +106,7 @@ const Details = ({ type }) => {
                 totalDuration: songData.data.data[0].duration,
             });
 
-            const albumData = await axios.get(`https://saavn.me/albums?id=${songData.data.data[0].album.id}`);
+            const albumData = await axios.get(`${apiWebsite}/albums?id=${songData.data.data[0].album.id}`);
             setSongs(albumData.data.data.songs);
             setTimeout(() => {
                 setLoading(false);
