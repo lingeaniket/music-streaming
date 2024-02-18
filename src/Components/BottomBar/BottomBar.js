@@ -1,9 +1,8 @@
-import React, { useState, memo } from "react";
+import { useState, memo } from "react";
 import { useNavigate } from "react-router-dom";
-import "./bottomBar.css";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import "./bottomBar.css";
 
 import LibrarryDiv from "./LibrarryDiv";
 import Library from "../Icons/Library/Library";
