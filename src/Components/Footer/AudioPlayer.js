@@ -13,6 +13,7 @@ import { apiWebsite } from "../../apiWeb";
 
 const AudioPlayer = () => {
     const dispatch = useDispatch();
+    const isLoop = useSelector((state) => state.player.isLoop);
     const isPlaying = useSelector((state) => state.player.isPlaying);
     const selectedSong = useSelector((state) => state.player.currentSong);
 
@@ -127,7 +128,7 @@ const AudioPlayer = () => {
                     </div>
                 </div>
             </div>
-            <ReactAudioPlayer volume={volume} id="audio-player" ref={audioRef} src={currentSong} onEnded={handleSongEnd} />
+            <ReactAudioPlayer volume={volume} id="audio-player" loop={isLoop} ref={audioRef} src={currentSong} onEnded={handleSongEnd} />
             <AudioTab
                 audioRef={audioRef}
                 currentSong={currentSong}
