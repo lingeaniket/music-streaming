@@ -105,6 +105,11 @@
     opacity: 0.6;
 }
 
+.audio-player09 > button:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
 .audio-player10 {
     padding: 10px;
 }
