@@ -1,14 +1,16 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// eslint-disable-next-line
 import { faBackwardStep, faForwardStep, faPause, faPlay, faRepeat, faShuffle } from "@fortawesome/free-solid-svg-icons";
 
+
 import { formatTime } from "../../commonFunctions.js";
-import { playNextSong, playPrevSong } from "../../../Features/musicPlayerSlice.js";
+import { handleLoop, playNextSong, playPrevSong } from "../../../Features/musicPlayerSlice.js";
 
 const AudioTab = ({ audioRef, currentTime, togglePlay, handleInputSeekChange, handleInputSeek }) => {
     const dispatch = useDispatch();
+    const isLoop = useSelector((state) => state.player.isLoop);
     const isPlaying = useSelector((state) => state.player.isPlaying);
     const currentSongIndex = useSelector((state) => state.player.songIndex);
 
@@ -20,6 +22,10 @@ const AudioTab = ({ audioRef, currentTime, togglePlay, handleInputSeekChange, ha
         dispatch(playPrevSong());
     };
 
+    const handleRepeat = ()=>{
+        dispatch(handleLoop());
+    }
+
     return (
         <div className="audio-player06 w-40">
             <div>
@@ -27,9 +33,9 @@ const AudioTab = ({ audioRef, currentTime, togglePlay, handleInputSeekChange, ha
                     <div className="app02 app01">
                         <div className="audio-player08 app01">
                             <div className="audio-player09 audio-player12 app01 app02">
-                                {/* <button>
-                                    <FontAwesomeIcon icon={faRepeat} size="xl" style={{ color: "#ffffff" }} />
-                                </button> */}
+                                <button onClick={handleRepeat}>
+                                    <FontAwesomeIcon icon={faRepeat} size="xl" style={{ color: isLoop ? "green" : "white" }} />
+                                </button>
                             </div>
                             <div className="audio-player09 audio-player12 app01 app02">
                                 <button disabled={currentSongIndex === 0} onClick={handlePrevSong}>
@@ -53,9 +59,9 @@ const AudioTab = ({ audioRef, currentTime, togglePlay, handleInputSeekChange, ha
                             </div>
 
                             <div className="audio-player09 audio-player12 app01 app02">
-                                {/* <button>
+                                <button disabled={true}>
                                     <FontAwesomeIcon icon={faShuffle} size="xl" style={{ color: "#ffffff" }} />
-                                </button> */}
+                                </button>
                             </div>
                         </div>
                     </div>
