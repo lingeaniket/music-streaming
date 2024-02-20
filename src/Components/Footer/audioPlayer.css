@@ -103,6 +103,7 @@
 
 .audio-player09 > button:hover {
     opacity: 0.6;
+    
 }
 
 .audio-player09 > button:disabled {

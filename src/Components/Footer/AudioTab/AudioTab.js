@@ -62,6 +62,7 @@ const AudioTab = ({ audioRef, currentTime, togglePlay, handleInputSeekChange, ha
                                 <button disabled={true}>
                                     <FontAwesomeIcon icon={faShuffle} size="xl" style={{ color: "#ffffff" }} />
                                 </button>
+                                
                             </div>
                         </div>
                     </div>
