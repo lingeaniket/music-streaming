@@ -54,12 +54,9 @@ export async function addToQueue() {
     const { id, type } = this;
     if (id && type) {
         let songArray = [];
-        if (type === "album" || type === "playlist") {
-            const albumData = await axios.get(`${apiWebsite}/${type}s?id=${id}`);
+        if (type === "album" || type === "playlist" || type === "song") {
+            const albumData = await axios.get(`${apiWebsite}/${type}?id=${id}`);
             songArray = albumData.data.data.songs;
-        } else if (type === "song") {
-            const songData = await axios.get(`${apiWebsite}/songs?id=${id}`);
-            songArray = songData.data.data;
         } else if (type === "my-plylist") {
             const data = localStorage.getItem("my-playlists") ? JSON.parse(localStorage.getItem("my-playlists")) : [];
             const prevSongs = data.filter((playlist, idx) => {
