@@ -33,11 +33,8 @@ const NewPlaylist = () => {
         const currentid = this.id;
         const type = currentData.type;
         if (type === "album" || type === "playlist") {
-            const data = await axios.get(`${apiWebsite}/${type}s?id=${currentData.id}`);
+            const data = await axios.get(`${apiWebsite}/${type}?id=${currentData.id}`);
             dispatch(addSongsToPlaylist({ id: currentid, songs: data.data.data.songs }));
-        } else if (type === "song") {
-            const data = await axios.get(`${apiWebsite}/songs?id=${currentData.id}`);
-            dispatch(addSongsToPlaylist({ id: currentid, songs: data.data.data }));
         } else if (type === "my-playlist") {
             dispatch(
                 addSongsToPlaylist({

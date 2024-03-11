@@ -22,8 +22,8 @@ const PlaylistItem = ({ playlist, handleClose }) => {
             const imgData = [];
             for (let i = 0; i < 4; i++) {
                 if (playlist.songs[i]) {
-                    const data = await axios.get(`${apiWebsite}/songs?id=${playlist.songs[i]}`);
-                    imgData.push(data.data.data[0]);
+                    const data = await axios.get(`${apiWebsite}/song?id=${playlist.songs[i]}`);
+                    imgData.push(data.data.data.songs[0]);
                 }
             }
 
