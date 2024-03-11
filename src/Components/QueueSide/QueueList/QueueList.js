@@ -11,8 +11,8 @@ const QueueList = ({ item }) => {
 
     useEffect(() => {
         const loadData = async (id) => {
-            const data = await axios.get(`${apiWebsite}/songs?id=${id}`);
-            setSongData(data.data.data[0]);
+            const data = await axios.get(`${apiWebsite}/song?id=${id}`);
+            setSongData(data.data.data.songs[0]);
         };
 
         if (item) {

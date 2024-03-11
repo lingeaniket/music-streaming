@@ -31,9 +31,9 @@ const QueueSide = () => {
 
     useEffect(() => {
         const loadCurrentSong = async (id) => {
-            const data = await axios.get(`${apiWebsite}/songs?id=${id}`);
+            const data = await axios.get(`${apiWebsite}/song?id=${id}`);
 
-            setCurrentSongDetails(data.data.data[0]);
+            setCurrentSongDetails(data.data.data.songs[0]);
         };
 
         if (currentSong !== 0) {
