@@ -98,9 +98,9 @@ const AudioPlayer = () => {
 
     useEffect(() => {
         const loadData = async (id) => {
-            const data = await axios.get(`${apiWebsite}/songs?id=${id}`);
-            const curSong = data.data.data[0];
-            setCurrentSong(curSong.downloadUrl[4].link);
+            const data = await axios.get(`${apiWebsite}/song?id=${id}`);
+            const curSong = data.data.data.songs[0];
+            setCurrentSong(curSong.download_url[4].link);
             setCurrentSongDetails(curSong);
             setTimeout(() => {
                 audioRef.current.audioEl.current.play();
