@@ -17,10 +17,10 @@ const LandingPage = () => {
         const loadData = async () => {
             await axios.get(`${apiWebsite}/modules?language=${selectedLang.toString()}`).then((response) => {
                 const musicData = response.data.data;
-                setTrending(musicData.trending);
-                setAlbums(musicData.albums);
-                setCharts(musicData.charts);
-                setPlaylists(musicData.playlists);
+                setTrending(musicData.trending.data);
+                setAlbums(musicData.albums.data);
+                setCharts(musicData.charts.data);
+                setPlaylists(musicData.playlists.data);
             });
         };
 

@@ -31,7 +31,7 @@ const Search = () => {
     const loadSearchingData = async (key) => {
         const newKey = key.replaceAll(" ", "+");
         if (newKey) {
-            const data = await axios.get(`${apiWebsite}/search/all?query=${newKey}`);
+            const data = await axios.get(`${apiWebsite}/search?query=${newKey}`);
             setSearchData(data.data.data);
         } else {
             setSearchData({});

@@ -43,10 +43,10 @@ const Options = ({ liked, data, handleLike, setoptions, playlist }) => {
             dispatch(addSongsToPlaylist({ id: currentid, songs: data.songs }));
         } else {
             if (type === "album" || type === "playlist") {
-                const data = await axios.get(`${apiWebsite}/${type}s?id=${id}`);
+                const data = await axios.get(`${apiWebsite}/${type}?id=${id}`);
                 dispatch(addSongsToPlaylist({ id: currentid, songs: data.data.data.songs }));
             } else if (type === "song") {
-                const data = await axios.get(`${apiWebsite}/songs?id=${id}`);
+                const data = await axios.get(`${apiWebsite}/song?id=${id}`);
                 dispatch(addSongsToPlaylist({ id: currentid, songs: data.data.data }));
             }
             dispatch(updateCurrentdata(""));
