@@ -1,5 +1,5 @@
 .detail-01 {
-    margin-top: 66px;
+    margin: 66px 44px 0 44px;
 }
 
 .detail-02 {
@@ -107,6 +107,10 @@
     .detail-02 > .app01 {
         flex-direction: column;
         align-items: center;
+    }
+
+    .detail-01 {
+        margin: 66px 22px 0 22px;
     }
 
     .detail-04 {
