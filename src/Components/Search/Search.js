@@ -31,7 +31,7 @@ const Search = () => {
     const loadSearchingData = async (key) => {
         const newKey = key.replaceAll(" ", "+");
         if (newKey) {
-            const data = await axios.get(`${apiWebsite}/search?query=${newKey}`);
+            const data = await axios.get(`https://saavn.dev/api/search?query=${newKey}`);
             setSearchData(data.data.data);
         } else {
             setSearchData({});
@@ -68,8 +68,8 @@ const Search = () => {
 
     useEffect(() => {
         const loadTrend = async () => {
-            const data = await axios.get("https://music-streaming-api.onrender.com/api/v1/music/get-topSearch");
-            setTopSearch(data.data);
+            const data = await axios.get(`${apiWebsite}/search/top`);
+            setTopSearch(data.data.data);
         };
         loadTrend();
     }, []);
@@ -103,7 +103,7 @@ const Search = () => {
 
                                 <div className="w-100 app01 pRel srch12">
                                     <div className="w-40 srch07">
-                                        <img src={data.image[2].link} alt="" className="srch08" />
+                                        <img src={data.image[2].url} alt="" className="srch08" />
                                     </div>
                                     <div className="srch09">
                                         <h2 className="w-100 srch10">{data.title}</h2>
@@ -128,7 +128,7 @@ const Search = () => {
                                 </div>
                             </div>
                             {searchData?.songs?.results?.map((song, index) => (
-                                <SongList song={song} index={index} type="song" mode="search" />
+                                <SongList key={index} song={song} index={index} type="song" mode="search" />
                             ))}
                         </div>
                     </div>
@@ -151,7 +151,7 @@ const Search = () => {
                                     </div>
                                     <div className="app01 srch16">
                                         {searchData[`${type}s`]?.results?.map((album) => (
-                                            <ListItem data={album} />
+                                            <ListItem data={album} key={album.id} />
                                         ))}
                                     </div>
                                 </div>

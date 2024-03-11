@@ -68,7 +68,7 @@ const ViewAll = () => {
             <div className="vAll002">
                 <div className="vAll005 app06">
                     {["playlist", "song", "album", "artist"].map((mode) => (
-                        <div className="vAll006">
+                        <div className="vAll006" key={mode}>
                             <div
                                 className="vAll007 app06"
                                 style={{
@@ -104,63 +104,61 @@ const ViewAll = () => {
                     </div>
                 </div>
             )}
-            <div className="vAll014">
-                <div className="vAll009 app05">
-                    {totalPages > 1 && (
-                        <>
-                            <div className="vAll010">
-                                <button
-                                    className="vAll011 app05"
-                                    disabled={page === 1}
-                                    onClick={() => {
-                                        handleButtonPage(1);
-                                    }}
-                                >
-                                    First
-                                </button>
-                            </div>
-                            <div className="vAll010">
-                                <button className="vAll011 app05" onClick={handlePrev} disabled={page === 1}>
-                                    Prev
-                                </button>
-                            </div>
-                            {Array.from({ length: totalPages }).map((value, index, arr) => {
-                                if (
-                                    index === 0 ||
-                                    (index + 1 >= page - 4 && index + 1 <= page + 4) ||
-                                    index === arr.length - 1 ||
-                                    page === index
-                                ) {
-                                    return <PageButton key={index} page={page} index={index} handleButtonPage={handleButtonPage} />;
-                                } else if (index + 1 === Math.floor(page - 5) || index + 1 === Math.floor(page + 5)) {
-                                    return (
-                                        <div className="vAll012 app05">
-                                            <FontAwesomeIcon icon={faEllipsis} size="sm" style={{ color: "#ffffff" }} />
-                                        </div>
-                                    );
-                                }
-                                return <></>;
-                            })}
-                            <div className="vAll010">
-                                <button className="vAll011 app05" onClick={handleNext} disabled={page === totalPages}>
-                                    Next
-                                </button>
-                            </div>
-                            <div className="vAll010">
-                                <button
-                                    className="vAll011 app05"
-                                    disabled={page === totalPages}
-                                    onClick={() => {
-                                        handleButtonPage(totalPages);
-                                    }}
-                                >
-                                    Last
-                                </button>
-                            </div>
-                        </>
-                    )}
+            {totalPages > 1 && (
+                <div className="vAll014">
+                    <div className="vAll009 app05">
+                        <div className="vAll010">
+                            <button
+                                className="vAll011 app05"
+                                disabled={page === 1}
+                                onClick={() => {
+                                    handleButtonPage(1);
+                                }}
+                            >
+                                First
+                            </button>
+                        </div>
+                        <div className="vAll010">
+                            <button className="vAll011 app05" onClick={handlePrev} disabled={page === 1}>
+                                Prev
+                            </button>
+                        </div>
+                        {Array.from({ length: totalPages }).map((value, index, arr) => {
+                            if (
+                                index === 0 ||
+                                (index + 1 >= page - 4 && index + 1 <= page + 4) ||
+                                index === arr.length - 1 ||
+                                page === index
+                            ) {
+                                return <PageButton key={index} page={page} index={index} handleButtonPage={handleButtonPage} />;
+                            } else if (index + 1 === Math.floor(page - 5) || index + 1 === Math.floor(page + 5)) {
+                                return (
+                                    <div className="vAll012 app05" key={index}>
+                                        <FontAwesomeIcon icon={faEllipsis} size="sm" style={{ color: "#ffffff" }} />
+                                    </div>
+                                );
+                            }
+                            return <></>;
+                        })}
+                        <div className="vAll010">
+                            <button className="vAll011 app05" onClick={handleNext} disabled={page === totalPages}>
+                                Next
+                            </button>
+                        </div>
+                        <div className="vAll010">
+                            <button
+                                className="vAll011 app05"
+                                disabled={page === totalPages}
+                                onClick={() => {
+                                    handleButtonPage(totalPages);
+                                }}
+                            >
+                                Last
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 };

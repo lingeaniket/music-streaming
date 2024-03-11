@@ -95,7 +95,7 @@ const ListItem = ({ data }) => {
                             height={"100%"}
                             width={"100%"}
                             loading="lazy"
-                            src={Array.isArray(data?.image) ? data?.image[1].link : data.image}
+                            src={Array.isArray(data?.image) ? (data?.image[1].link ? data?.image[1].link : data?.image[1].url) : data.image}
                             alt=""
                         />
                     </div>

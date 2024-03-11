@@ -21,6 +21,7 @@
     border-radius: 8px;
     width: 350px;
     overflow: hidden;
+    z-index: 1;
     overflow-y: scroll;
 }
 

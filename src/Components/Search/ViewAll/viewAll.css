@@ -91,7 +91,7 @@ button.vAll011:disabled {
 .vAll014 {
     position: sticky;
     z-index: 15;
-    bottom: 0;
+    bottom: -2px;
     left: 0;
     right: 0;
     /* width: calc(100% - 350px); */

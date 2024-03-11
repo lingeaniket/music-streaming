@@ -127,7 +127,7 @@ const SongList = ({ song, index, type, mode, queue, isDragging, myPlaylist }) =>
             <div className="song-list-02 app05">
                 <div className="song-list-15">
                     <img
-                        src={song.image ? song.image[0].link : ""}
+                        src={song.image ? (song.image[0].link ? song.image[0].link : song.image[0].url) : ""}
                         alt=""
                         style={{
                             borderRadius: "4px",
