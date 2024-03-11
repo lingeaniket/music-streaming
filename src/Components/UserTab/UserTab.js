@@ -90,8 +90,8 @@ const UserTab = () => {
                 const imgData = [];
                 for (let i = 0; i < 4; i++) {
                     if (isAvail.songs[i]) {
-                        const data = await axios.get(`${apiWebsite}/songs?id=${isAvail.songs[i]}`);
-                        imgData.push(data.data.data[0]);
+                        const data = await axios.get(`${apiWebsite}/song?id=${isAvail.songs[i]}`);
+                        imgData.push(data.data.data.songs[0]);
                     }
                 }
                 setImageData(imgData);

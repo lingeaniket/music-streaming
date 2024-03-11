@@ -23,6 +23,7 @@ const Details = ({ type }) => {
     const likedData = useSelector((state) => state.user.liked);
 
     const [songs, setSongs] = useState([]);
+    const [modules, setModules] = useState({});
     const [liked, setLiked] = useState(false);
     const [details, setDetails] = useState({});
     const [loading, setLoading] = useState(true);
@@ -41,7 +42,7 @@ const Details = ({ type }) => {
 
     const findPlays = (songs) => {
         const plays = songs.reduce((acc, song) => {
-            return acc + Number(song.playCount);
+            return acc + Number(song.play_count);
         }, 0);
         return plays;
     };
@@ -84,13 +85,14 @@ const Details = ({ type }) => {
 
     useEffect(() => {
         const loadAlbum = async (type) => {
-            const albumData = await axios.get(`${apiWebsite}/${type}s?id=${id}`);
+            const albumData = await axios.get(`${apiWebsite}/${type}?id=${id}`);
             setDetails({
                 ...albumData.data.data,
                 songs: [],
                 totalPlays: findPlays(albumData.data.data.songs),
                 totalDuration: findDuration(albumData.data.data.songs),
             });
+            setModules(albumData.data.data.modules);
             setSongs(albumData.data.data.songs);
             setTimeout(() => {
                 setLoading(false);
@@ -98,15 +100,16 @@ const Details = ({ type }) => {
         };
 
         const loadSong = async () => {
-            const songData = await axios.get(`${apiWebsite}/songs?id=${id}`);
+            const songData = await axios.get(`${apiWebsite}/song?id=${id}`);
             setDetails({
-                ...songData.data.data[0],
+                ...songData.data.data.songs[0],
                 songs: [],
-                totalPlays: songData.data.data[0].playCount,
-                totalDuration: songData.data.data[0].duration,
+                totalPlays: songData.data.data.songs[0].playCount,
+                totalDuration: songData.data.data.songs[0].duration,
             });
+            setModules(songData.data.data.modules);
 
-            const albumData = await axios.get(`${apiWebsite}/albums?id=${songData.data.data[0].album.id}`);
+            const albumData = await axios.get(`${apiWebsite}/album?id=${songData.data.data.songs[0].album_id}`);
             setSongs(albumData.data.data.songs);
             setTimeout(() => {
                 setLoading(false);
@@ -140,28 +143,50 @@ const Details = ({ type }) => {
                             <div className="detail-04">
                                 <img src={details.image ? details?.image[2]?.link : ""} alt="" />
                             </div>
-                            <div>
+                            <div
+                                style={{
+                                    width: "calc(100% - 224px)",
+                                }}
+                            >
                                 <h1 className="detail-05">{convertName(details.name)}</h1>
                                 <div className="detail-06 app06">
-                                    <span>by {convertName(details.primaryArtists)}</span>
+                                    <span
+                                        style={{
+                                            whiteSpace: "nowrap",
+                                        }}
+                                    >
+                                        by {convertName(details.subtitle)}
+                                    </span>
                                     <span className="detail-07 app05">
                                         <FontAwesomeIcon icon={faCircle} size="2xs" style={{ color: "#ffffff", fontSize: "3px" }} />
                                     </span>
                                     {type !== "song" && (
                                         <>
-                                            <span>{details.songCount} Songs</span>
+                                            <span
+                                                style={{
+                                                    whiteSpace: "nowrap",
+                                                }}
+                                            >
+                                                {details.song_count} Songs
+                                            </span>
                                             <span className="detail-07 app05">
                                                 <FontAwesomeIcon icon={faCircle} size="2xs" style={{ color: "#ffffff", fontSize: "3px" }} />
                                             </span>
                                         </>
                                     )}
-                                    <span>{details?.totalPlays?.toLocaleString()} Plays</span>
+                                    <span
+                                        style={{
+                                            whiteSpace: "nowrap",
+                                        }}
+                                    >
+                                        {details?.totalPlays?.toLocaleString()} Plays
+                                    </span>
                                     <span className="detail-07 app05">
                                         <FontAwesomeIcon icon={faCircle} size="2xs" style={{ color: "#ffffff", fontSize: "3px" }} />
                                     </span>
                                     <span>{formatTime(details.totalDuration)}</span>
                                 </div>
-                                <p className="detail-08">{songs[0]?.copyright}</p>
+                                <p className="detail-08">{details.copyright_text}</p>
                                 <div className="detail-09 app01">
                                     <div className="detail-10" onClick={handlePlay}>
                                         <button>Play</button>
@@ -222,13 +247,13 @@ const Details = ({ type }) => {
                         </div>
                     )}
 
-                    {type === "song" && <MightLike type={type} mode="YML" details={details} />}
-                    {type === "song" && <MightLike type={type} mode="TSOSAr" details={details} />}
+                    {type === "song" && <MightLike type={type} mode="YML" details={modules.recommend} />}
+                    {/* {type === "song" && <MightLike type={type} mode="TSOSAr" details={modules.songs_by_same_artists} />} */}
 
-                    {type === "album" && <MightLike type={type} mode="YML" details={songs[0]} />}
-                    {type === "album" && <MightLike type={type} mode="TAOSY" details={songs[0]} />}
+                    {type === "album" && <MightLike type={type} mode="YML" details={modules.recommend} />}
+                    {type === "album" && <MightLike type={type} mode="TAOSY" details={modules.top_albums_from_same_year} />}
 
-                    {type === "playlist" && <MightLike type={type} mode="RP" details={songs[0]} />}
+                    {type === "playlist" && <MightLike type={type} mode="RP" />}
                 </>
             )}
         </div>

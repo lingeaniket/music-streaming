@@ -13,7 +13,8 @@ const MightLike = ({ type, mode, details }) => {
 
     useEffect(() => {
         const loadAlbumData = async () => {
-            const apiData = await loadAData(mode, id, details?.language, details?.year);
+            const apiData = await loadAData(mode, id, details);
+            console.log(apiData);
             setData(apiData);
         };
 
@@ -23,7 +24,7 @@ const MightLike = ({ type, mode, details }) => {
         };
 
         const loadSongData = async () => {
-            const apiData = await loadSData(mode, details?.primaryArtistsId, details?.language, id, details?.album?.id, details?.year);
+            const apiData = await loadSData(mode, id, details);
             setData(apiData);
         };
 
@@ -37,7 +38,7 @@ const MightLike = ({ type, mode, details }) => {
             }
         }
         // eslint-disable-next-line
-    }, [type, id, details?.year]);
+    }, [type, id, details?.params]);
     return (
         <div className="app08 detail-12">
             {data.length > 0 && (

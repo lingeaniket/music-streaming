@@ -11,7 +11,7 @@ const SongListMain = ({ id, index }) => {
 
     useEffect(() => {
         const loadData = async () => {
-            const data = await axios.get(`${apiWebsite}/songs?id=${id}`);
+            const data = await axios.get(`${apiWebsite}/song?id=${id}`);
             setCurrentSong(data.data.data[0]);
         };
         loadData();

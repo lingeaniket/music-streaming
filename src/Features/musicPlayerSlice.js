@@ -23,7 +23,7 @@ export const playerSlice = createSlice({
         addSongToQueue: (state, action) => {
             state.songQueue.push(action.payload.song);
         },
-        handleLoop : (state, action) => {
+        handleLoop: (state, action) => {
             state.isLoop = !state.isLoop;
         },
         playAlbum: (state, action) => {
@@ -116,7 +116,7 @@ export const {
     addAutoPlay,
     toggleQueue,
     toggleIsPlaying,
-    handleLoop
+    handleLoop,
 } = playerSlice.actions;
 
 export default playerSlice.reducer;

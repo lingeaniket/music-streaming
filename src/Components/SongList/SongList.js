@@ -75,21 +75,14 @@ const SongList = ({ song, index, type, mode, queue, isDragging, myPlaylist }) =>
     const handleSongPlay = async () => {
         if (type === "album") {
             if (mode === "moreAlbumSongs") {
-                const albumSongsData = await axios.get(`${apiWebsite}/albums?id=${song.album.id}`);
+                const albumSongsData = await axios.get(`${apiWebsite}/album?id=${song.album.id}`);
                 const albumData = albumSongsData.data.data;
                 const playerData = {
                     song: song.id,
                     playlist: [song.id, ...albumData.songs.filter((val) => val.id !== song.id).map((val) => val.id)],
                 };
 
-                // const entities = albumData.songs.map((song) => {
-                //     return `%22${song.id}%22`;
-                // });
-
-                // const stationQueue = await axios.get(`https://music-streaming-api.onrender.com/api/v1/music/autoPlay?entityId=${JSON.stringify(entities)}`);
-
                 dispatch(playAlbum(playerData));
-                // dispatch(addAutoPlay(stationQueue))
             } else {
                 const playerData = {
                     song: song.id,
