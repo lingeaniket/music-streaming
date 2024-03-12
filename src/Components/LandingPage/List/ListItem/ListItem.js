@@ -25,6 +25,7 @@ const ListItem = ({ data }) => {
     const handleOptions = (event) => {
         event.stopPropagation();
         closeForceOptions();
+        
 
         const { top, right } = event.target.parentNode.getBoundingClientRect();
         const parent = event.target.closest(".options");
