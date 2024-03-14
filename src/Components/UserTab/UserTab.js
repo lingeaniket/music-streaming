@@ -78,6 +78,7 @@ const UserTab = () => {
         const isAvail = playlists.filter((list) => list.id === Number(id))[0];
         if (isAvail) {
             setCurrentSongs(isAvail.songs.slice(0, currentLoad));
+            console.log(isAvail.songs.slice(0, currentLoad))
         }
         // eslint-disable-next-line
     }, [currentLoad, id, playlists]);
@@ -86,6 +87,7 @@ const UserTab = () => {
         const loadData = async () => {
             const isAvail = playlists.filter((list) => list.id === Number(id))[0];
             if (isAvail) {
+                // console.log({...isAvail, type: "my-playlist"})
                 setCurrentList({ ...isAvail, type: "my-playlist" });
                 const imgData = [];
                 for (let i = 0; i < 4; i++) {
