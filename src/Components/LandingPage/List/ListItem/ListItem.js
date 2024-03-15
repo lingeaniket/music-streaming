@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState, memo } from "react";
 
-import { getPlayListData } from "../listFunctions";
+import { getArtists, getPlayListData } from "../listFunctions";
 import { playAlbum } from "../../../../Features/musicPlayerSlice";
 import { addLiked, removeLiked } from "../../../../Features/userSlice";
 import { closeForceOptions, convertName } from "../../../commonFunctions";
@@ -25,7 +25,6 @@ const ListItem = ({ data }) => {
     const handleOptions = (event) => {
         event.stopPropagation();
         closeForceOptions();
-        
 
         const { top, right } = event.target.parentNode.getBoundingClientRect();
         const parent = event.target.closest(".options");
@@ -137,33 +136,7 @@ const ListItem = ({ data }) => {
                 </div>
                 <div>
                     <h4 className="listTitle">{data.name ? convertName(data.name) : data.title ? convertName(data.title) : ""}</h4>
-                    <p className="listTitle">
-                        {convertName(
-                            Array.isArray(data.primaryArtists) && data?.primaryArtists.length > 0
-                                ? data?.primaryArtists
-                                      .map((artist, id, arr) => {
-                                          if (id === arr.length - 1) {
-                                              return artist.name;
-                                          } else {
-                                              return `${artist.name}, `;
-                                          }
-                                      })
-                                      .toString()
-                                : Array.isArray(data.artists) && data.artists.length > 0
-                                ? data?.artists
-                                      .map((artist, id, arr) => {
-                                          if (id === arr.length - 1) {
-                                              return artist.name;
-                                          } else {
-                                              return `${artist.name}, `;
-                                          }
-                                      })
-                                      .toString()
-                                : data.primaryArtists
-                                ? data.primaryArtists
-                                : data.subtitle
-                        )}
-                    </p>
+                    <p className="listTitle">{convertName(getArtists(data))}</p>
                 </div>
             </div>
         </div>

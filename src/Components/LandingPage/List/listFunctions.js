@@ -31,3 +31,29 @@ export const getPlayListData = async (data, type) => {
         return playerData;
     }
 };
+
+export const getArtists = (data) => {
+    return Array.isArray(data.primaryArtists) && data?.primaryArtists.length > 0
+        ? data?.primaryArtists
+              .map((artist, id, arr) => {
+                  if (id === arr.length - 1) {
+                      return artist.name;
+                  } else {
+                      return `${artist.name}, `;
+                  }
+              })
+              .toString()
+        : Array.isArray(data.artists) && data.artists.length > 0
+        ? data?.artists
+              .map((artist, id, arr) => {
+                  if (id === arr.length - 1) {
+                      return artist.name;
+                  } else {
+                      return `${artist.name}, `;
+                  }
+              })
+              .toString()
+        : data.primaryArtists
+        ? data.primaryArtists
+        : data.subtitle;
+};
