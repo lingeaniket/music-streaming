@@ -12,11 +12,6 @@ const LandingPage = () => {
     const [loadingData, setLoadingData] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    const [charts, setCharts] = useState([]);
-    const [albums, setAlbums] = useState([]);
-    const [trending, setTrending] = useState({});
-    const [playlists, setPlaylists] = useState([]);
-
     useEffect(() => {
         const loadData = async () => {
             await axios.get(`${apiWebsite}/modules?language=${selectedLang.toString()}`).then((response) => {
