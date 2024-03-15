@@ -9,7 +9,7 @@ const LibraryList = ({ id, mode }) => {
 
     useEffect(() => {
         const loadData = async () => {
-            const data = await axios.get(`${apiWebsite}/${mode}s?id=${id}`);
+            const data = await axios.get(`${apiWebsite}/${mode}?id=${id}`);
             mode === "song" ? setCurrentData(data.data.data[0]) : setCurrentData(data.data.data);
         };
         loadData();

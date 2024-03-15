@@ -42,7 +42,7 @@ const Library = () => {
             setCurrentSongs(liked[mode + "s"]);
         }
         // eslint-disable-next-line
-    }, [mode]);
+    }, [mode, liked]);
 
     useEffect(() => {
         const isAvail = type === "history" ? history : liked;
