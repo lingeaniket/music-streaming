@@ -26,7 +26,6 @@ const LandingPage = () => {
                     .map((key) => musicData[key])
                     .filter((item) => item.title && ["album", "playlist", "chart", "song"].includes(item.data[0].type));
                 setLoadingData(sortedArray);
-                console.log(sortedArray);
                 setLoading(false);
             });
         };

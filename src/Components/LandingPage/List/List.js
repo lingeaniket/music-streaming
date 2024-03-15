@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { Fragment, memo } from "react";
 import "./list.css";
 
 import ListItem from "./ListItem/ListItem";
@@ -6,11 +6,11 @@ import ListItem from "./ListItem/ListItem";
 const List = ({ data }) => {
     return (
         <div className="list01 app01 list10">
-            {data?.map((val, i) => {
-                if (["album", "playlist", "chart", "song"].includes(val.type)) {
-                    return <ListItem key={i} data={val} />;
+            {data?.map((item, i) => {
+                if (["album", "playlist", "chart", "song"].includes(item.type)) {
+                    return <ListItem key={item.id + i} data={item} />;
                 }
-                return <></>;
+                return <Fragment key={item.id + i}></Fragment>;
             })}
         </div>
     );
