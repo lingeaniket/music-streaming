@@ -12,9 +12,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { addLiked, removeLiked } from "../../Features/userSlice.js";
 import { removeSongsFromPlaylist } from "../../Features/newPlaylistSlice.js";
 
-import Options from "../Options/Options.js";
 import Equilizer from "../Icons/Equilizer/Equilizer.js";
 import { apiWebsite } from "../../apiWeb.js";
+import { setOptions } from "../../Features/optionSlice.js";
 
 const SongList = ({ song, index, type, mode, queue, isDragging, myPlaylist }) => {
     const { id } = useParams();
@@ -23,6 +23,8 @@ const SongList = ({ song, index, type, mode, queue, isDragging, myPlaylist }) =>
 
     const likedData = useSelector((state) => state.user.liked);
     const isPlaying = useSelector((state) => state.player.isPlaying);
+    const optionOpened = useSelector((state) => state.option.optionOpened);
+
     const currentSong = useSelector((state) => state.player.currentSong);
 
     const [liked, setLiked] = useState(false);
@@ -30,25 +32,34 @@ const SongList = ({ song, index, type, mode, queue, isDragging, myPlaylist }) =>
     const [currentPlaying, setCurrentPlaying] = useState(false);
 
     const handleOptions = (event) => {
-        const { top, right } = event.target.parentNode.getBoundingClientRect();
-        const parent = event.target.closest(".options");
+        const parentDiv = document.getElementById("options-container");
+        const optionContiner = document.getElementById("options-main-container");
+        const parentRect = parentDiv.getBoundingClientRect();
+        const { top, right, left } = event.target.parentNode.getBoundingClientRect();
 
-        const option = parent.querySelector(".options01");
+        const relativeLeft = left - parentRect.left + parentDiv.scrollLeft;
+        const relativeTop = top - parentRect.top + parentDiv.scrollTop;
 
         if (top > window.innerHeight / 2) {
-            option.style.bottom = "10%";
+            optionContiner.style.top = relativeTop - 155 + "px";
         } else {
-            option.style.top = "100%";
+            optionContiner.style.top = relativeTop + 20 + "px";
         }
 
         if (right < window.innerWidth / 2) {
-            option.style.left = "25%";
+            optionContiner.style.left = relativeLeft + 20 + "px";
         } else {
-            option.style.right = "10%";
+            optionContiner.style.left = relativeLeft - 130 + "px";
         }
-
         setTimeout(() => {
-            setoptions(true);
+            dispatch(
+                setOptions({
+                    open: true,
+                    data: song,
+                    playlist: myPlaylist,
+                    // currentEvent: event
+                })
+            );
         }, 0);
     };
 
@@ -111,7 +122,7 @@ const SongList = ({ song, index, type, mode, queue, isDragging, myPlaylist }) =>
     useEffect(() => {
         setLiked(likedData[`${type}s`].findIndex((idx) => idx === song.id) > -1);
         // eslint-disable-next-line
-    }, [type, song]);
+    }, [type, song, likedData]);
 
     return (
         <div className={`song-list-01 app06 ${isDragging ? "song-dragging" : ""}`}>
@@ -177,23 +188,12 @@ const SongList = ({ song, index, type, mode, queue, isDragging, myPlaylist }) =>
                 <i className={`fa-${liked ? "solid liked-hrt" : "regular"} fa-heart fa-lg`}></i>
             </div>
             {mode !== "search" && (
-                <div className="song-list-07  pRel">
+                <div className="song-list-07  pRel" onClick={handleOptions}>
                     <div className="song-list-10 app05 h-100">{formatTime(Number(song.duration))}</div>
                     <div className="song-list-11 options app02">
-                        <button className="app05" onClick={handleOptions}>
+                        <button className="app05">
                             <FontAwesomeIcon icon={faEllipsis} size="lg" style={{ color: "#000000" }} />
                         </button>
-                        <div className="options01">
-                            {options && (
-                                <Options
-                                    liked={liked}
-                                    data={{ ...song, type: "song" }}
-                                    handleLike={handleLike}
-                                    options={options}
-                                    setoptions={setoptions}
-                                />
-                            )}
-                        </div>
                     </div>
                 </div>
             )}

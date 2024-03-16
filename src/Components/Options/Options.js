@@ -8,32 +8,45 @@ import { getPlayListData } from "../LandingPage/List/listFunctions";
 import { addSongsToQueue, playAlbum } from "../../Features/musicPlayerSlice";
 import { addSongsToPlaylist, openAddPlaylist, openPlaylist, updateCurrentdata } from "../../Features/newPlaylistSlice";
 import { apiWebsite } from "../../apiWeb";
+import { setOptions } from "../../Features/optionSlice";
+import { addLiked, removeLiked } from "../../Features/userSlice";
 
-const Options = ({ liked, data, handleLike, setoptions, playlist }) => {
+const Options = () => {
     const opref = useRef();
-
     const dispatch = useDispatch();
+
+    const likedData = useSelector((state) => state.user.liked);
+    const optionData = useSelector((state) => state.option.optionData);
     const myPlaylists = useSelector((state) => state.playlist.myPlaylists);
 
+    const [data, setData] = useState({});
     const [main, setMain] = useState(true);
+    const [liked, setLiked] = useState(false);
+    const [playlist, setPlaylist] = useState(false);
+
+    const handleLike = (event) => {
+        if (liked) {
+            dispatch(removeLiked({ id: data.id, type: data.type }));
+            // setLiked(false);
+        } else {
+            dispatch(addLiked({ id: data.id, type: data.type }));
+            // setLiked(true);
+        }
+        dispatch(setOptions(false));
+    };
 
     const handleAddToQueue = async () => {
-        setoptions(false);
+        dispatch(setOptions(false));
         const queueFunction = addToQueue.bind({ id: data.id, type: data.type });
         const songs = await queueFunction();
         dispatch(addSongsToQueue({ songs }));
-    };
-
-    const handleLiked = (e) => {
-        setoptions(false);
-        handleLike(e);
     };
 
     const playCategory = async (event) => {
         event.stopPropagation();
         const playerData = await getPlayListData(data, data.type);
         dispatch(playAlbum(playerData));
-        setoptions(false);
+        dispatch(setOptions({ open: false }));
     };
 
     async function handleAddToPlaylist() {
@@ -42,15 +55,15 @@ const Options = ({ liked, data, handleLike, setoptions, playlist }) => {
         if (playlist) {
             dispatch(addSongsToPlaylist({ id: currentid, songs: data.songs }));
         } else {
-            if (type === "album" || type === "playlist") {
-                const data = await axios.get(`${apiWebsite}/${type}?id=${id}`);
-                dispatch(addSongsToPlaylist({ id: currentid, songs: data.data.data.songs }));
-            } else if (type === "song") {
-                const data = await axios.get(`${apiWebsite}/song?id=${id}`);
-                dispatch(addSongsToPlaylist({ id: currentid, songs: data.data.data }));
-            }
+            // if (type === "album" || type === "playlist") {
+            const data = await axios.get(`${apiWebsite}/${type}?id=${id}`);
+            dispatch(addSongsToPlaylist({ id: currentid, songs: data.data.data.songs }));
+            // } else if (type === "song") {
+            //     const data = await axios.get(`${apiWebsite}/song?id=${id}`);
+            //     dispatch(addSongsToPlaylist({ id: currentid, songs: data.data.data.songs }));
+            // }
             dispatch(updateCurrentdata(""));
-            setoptions(false);
+            dispatch(setOptions({ open: false }));
         }
     }
 
@@ -64,12 +77,12 @@ const Options = ({ liked, data, handleLike, setoptions, playlist }) => {
 
     const handleClick = (e) => {
         if (opref.current && !opref.current.contains(e.target)) {
-            setoptions(false);
+            dispatch(setOptions(false));
         }
     };
 
     const handleOpenNew = () => {
-        setoptions(false);
+        dispatch(setOptions(false));
         setTimeout(() => {
             if (playlist) {
                 dispatch(updateCurrentdata({ ...data, type: "my-playlist" }));
@@ -89,17 +102,25 @@ const Options = ({ liked, data, handleLike, setoptions, playlist }) => {
         };
         // eslint-disable-next-line
     }, []);
+    useEffect(() => {
+        const { data, playlist } = optionData;
+        setData(data);
+        setPlaylist(playlist);
+        setLiked(likedData[`${data.type}s`].findIndex((idx) => idx === data.id) > -1);
+        // eslint-disable-next-line
+        console.log(optionData);
+    }, [optionData]);
     return (
         <div ref={opref} onClick={stayInModel} className="opt06">
             {main ? (
                 <>
                     {!playlist && (
-                        <div className="opt03" onClick={handleLiked}>
+                        <div className="opt03" onClick={handleLike}>
                             {liked ? "Remove from Library" : "Save to Library"}
                         </div>
                     )}
                     <div className="opt03 opt05" onClick={playCategory}>
-                        Play {data.type && data.type === "my-playlist" ? "Playlist" : data.type} Now
+                        Play {data?.data?.type && data.data.type === "my-playlist" ? "Playlist" : data.type} Now
                     </div>
                     <div className="opt03" onClick={handleAddToQueue}>
                         Add to Queue

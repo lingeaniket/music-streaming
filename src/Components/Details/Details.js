@@ -16,6 +16,7 @@ import SongList from "../SongList/SongList";
 import Options from "../Options/Options.js";
 import Loader from "../Icons/Loader/Loader.js";
 import MightLike from "../MightLike/MightLike.js";
+import { setOptions } from "../../Features/optionSlice.js";
 
 const Details = ({ type }) => {
     const { id } = useParams();
@@ -61,25 +62,34 @@ const Details = ({ type }) => {
     };
 
     const handleOptions = (event) => {
-        const { top, right } = event.target.parentNode.getBoundingClientRect();
-        const parent = event.target.closest(".options");
+        const parentDiv = document.getElementById("options-container");
+        const optionContiner = document.getElementById("options-main-container");
+        const parentRect = parentDiv.getBoundingClientRect();
+        const { top, right, left } = event.target.parentNode.getBoundingClientRect();
 
-        const option = parent.querySelector(".options01");
+        const relativeLeft = left - parentRect.left + parentDiv.scrollLeft;
+        const relativeTop = top - parentRect.top + parentDiv.scrollTop;
 
         if (top > window.innerHeight / 2) {
-            option.style.bottom = "10%";
+            optionContiner.style.top = relativeTop - 155 + "px";
         } else {
-            option.style.top = "100%";
+            optionContiner.style.top = relativeTop + 20 + "px";
         }
 
         if (right < window.innerWidth / 2) {
-            option.style.left = "25%";
+            optionContiner.style.left = relativeLeft + 20 + "px";
         } else {
-            option.style.right = "10%";
+            optionContiner.style.left = relativeLeft - 130 + "px";
         }
-
         setTimeout(() => {
-            setoptions(true);
+            dispatch(
+                setOptions({
+                    open: true,
+                    data: details,
+                    // playlist: myPlaylist,
+                    // currentEvent: event
+                })
+            );
         }, 0);
     };
 
@@ -123,10 +133,12 @@ const Details = ({ type }) => {
             } else if (type === "song") {
                 loadSong();
             }
-            setLiked(likedData[`${type}s`].findIndex((idx) => idx === id) > -1);
         }
         // eslint-disable-next-line
     }, [id, type]);
+    useEffect(() => {
+        setLiked(likedData[`${type}s`].findIndex((idx) => idx === id) > -1);
+    }, [id, type, likedData]);
 
     return (
         <div className="detail-01">
@@ -203,17 +215,6 @@ const Details = ({ type }) => {
                                         <button className="app05" onClick={handleOptions}>
                                             <FontAwesomeIcon icon={faEllipsis} size="2xl" style={{ color: "#ffffff" }} />
                                         </button>
-                                        <div className="options01">
-                                            {options && (
-                                                <Options
-                                                    liked={liked}
-                                                    data={details}
-                                                    handleLike={handleLike}
-                                                    options={options}
-                                                    setoptions={setoptions}
-                                                />
-                                            )}
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -222,7 +223,7 @@ const Details = ({ type }) => {
                     {type !== "song" ? (
                         <div className="detail-02">
                             {songs.map((song, index) => (
-                                <SongList key={song.id} song={song} index={index} type="album" queue={songs} />
+                                <SongList key={song.id} song={song} index={index} type="song" queue={songs} />
                             ))}
                         </div>
                     ) : (
@@ -238,7 +239,7 @@ const Details = ({ type }) => {
                                                 song={song}
                                                 mode="moreAlbumSongs"
                                                 index={index}
-                                                type="album"
+                                                type="song"
                                                 queue={songs}
                                             />
                                         ))}

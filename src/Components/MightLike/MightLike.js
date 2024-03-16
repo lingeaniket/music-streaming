@@ -14,7 +14,6 @@ const MightLike = ({ type, mode, details }) => {
     useEffect(() => {
         const loadAlbumData = async () => {
             const apiData = await loadAData(mode, id, details);
-            console.log(apiData);
             setData(apiData);
         };
 
