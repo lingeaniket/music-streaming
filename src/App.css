@@ -134,9 +134,17 @@ html {
 .scrollHider {
     overflow-y: scroll;
     overflow-x: hidden;
+    position: relative;
     padding: 8px;
     margin: 8px 8px;
     height: calc(100% - 16px);
+}
+
+.optionsMainContainer {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    z-index: 1;
 }
 
 .scrollHider::-webkit-scrollbar {
