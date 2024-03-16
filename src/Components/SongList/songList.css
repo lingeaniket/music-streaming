@@ -40,23 +40,38 @@
 
 .song-list-01 .song-list-06 svg {
     color: white;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out 0.1s;
 }
 
 .song-list-01:hover .song-list-10,
 .song-list-01.song-dragging .song-list-10,
 .song-list-01 .song-list-11 > .app05 {
-    display: none;
+    /* display: none; */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out 0.1s;
 }
 
-.song-list-01:hover .song-list-11 > .app05,
+.song-list-01:hover .song-list-11 > .app05 {
+    opacity: 1;
+}
+.song-list-01 .song-list-10,
+.song-list-01.song-dragging .song-list-10 {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out 0.1s;
+}
+
+/* .song-list-01:hover .song-list-11 > .app05,
 .song-list-01.song-dragging .song-list-11 > .app05 {
     display: block;
-}
+} */
 
-.song-list-11.options > .app05,
+/* .song-list-11.options > .app05, */
 .song-list-01:hover .song-list-14 {
     opacity: 1;
+}
+
+.song-list-01 .fa-heart {
+    transition: color 0.3s ease-in-out 0.1s;
 }
 
 .song-list-01:hover .fa-heart,
@@ -148,6 +163,13 @@
     padding: 5px;
 }
 
+.song-list-11 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .song-list-11 > button {
     outline: none;
     border: none;
@@ -165,6 +187,13 @@
     width: 30px;
     border: 2px solid white;
     border-radius: 50%;
+}
+
+.song-list-12 > svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-40%, -48%);
 }
 
 .song-list-13 {
