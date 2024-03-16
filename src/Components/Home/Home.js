@@ -7,18 +7,23 @@ import Sidebar from "../Sidebar/Sidebar";
 import QueueSide from "../QueueSide/QueueSide";
 import BottomBar from "../BottomBar/BottomBar";
 import NewPlaylist from "../Modals/NewPlaylist/NewPlaylist";
+import Options from "../Options/Options";
 
 const Home = () => {
     const queueOpened = useSelector((state) => state.player.queueOpened);
     const selectedSong = useSelector((state) => state.player.currentSong);
     const playlistOpen = useSelector((state) => state.playlist.playlistOpen);
+    const optionsOpened = useSelector((state) => state.option.optionsOpened);
 
     return (
         <div className="mainContainer">
             <div className={`gridMain ${queueOpened ? "queue-open" : ""}`}>
                 <Sidebar />
                 <div className={`main-content ${queueOpened ? "queue-shift" : ""}`}>
-                    <div className="scrollHider" style={{}}>
+                    <div className="scrollHider" id="options-container" style={{}}>
+                        <div id="options-main-container" className="optionsMainContainer">
+                            {optionsOpened && <Options />}
+                        </div>
                         <Outlet />
                     </div>
                 </div>
