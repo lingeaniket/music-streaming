@@ -152,9 +152,6 @@
 }
 
 @media screen and (max-width: 1000px) {
-    .list01 {
-        flex-wrap: wrap;
-    }
     .list02,
     .queue-shift .list02 {
         margin-bottom: 20px;

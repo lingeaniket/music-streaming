@@ -5,13 +5,14 @@ import React, { useEffect, useState, memo } from "react";
 import { getArtists, getPlayListData } from "../listFunctions";
 import { playAlbum } from "../../../../Features/musicPlayerSlice";
 import { addLiked, removeLiked } from "../../../../Features/userSlice";
-import { closeForceOptions, convertName } from "../../../commonFunctions";
+import { convertName } from "../../../commonFunctions";
 
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Play from "../../../Icons/Play/Play";
 import Options from "../../../Options/Options";
+import { setOptions } from "../../../../Features/optionSlice";
 
 const ListItem = ({ data }) => {
     const dispatch = useDispatch();
@@ -24,29 +25,36 @@ const ListItem = ({ data }) => {
 
     const handleOptions = (event) => {
         event.stopPropagation();
-        closeForceOptions();
 
-        const { top, right } = event.target.parentNode.getBoundingClientRect();
-        const parent = event.target.closest(".options");
+        const parentDiv = document.getElementById("options-container");
+        // const parentDiv = event.target.closest(".list01");
+        const optionContiner = document.getElementById("options-main-container");
+        // const optionContiner = parentDiv.querySelector(".option-container");
+        const parentRect = parentDiv.getBoundingClientRect();
+        const { top, right, left } = event.target.parentNode.getBoundingClientRect();
 
-        const option = parent.querySelector(".options01");
-        option.style.opacity = 1;
-        option.style.visibility = "visible";
+        const relativeLeft = left - parentRect.left + parentDiv.scrollLeft;
+        const relativeTop = top - parentRect.top + parentDiv.scrollTop;
 
         if (top > window.innerHeight / 2) {
-            option.style.bottom = "10%";
+            optionContiner.style.top = relativeTop - 155 + "px";
         } else {
-            option.style.top = "100%";
+            optionContiner.style.top = relativeTop + 20 + "px";
         }
 
         if (right < window.innerWidth / 2) {
-            option.style.left = "25%";
+            optionContiner.style.left = relativeLeft + 20 + "px";
         } else {
-            option.style.right = "10%";
+            optionContiner.style.left = relativeLeft - 130 + "px";
         }
-
         setTimeout(() => {
-            setoptions(true);
+            dispatch(
+                setOptions({
+                    open: true,
+                    data,
+                    // currentEvent: event
+                })
+            );
         }, 0);
     };
 
