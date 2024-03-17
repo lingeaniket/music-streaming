@@ -114,7 +114,6 @@ const Options = () => {
         setPlaylist(playlist);
         setLiked(likedData[`${data.type}s`].findIndex((idx) => idx === data.id) > -1);
         // eslint-disable-next-line
-        console.log(optionData);
     }, [optionData]);
     return (
         <div ref={opref} onClick={stayInModel} className="opt06">
