@@ -33,12 +33,11 @@ const Options = () => {
             // setLiked(true);
         }
         dispatch(setOptions(false));
-       
     };
 
     const handleAddToQueue = async () => {
         dispatch(setOptions(false));
-       
+
         const queueFunction = addToQueue.bind({ id: data.id, type: data.type });
         const songs = await queueFunction();
         dispatch(addSongsToQueue({ songs }));
@@ -48,7 +47,7 @@ const Options = () => {
         event.stopPropagation();
         const playerData = await getPlayListData(data, data.type);
         dispatch(playAlbum(playerData));
-       
+
         dispatch(setOptions({ open: false }));
     };
 
@@ -67,7 +66,6 @@ const Options = () => {
             // }
             dispatch(updateCurrentdata(""));
             dispatch(setOptions({ open: false }));
-            
         }
     }
 
@@ -82,13 +80,12 @@ const Options = () => {
     const handleClick = (e) => {
         if (opref.current && !opref.current.contains(e.target)) {
             dispatch(setOptions(false));
-           
         }
     };
 
     const handleOpenNew = () => {
         dispatch(setOptions(false));
-        
+
         setTimeout(() => {
             if (playlist) {
                 dispatch(updateCurrentdata({ ...data, type: "my-playlist" }));
@@ -112,7 +109,9 @@ const Options = () => {
         const { data, playlist } = optionData;
         setData(data);
         setPlaylist(playlist);
-        setLiked(likedData[`${data.type}s`].findIndex((idx) => idx === data.id) > -1);
+        if (!playlist) {
+            setLiked(likedData[`${data.type}s`].findIndex((idx) => idx === data.id) > -1);
+        }
         // eslint-disable-next-line
     }, [optionData]);
     return (
