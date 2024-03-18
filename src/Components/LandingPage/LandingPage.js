@@ -14,7 +14,7 @@ const LandingPage = () => {
 
     useEffect(() => {
         const loadData = async () => {
-            await axios.get(`${apiWebsite}/modules?language=${selectedLang.toString()}`).then((response) => {
+            await axios.get(`${apiWebsite}/modules?lang=${selectedLang.toString()}`).then((response) => {
                 const musicData = response.data.data;
                 const pairs = Object.entries(musicData).map(([key, value]) => ({
                     key,
