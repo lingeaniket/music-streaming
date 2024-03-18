@@ -23,12 +23,10 @@ const SongList = ({ song, index, type, mode, queue, isDragging, myPlaylist }) =>
 
     const likedData = useSelector((state) => state.user.liked);
     const isPlaying = useSelector((state) => state.player.isPlaying);
-    const optionOpened = useSelector((state) => state.option.optionOpened);
 
     const currentSong = useSelector((state) => state.player.currentSong);
 
     const [liked, setLiked] = useState(false);
-    const [options, setoptions] = useState(false);
     const [currentPlaying, setCurrentPlaying] = useState(false);
 
     const handleOptions = (event) => {
@@ -56,7 +54,7 @@ const SongList = ({ song, index, type, mode, queue, isDragging, myPlaylist }) =>
                 setOptions({
                     open: true,
                     data: song,
-                    playlist: myPlaylist,
+                    playlist: false,
                     // currentEvent: event
                 })
             );
