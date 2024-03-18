@@ -13,6 +13,7 @@ import { updatePlaylistDnD } from "../../Features/newPlaylistSlice";
 import Options from "../Options/Options";
 import SongListMain from "./SongList/SongListMain";
 import { apiWebsite } from "../../apiWeb";
+import { setOptions } from "../../Features/optionSlice";
 
 const UserTab = () => {
     const { id } = useParams();
@@ -52,25 +53,34 @@ const UserTab = () => {
     };
 
     const handleOptions = (event) => {
-        const { top, right } = event.target.parentNode.getBoundingClientRect();
-        const parent = event.target.closest(".options");
+        const parentDiv = document.getElementById("options-container");
+        const optionContiner = document.getElementById("options-main-container");
+        const parentRect = parentDiv.getBoundingClientRect();
+        const { top, right, left } = event.target.parentNode.getBoundingClientRect();
 
-        const option = parent.querySelector(".options01");
+        const relativeLeft = left - parentRect.left + parentDiv.scrollLeft;
+        const relativeTop = top - parentRect.top + parentDiv.scrollTop;
 
         if (top > window.innerHeight / 2) {
-            option.style.bottom = "10%";
+            optionContiner.style.top = relativeTop - 155 + "px";
         } else {
-            option.style.top = "100%";
+            optionContiner.style.top = relativeTop + 20 + "px";
         }
 
         if (right < window.innerWidth / 2) {
-            option.style.left = "25%";
+            optionContiner.style.left = relativeLeft + 20 + "px";
         } else {
-            option.style.right = "10%";
+            optionContiner.style.left = relativeLeft - 130 + "px";
         }
-
         setTimeout(() => {
-            setoptions(true);
+            dispatch(
+                setOptions({
+                    open: true,
+                    data: currentList,
+                    playlist: true,
+                    // currentEvent: event
+                })
+            );
         }, 0);
     };
 
@@ -78,7 +88,6 @@ const UserTab = () => {
         const isAvail = playlists.filter((list) => list.id === Number(id))[0];
         if (isAvail) {
             setCurrentSongs(isAvail.songs.slice(0, currentLoad));
-            console.log(isAvail.songs.slice(0, currentLoad))
         }
         // eslint-disable-next-line
     }, [currentLoad, id, playlists]);
