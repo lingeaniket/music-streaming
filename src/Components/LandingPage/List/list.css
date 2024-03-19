@@ -1,5 +1,7 @@
 .list01 {
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
+    /* height: 150px; */
+    overflow: auto;
 }
 
 .list01::-webkit-scrollbar {

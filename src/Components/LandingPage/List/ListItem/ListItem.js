@@ -2,17 +2,17 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState, memo } from "react";
 
+import { convertName } from "../../../commonFunctions";
+import { setOptions } from "../../../../Features/optionSlice";
 import { getArtists, getPlayListData } from "../listFunctions";
 import { playAlbum } from "../../../../Features/musicPlayerSlice";
 import { addLiked, removeLiked } from "../../../../Features/userSlice";
-import { convertName } from "../../../commonFunctions";
 
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Play from "../../../Icons/Play/Play";
 import Options from "../../../Options/Options";
-import { setOptions } from "../../../../Features/optionSlice";
 
 const ListItem = ({ data }) => {
     const dispatch = useDispatch();
@@ -23,41 +23,44 @@ const ListItem = ({ data }) => {
     const [liked, setLiked] = useState(false);
     const [options, setoptions] = useState(false);
 
+    // function to open options modal
     const handleOptions = (event) => {
-        event.stopPropagation();
+        event.stopPropagation(); // to not execute further events
 
-        const parentDiv = document.getElementById("options-container");
-        // const parentDiv = event.target.closest(".list01");
-        const optionContiner = document.getElementById("options-main-container");
-        // const optionContiner = parentDiv.querySelector(".option-container");
-        const parentRect = parentDiv.getBoundingClientRect();
-        const { top, right, left } = event.target.parentNode.getBoundingClientRect();
+        const parentDiv = document.getElementById("options-container"); // get main scrolling container
+        const optionContiner = document.getElementById("options-main-container"); // get options main container
+        const parentRect = parentDiv.getBoundingClientRect(); // parent rect
+        const { top, right, left } = event.target.parentNode.getBoundingClientRect(); // targets rect
 
-        const relativeLeft = left - parentRect.left + parentDiv.scrollLeft;
-        const relativeTop = top - parentRect.top + parentDiv.scrollTop;
+        const relativeLeft = left - parentRect.left + parentDiv.scrollLeft; // left of target - parents left = left position of options in main container + scrolling left value
+        const relativeTop = top - parentRect.top + parentDiv.scrollTop; // top of target - parents top = top position of options in main container + scrolling top value
 
+        // handle how option container position on screen with respected item
         if (top > window.innerHeight / 2) {
-            optionContiner.style.top = relativeTop - 155 + "px";
+            // if option button is below of half of screen
+            optionContiner.style.top = relativeTop - 155 + "px"; // 155px towards top from button
         } else {
-            optionContiner.style.top = relativeTop + 20 + "px";
+            optionContiner.style.top = relativeTop + 20 + "px"; // 20px towards bottom from button
         }
 
         if (right < window.innerWidth / 2) {
-            optionContiner.style.left = relativeLeft + 20 + "px";
+            // if option button is right of half of screen
+            optionContiner.style.left = relativeLeft + 20 + "px"; // 20px towards right from button
         } else {
-            optionContiner.style.left = relativeLeft - 130 + "px";
+            optionContiner.style.left = relativeLeft - 130 + "px"; // 130px towards left from button
         }
         setTimeout(() => {
+            // dispatch action to open option modal and give it data
             dispatch(
                 setOptions({
                     open: true,
                     data,
-                    // currentEvent: event
                 })
             );
         }, 0);
     };
 
+    // function to like or unlike
     const handleLike = (event) => {
         event.stopPropagation();
         if (liked) {
@@ -69,26 +72,29 @@ const ListItem = ({ data }) => {
         }
     };
 
+    // to Play the current category
     const handleAlbum = async (event) => {
         event.stopPropagation();
         const playerData = await getPlayListData(data, data.type);
         dispatch(playAlbum(playerData));
     };
 
+    // function to navigate to respected category details with its name
     const handleAlbumRoute = () => {
         const songTitle = data.name ? data.name : data.title;
         const nString = convertName(songTitle).toLowerCase();
         const conTitle = nString
             .replace(/[^a-zA-Z0-9]/g, "-")
             .replace(/-+/g, "-")
-            .replace(/^-+|-+$/g, "");
+            .replace(/^-+|-+$/g, ""); // removes unwanted characters so it navigate properly
         if (data.type === "album" || data.type === "song") {
             navigate(`/${data.type}/${conTitle}/${data.id}`);
         } else {
-            navigate(`/featured/${conTitle}/${data.id}`);
+            navigate(`/featured/${conTitle}/${data.id}`); // route for playlist and charts
         }
     };
 
+    // useeffect to set whether the category liked or not
     useEffect(() => {
         setLiked(likedData[`${data.type}s`].findIndex((idx) => idx === data.id) > -1);
         // eslint-disable-next-line
