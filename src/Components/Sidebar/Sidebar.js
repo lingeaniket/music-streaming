@@ -14,7 +14,7 @@ import LanguageDiv from "./LanguageDiv/LanguageDiv";
 const Sidebar = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
+    // to open new playlist modal
     const handleOpenNew = () => {
         setTimeout(() => {
             dispatch(openPlaylist(true));
@@ -24,6 +24,7 @@ const Sidebar = () => {
         <div className="sidebarContainer">
             <div className="app08 h-100 sb01">
                 <div className="sb02">
+                    {/* Home Button icon */}
                     <div className="sb03">
                         <div className="sb04">
                             <div
@@ -39,6 +40,7 @@ const Sidebar = () => {
                             </div>
                         </div>
                     </div>
+                    {/* Search Button icon */}
                     <div className="sb03">
                         <div className="sb04">
                             <div
@@ -65,7 +67,9 @@ const Sidebar = () => {
                                 <div>Your Library</div>
                             </div>
                         </div>
+                        {/* Language component to select user language */}
                         <LanguageDiv />
+                        {/* History List Button */}
                         <div
                             className="sb04"
                             onClick={() => {
@@ -81,6 +85,7 @@ const Sidebar = () => {
                                 <div>History</div>
                             </div>
                         </div>
+                        {/* Liked List Button */}
                         <div
                             className="sb04"
                             onClick={() => {
@@ -96,6 +101,7 @@ const Sidebar = () => {
                                 <div>Liked</div>
                             </div>
                         </div>
+                        {/* Custom bottom border div */}
                         <div className="sb09"></div>
                     </div>
                     <div className="sb04">
@@ -109,6 +115,7 @@ const Sidebar = () => {
                         </div>
                         <div className="sb04">
                             <div>
+                                {/* Button to create new playlist */}
                                 <button onClick={handleOpenNew} className="sbBtn app06">
                                     <span className="sb10">
                                         <FontAwesomeIcon icon={faPlus} size="sm" />
@@ -116,6 +123,7 @@ const Sidebar = () => {
                                     <span className="sb11">New Playlist</span>
                                 </button>
                             </div>
+                            {/* User created playlists */}
                             <MyPlaylist handleClose={false} />
                         </div>
                     </div>
