@@ -10,7 +10,8 @@ const LibraryList = ({ id, mode }) => {
     useEffect(() => {
         const loadData = async () => {
             const data = await axios.get(`${apiWebsite}/${mode}?id=${id}`);
-            mode === "song" ? setCurrentData(data.data.data[0]) : setCurrentData(data.data.data);
+            mode === "song" ? setCurrentData(data.data.data.songs[0]) : setCurrentData(data.data.data);
+            //    setCurrentData(data.data.data.songs)
         };
         loadData();
         // eslint-disable-next-line
