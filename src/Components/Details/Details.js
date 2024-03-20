@@ -13,7 +13,6 @@ import { addLiked, removeLiked } from "../../Features/userSlice.js";
 import { getPlayListData } from "../LandingPage/List/listFunctions.js";
 
 import SongList from "../SongList/SongList";
-import Options from "../Options/Options.js";
 import Loader from "../Icons/Loader/Loader.js";
 import MightLike from "../MightLike/MightLike.js";
 import { setOptions } from "../../Features/optionSlice.js";
@@ -28,7 +27,6 @@ const Details = ({ type }) => {
     const [liked, setLiked] = useState(false);
     const [details, setDetails] = useState({});
     const [loading, setLoading] = useState(true);
-    const [options, setoptions] = useState(false);
 
     const handleLike = (event) => {
         event.stopPropagation();
