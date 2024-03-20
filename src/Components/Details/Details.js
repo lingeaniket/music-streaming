@@ -23,9 +23,9 @@ const Details = ({ type }) => {
     const likedData = useSelector((state) => state.user.liked);
 
     const [songs, setSongs] = useState([]);
-    const [modules, setModules] = useState({});
     const [liked, setLiked] = useState(false);
     const [details, setDetails] = useState({});
+    const [modules, setModules] = useState({});
     const [loading, setLoading] = useState(true);
 
     const handleLike = (event) => {
