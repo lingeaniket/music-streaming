@@ -39,6 +39,7 @@ const Home = () => {
                         <QueueSide />
                     </div>
                 )}
+                
                 {/* Footer for audio player */}
                 {selectedSong ? <Footer /> : null}
                 {/* Bottom Bar for mobile devices */}
