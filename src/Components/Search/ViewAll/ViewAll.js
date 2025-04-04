@@ -47,7 +47,7 @@ const ViewAll = () => {
     useEffect(() => {
         setLoading(true);
         const loadData = async () => {
-            const data = await axios.get(`${apiWebsite}/search/${type}s?query=${key}&page=${page}&limit=24`);
+            const data = await axios.get(`${apiWebsite}/search/${type}s?q=${key}&page=${page}&n=24`);
             setSearchData(data.data.data);
             setTotalPages(Math.ceil(data.data.data.total / 24));
             setTimeout(() => {

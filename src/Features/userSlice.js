@@ -4,11 +4,9 @@ export const userSlice = createSlice({
     name: "user",
     initialState: {
         user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : "",
-        liked: localStorage.getItem("liked")
-            ? JSON.parse(localStorage.getItem("liked"))
-            : { songs: [], playlists: [], albums: [], artists: [] },
+        liked: localStorage.getItem("liked") ? JSON.parse(localStorage.getItem("liked")) : { songs: [], playlists: [], albums: [], artists: [] },
         history: localStorage.getItem("history") ? JSON.parse(localStorage.getItem("history")) : [],
-        languages: localStorage.getItem("languages") ? JSON.parse(localStorage.getItem("languages")) : ["hindi", "english"],
+        languages: localStorage.getItem("languages") ? JSON.parse(localStorage.getItem("languages")) : ["hindi"],
     },
     reducers: {
         addLiked: (state, action) => {
